@@ -24,7 +24,7 @@ if(isset($_POST['Name'], $_POST['Age'], $_POST['Gender'], $_POST['Phone'], $_POS
     }
 }
 
-<?php
+
 // Check if the form is submitted
 if(isset($_POST['Name'], $_POST['Age'], $_POST['PlateNumber'], $_FILES['DriversLicense'], $_FILES['VehicleRegistration'], $_FILES['PermittoOperate'], $_POST['PhoneNumber'], $_POST['HomeAddress'])) {
     $Name                  = $_POST['Name'];
@@ -50,7 +50,7 @@ if(isset($_POST['Name'], $_POST['Age'], $_POST['PlateNumber'], $_FILES['DriversL
         echo 'There were errors while saving the driver data.';
     }
 }
-?>
+
 
 
 

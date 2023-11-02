@@ -25,7 +25,7 @@ if(isset($_POST['Name'], $_POST['Age'], $_POST['Gender'], $_POST['Phone'], $_POS
 }
 
 
-<?php
+
 if(isset($_POST['Name'], $_POST['Age'], $_POST['PlateNumber'], $_POST['PhoneNumber'], $_POST['HomeAddress'])){
     $Name                  = $_POST['Name'];
     $Age                   = $_POST['Age'];
@@ -69,7 +69,7 @@ function saveUploadedFile($fieldName, $uploadDirectory) {
     }
     return null;
 }
-?>
+
 
 
 
