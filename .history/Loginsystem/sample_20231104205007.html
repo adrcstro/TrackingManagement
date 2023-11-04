@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <button type="button" class="btn btn-success btn-sm m-1" id="openModal">
+        <i class="bi bi-plus-circle"></i> Create
+    </button>
+
+    <div class="modal" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Something</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="inputField">Input Field:</label>
+                            <input type="text" class="form-control" id="inputField">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveButton">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        // JavaScript to open the modal
+        $('#openModal').click(function () {
+            $('#myModal').modal('show');
+        });
+
+        // JavaScript to handle form submission
+        $('#saveButton').click(function () {
+            // You can access the input field value like this:
+            var inputValue = $('#inputField').val();
+            
+            // Perform your desired action with the input value here
+
+            // Close the modal
+            $('#myModal').modal('hide');
+        });
+    </script>
+</body>
+</html>

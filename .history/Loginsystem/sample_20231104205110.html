@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal with Input Fields</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        .modal-dialog {
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+
+    <button type="button" class="btn btn-success btn-sm m-1" onclick="openModal()">
+        <i class="bi bi-plus-circle"></i> Create
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Create Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="modal-form">
+                        <div class="form-group">
+                            <label for="inputField">Input Field:</label>
+                            <input type="text" class="form-control" id="inputField" placeholder="Enter your input">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="submitForm()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            $('#myModal').modal('show');
+        }
+
+        function submitForm() {
+            // Here you can handle the form submission, for example, by retrieving the input value
+            var inputFieldValue = $('#inputField').val();
+            console.log("Input Field Value: " + inputFieldValue);
+            // You can add further logic to handle the form data
+            $('#myModal').modal('hide'); // Close the modal after submission
+        }
+    </script>
+
+</body>
+</html>
