@@ -466,7 +466,7 @@ require_once('Config.php');
                 </div>
 
 
-<!--passenger table------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--passenger table-->
 
 
                 <div  id="Passengers-table" style="display:none;" class="card shadow border-0 mb-7">
@@ -474,7 +474,6 @@ require_once('Config.php');
                         <h5 class="mb-0">Passengers Personal Information</h5>
                     </div>
                     <div class="table-responsive">
-                    <table class="table table-hover table-nowrap">
                     <?php
 // Replace with your actual database credentials
 
@@ -495,7 +494,7 @@ if ($result->num_rows > 0) {
     echo '<table class="table table-hover table-nowrap">
             <tr>
             <thead class="thead-light">
-                <th>Name</th>
+                <th>Nsme</th>
                 <th>Age</th>
                 <th>Gender</th>
                 <th>Phone</th>
@@ -515,6 +514,10 @@ if ($result->num_rows > 0) {
                 <td>' . $row["Phone"] . '</td>
                 <td>' . $row["HomeAddress"] . '</td>
                 <td>' . $row["Username"] . '</td>
+
+
+
+
             </tr>';
     }
     echo '</table>';
@@ -522,253 +525,30 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
 $conn->close();
-?>            
-                    </table>
+?>
+
+
+
+
+
+
+                        <table class="table table-hover table-nowrap" >
+                          
+                        </table>
                     </div>
-                    <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
-<button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#Passengerupdate">
-    <i class="bi bi-pencil"></i> Update
-</button>
-
-<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#passengerdelete">
-    <i class="bi bi-trash"></i> Delete
-</button>
-
- <button type="button" class="btn btn-info btn-sm m-1" id="refreshButton2">
-        <i class="bi bi-arrow-clockwise"></i> Refresh
-    </button>
-<script>
-        document.getElementById("refreshButton2").addEventListener("click", function() {
-            // Add your refresh functionality here
-            // For example, you can reload the current page with the following line
-            location.reload();
-        });
-    </script>
+                    <div class="card-footer border-0 py-5">
+                        <span class="text-muted text-sm">Showing 10 items out of 250 results found</span>
+                        <nav aria-label="Page navigation example">
+                          <ul class="pagination">
+                            <li class="page-item"><a class="page-link disabled" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link bg-info text-white" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                          </ul>
+                        </nav>
                     </div>
                 </div>
-
-
-
-        <div class="modal" id="Passengerupdate">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Update Passenger Information</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <!-- Modal Body -->
-                <div class="modal-body">
-                <form id="updateForm" action="admin.php"  method="post">
-                <label for="SelectPassenger">Select Passenger Infomation</label>
-                        <select name="SelectPassenger" id="SelectPassenger" class="form-control" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <?php
-                      
-
-                            $conn = new mysqli($servername, $username, $password, $dbname);
-
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
-
-                            $sql = "SELECT Name FROM passengertbl";
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<option value="'.$row["Name"].'">'.$row["Name"].'</option>';
-                                }
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                            ?>
-                        </select>
-            
-    <div class="form-group">
-        <label id="PassengerAge" for="PassengerAge">Age</label>
-        <input type="text" name="PassengerAge" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label id="PassengerGender" for="PassengerGender">Gender</label>
-        <input name="PassengerGender" type="text" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label id="PassengerPhone" for="PassengerPhone">Phone</label>
-        <input type="text" name="PassengerPhone" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label id="PassengerAddress" for="PassengerAddress">Home Address</label>
-        <input type="text" name="PassengerAddress" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label id="PassengerEmail" for="PassengerEmail">Email</label>
-        <input type="text" name="PassengerEmail" class="form-control" required>
-    </div>
-
-</form>
-</div>
-<div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="PassengerRegister" type="button" class="btn btn-primary" >Save Passenger</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-
-    <script>
-  $(document).ready(function() {
-    $("#PassengerRegister").click(function() {
-      var SelectPassenger = $("#SelectPassenger").val();
-      var PassengerAge = $("input[name='PassengerAge']").val();
-      var PassengerGender = $("input[name='PassengerGender']").val();
-      var PassengerPhone = $("input[name='PassengerPhone']").val();
-      var PassengerAddress = $("input[name='PassengerAddress']").val();
-      var PassengerEmail = $("input[name='PassengerEmail']").val();
-      $.post(
-        "passengerupdate.php", // Replace with the actual file name for update
-        {
-          SelectPassenger: SelectPassenger,
-          PassengerAge: PassengerAge,
-          PassengerGender: PassengerGender,
-          PassengerPhone: PassengerPhone,
-          PassengerAddress: PassengerAddress,
-          PassengerEmail: PassengerEmail
-        },
-        function(data, status) {
-          if (status === 'success') {
-            Swal.fire({
-              title: 'Updated Successfully!',
-              icon: 'success',
-              confirmButtonText: 'Okay'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                $(".swal2-popup").addClass('light-theme');
-              }
-            });
-          } else {
-            // Handle error here
-            Swal.fire({
-              title: 'Error!',
-              text: 'There was an error while updating the record.',
-              icon: 'error',
-              confirmButtonText: 'Okay'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                $(".swal2-popup").addClass('light-theme');
-              }
-            });
-          }
-        }
-      );
-    });
-  });
-</script>
-
-
-
-
-<div class="modal" id="passengerdelete">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Delete Administrator Information</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="PassengerDelete" action="passengerdelete.php" method="post">
-                    <div class="form-group">
-                        <label for="SelectPassenger">Delete Selected Passenger </label>
-                        <select name="SelectPassenger" id="SelectPassenger" class="form-control" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <?php
-                            // Your PHP code for populating the select options
-                            $conn = new mysqli($servername, $username, $password, $dbname);
-
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
-
-                            $sql = "SELECT Name FROM Passengertbl";
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<option value="'.$row["Name"].'">'.$row["Name"].'</option>';
-                                }
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                            ?>
-                        </select>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button id="PassengerDelete" type="submit" class="btn btn-danger">Delete</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<!-- Make sure you have the correct path to the necessary libraries -->
-
-
-<script>
-        $(document).ready(function() {
-            $('#PassengerDelete').submit(function(e) {
-                e.preventDefault();
-                var formData = $(this).serialize();
-                $.ajax({
-                    type: 'POST',
-                    url: 'passengerdelete.php', // Make sure this is the correct path to your delete.php file
-                    data: formData,
-                    dataType: 'json', // Set the dataType to 'json' to parse the JSON response
-                    success: function(response) {
-                        showAlert(response.type, response.message);
-                    },
-                    error: function() {
-                        showAlert('error', 'Something went wrong. Please try again.');
-                    }
-                });
-            });
-
-            function showAlert(type, message) {
-                Swal.fire({
-                    title: type.charAt(0).toUpperCase() + type.slice(1),
-                    text: message,
-                    icon: type,
-                    confirmButtonText: 'OK',
-                });
-            }
-        });
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
-<!--passenger table end------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-
-
 
 
 
@@ -779,10 +559,12 @@ $conn->close();
                 <div  id="Admin-table" class="card shadow border-0 mb-7">
                     <div class="card-header">
                         <h5 class="mb-0">Admins</h5>
- </div>
-<div class="table-responsive">
-<table class="table table-hover table-nowrap" >
- <?php
+                    </div>
+                    <div class="table-responsive">
+
+
+                        <table class="table table-hover table-nowrap" >
+                        <?php
 // Replace with your actual database credentials
 
 
@@ -855,9 +637,6 @@ $conn->close();
         });
     </script>
 </div>
-
-
-
 </div>
 
             </div>
@@ -867,10 +646,6 @@ $conn->close();
   
 
  
-
-
-
-
 
   <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -912,9 +687,6 @@ $conn->close();
             </div>
         </div>
     </div>
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
     /* Custom CSS for light theme */

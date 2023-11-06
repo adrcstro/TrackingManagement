@@ -681,10 +681,10 @@ $conn->close();
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="PassengerDelete" action="passengerdelete.php" method="post">
+                <form id="Delete" action="delete.php" method="post">
                     <div class="form-group">
-                        <label for="SelectPassenger">Delete Selected Passenger </label>
-                        <select name="SelectPassenger" id="SelectPassenger" class="form-control" required>
+                        <label for="input1">Delete Selected BRGY-ADMIN </label>
+                        <select name="input1" id="input1" class="form-control" required>
                             <option value="" disabled selected>Select an option</option>
                             <?php
                             // Your PHP code for populating the select options
@@ -694,12 +694,12 @@ $conn->close();
                                 die("Connection failed: " . $conn->connect_error);
                             }
 
-                            $sql = "SELECT Name FROM Passengertbl";
+                            $sql = "SELECT Admin FROM admintbl";
                             $result = $conn->query($sql);
 
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
-                                    echo '<option value="'.$row["Name"].'">'.$row["Name"].'</option>';
+                                    echo '<option value="'.$row["Admin"].'">'.$row["Admin"].'</option>';
                                 }
                             } else {
                                 echo "0 results";
@@ -711,7 +711,7 @@ $conn->close();
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button id="PassengerDelete" type="submit" class="btn btn-danger">Delete</button>
+                        <button id="Delete" type="submit" class="btn btn-danger">Delete</button>
                     </div>
                 </form>
             </div>
@@ -726,12 +726,12 @@ $conn->close();
 
 <script>
         $(document).ready(function() {
-            $('#PassengerDelete').submit(function(e) {
+            $('#Delete').submit(function(e) {
                 e.preventDefault();
                 var formData = $(this).serialize();
                 $.ajax({
                     type: 'POST',
-                    url: 'passengerdelete.php', // Make sure this is the correct path to your delete.php file
+                    url: 'delete.php', // Make sure this is the correct path to your delete.php file
                     data: formData,
                     dataType: 'json', // Set the dataType to 'json' to parse the JSON response
                     success: function(response) {

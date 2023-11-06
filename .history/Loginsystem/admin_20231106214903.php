@@ -681,10 +681,10 @@ $conn->close();
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="PassengerDelete" action="passengerdelete.php" method="post">
+                <form id="Delete" action="delete.php" method="post">
                     <div class="form-group">
-                        <label for="SelectPassenger">Delete Selected Passenger </label>
-                        <select name="SelectPassenger" id="SelectPassenger" class="form-control" required>
+                        <label for="input1">Delete Selected Passenger </label>
+                        <select name="input1" id="input1" class="form-control" required>
                             <option value="" disabled selected>Select an option</option>
                             <?php
                             // Your PHP code for populating the select options
@@ -731,7 +731,7 @@ $conn->close();
                 var formData = $(this).serialize();
                 $.ajax({
                     type: 'POST',
-                    url: 'passengerdelete.php', // Make sure this is the correct path to your delete.php file
+                    url: 'delete.php', // Make sure this is the correct path to your delete.php file
                     data: formData,
                     dataType: 'json', // Set the dataType to 'json' to parse the JSON response
                     success: function(response) {

@@ -15,12 +15,8 @@
 }
 
 
-@media (max-width: 580px) {
+@media (max-width: 610px) {
     #title{
         text-align: center;
-    }
-    #SIdebarBTN{
-        display: flex;
-        justify-content: center;
     }
 }

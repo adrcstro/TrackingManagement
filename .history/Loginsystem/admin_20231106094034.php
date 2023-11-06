@@ -12,8 +12,8 @@ require_once('Config.php');
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brangay 643,Zone64 Santa-Mesa Manila</title>
-  <link rel="shortcut icon" type="x-icon" href="../images/logo.png">
+  <title>Brangay409-3WHeel-Tracking-System</title>
+  <link rel="shortcut icon" type="x-icon" href="../images/webicon.png">
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -30,8 +30,7 @@ require_once('Config.php');
 
 <!-- Include SweetAlert library -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -466,7 +465,7 @@ require_once('Config.php');
                 </div>
 
 
-<!--passenger table------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
 
 
                 <div  id="Passengers-table" style="display:none;" class="card shadow border-0 mb-7">
@@ -474,301 +473,200 @@ require_once('Config.php');
                         <h5 class="mb-0">Passengers Personal Information</h5>
                     </div>
                     <div class="table-responsive">
-                    <table class="table table-hover table-nowrap">
-                    <?php
-// Replace with your actual database credentials
 
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+                        <table class="table table-hover table-nowrap" >
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Company</th>
+                                    <th scope="col">Offer</th>
+                                    <th scope="col">Meeting</th>
+                                    
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Fetch data from the admin table
-$sql = "SELECT * FROM passengertbl";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    echo '<table class="table table-hover table-nowrap">
-            <tr>
-            <thead class="thead-light">
-                <th>Name</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Phone</th>
-                <th>Home Address</th>
-                <th>Email</th>
-                
-                </thead>
-                </tr>';
-              
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo '<tr>
-               
-                <td>' . $row["Name"] . '</td>
-                <td>' . $row["Age"] . '</td>
-                <td>' . $row["Gender"] . '</td>
-                <td>' . $row["Phone"] . '</td>
-                <td>' . $row["HomeAddress"] . '</td>
-                <td>' . $row["Username"] . '</td>
-            </tr>';
-    }
-    echo '</table>';
-} else {
-    echo "0 results";
-}
-$conn->close();
-?>            
-                    </table>
+                                    
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Jason Martinez
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Feb 15, 2023
+                                    </td>
+                                    <td>
+                                        <img alt="..." src="https://bytewebster.com/img/logo.png" class="avatar avatar-xs rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="https://www.bytewebster.com/">
+                                            Bytewebster
+                                        </a>
+                                    </td>
+                                    <td>
+                                        $3.500
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-lg badge-dot">
+                                            <i class="bg-success"></i>Scheduled
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1610271340738-726e199f0258?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Ashley Williams
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Apr 15, 2023
+                                    </td>
+                                    <td>
+                                        <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-2.png" class="avatar avatar-xs rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Netguru
+                                        </a>
+                                    </td>
+                                    <td>
+                                        $2.750
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-lg badge-dot">
+                                            <i class="bg-warning"></i>Postponed
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1610878722345-79c5eaf6a48c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Melissa Chen
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Mar 20, 2023
+                                    </td>
+                                    <td>
+                                        <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-3.png" class="avatar avatar-xs rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Figma
+                                        </a>
+                                    </td>
+                                    <td>
+                                        $4.200
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-lg badge-dot">
+                                            <i class="bg-success"></i>Scheduled
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1612422656768-d5e4ec31fac0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Emily Davis
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Feb 15, 2023
+                                    </td>
+                                    <td>
+                                        <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-4.png" class="avatar avatar-xs rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Mailchimp
+                                        </a>
+                                    </td>
+                                    <td>
+                                        $3.500
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-lg badge-dot">
+                                            <i class="bg-dark"></i>Not discussed
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1608976328267-e673d3ec06ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Andre
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Apr 10, 2023
+                                    </td>
+                                    <td>
+                                        <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-5.png" class="avatar avatar-xs rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Webpixels
+                                        </a>
+                                    </td>
+                                    <td>
+                                        $1.500
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-lg badge-dot">
+                                            <i class="bg-danger"></i>Canceled
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-neutral">View</a>
+                                        <button type="button" onclick="showSweetAlert()" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                               
+                               
+                               
+                                
+                               
+                               
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
-<button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#Passengerupdate">
-    <i class="bi bi-pencil"></i> Update
-</button>
-
-<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#passengerdelete">
-    <i class="bi bi-trash"></i> Delete
-</button>
-
- <button type="button" class="btn btn-info btn-sm m-1" id="refreshButton2">
-        <i class="bi bi-arrow-clockwise"></i> Refresh
-    </button>
-<script>
-        document.getElementById("refreshButton2").addEventListener("click", function() {
-            // Add your refresh functionality here
-            // For example, you can reload the current page with the following line
-            location.reload();
-        });
-    </script>
+                    <div class="card-footer border-0 py-5">
+                        <span class="text-muted text-sm">Showing 10 items out of 250 results found</span>
+                        <nav aria-label="Page navigation example">
+                          <ul class="pagination">
+                            <li class="page-item"><a class="page-link disabled" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link bg-info text-white" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                          </ul>
+                        </nav>
                     </div>
                 </div>
-
-
-
-        <div class="modal" id="Passengerupdate">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Update Passenger Information</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <!-- Modal Body -->
-                <div class="modal-body">
-                <form id="updateForm" action="admin.php"  method="post">
-                <label for="SelectPassenger">Select Passenger Infomation</label>
-                        <select name="SelectPassenger" id="SelectPassenger" class="form-control" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <?php
-                      
-
-                            $conn = new mysqli($servername, $username, $password, $dbname);
-
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
-
-                            $sql = "SELECT Name FROM passengertbl";
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<option value="'.$row["Name"].'">'.$row["Name"].'</option>';
-                                }
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                            ?>
-                        </select>
-            
-    <div class="form-group">
-        <label id="PassengerAge" for="PassengerAge">Age</label>
-        <input type="text" name="PassengerAge" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label id="PassengerGender" for="PassengerGender">Gender</label>
-        <input name="PassengerGender" type="text" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label id="PassengerPhone" for="PassengerPhone">Phone</label>
-        <input type="text" name="PassengerPhone" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label id="PassengerAddress" for="PassengerAddress">Home Address</label>
-        <input type="text" name="PassengerAddress" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label id="PassengerEmail" for="PassengerEmail">Email</label>
-        <input type="text" name="PassengerEmail" class="form-control" required>
-    </div>
-
-</form>
-</div>
-<div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="PassengerRegister" type="button" class="btn btn-primary" >Save Passenger</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-
-    <script>
-  $(document).ready(function() {
-    $("#PassengerRegister").click(function() {
-      var SelectPassenger = $("#SelectPassenger").val();
-      var PassengerAge = $("input[name='PassengerAge']").val();
-      var PassengerGender = $("input[name='PassengerGender']").val();
-      var PassengerPhone = $("input[name='PassengerPhone']").val();
-      var PassengerAddress = $("input[name='PassengerAddress']").val();
-      var PassengerEmail = $("input[name='PassengerEmail']").val();
-      $.post(
-        "passengerupdate.php", // Replace with the actual file name for update
-        {
-          SelectPassenger: SelectPassenger,
-          PassengerAge: PassengerAge,
-          PassengerGender: PassengerGender,
-          PassengerPhone: PassengerPhone,
-          PassengerAddress: PassengerAddress,
-          PassengerEmail: PassengerEmail
-        },
-        function(data, status) {
-          if (status === 'success') {
-            Swal.fire({
-              title: 'Updated Successfully!',
-              icon: 'success',
-              confirmButtonText: 'Okay'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                $(".swal2-popup").addClass('light-theme');
-              }
-            });
-          } else {
-            // Handle error here
-            Swal.fire({
-              title: 'Error!',
-              text: 'There was an error while updating the record.',
-              icon: 'error',
-              confirmButtonText: 'Okay'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                $(".swal2-popup").addClass('light-theme');
-              }
-            });
-          }
-        }
-      );
-    });
-  });
-</script>
-
-
-
-
-<div class="modal" id="passengerdelete">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Delete Administrator Information</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="PassengerDelete" action="passengerdelete.php" method="post">
-                    <div class="form-group">
-                        <label for="SelectPassenger">Delete Selected Passenger </label>
-                        <select name="SelectPassenger" id="SelectPassenger" class="form-control" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <?php
-                            // Your PHP code for populating the select options
-                            $conn = new mysqli($servername, $username, $password, $dbname);
-
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
-
-                            $sql = "SELECT Name FROM Passengertbl";
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<option value="'.$row["Name"].'">'.$row["Name"].'</option>';
-                                }
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                            ?>
-                        </select>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button id="PassengerDelete" type="submit" class="btn btn-danger">Delete</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<!-- Make sure you have the correct path to the necessary libraries -->
-
-
-<script>
-        $(document).ready(function() {
-            $('#PassengerDelete').submit(function(e) {
-                e.preventDefault();
-                var formData = $(this).serialize();
-                $.ajax({
-                    type: 'POST',
-                    url: 'passengerdelete.php', // Make sure this is the correct path to your delete.php file
-                    data: formData,
-                    dataType: 'json', // Set the dataType to 'json' to parse the JSON response
-                    success: function(response) {
-                        showAlert(response.type, response.message);
-                    },
-                    error: function() {
-                        showAlert('error', 'Something went wrong. Please try again.');
-                    }
-                });
-            });
-
-            function showAlert(type, message) {
-                Swal.fire({
-                    title: type.charAt(0).toUpperCase() + type.slice(1),
-                    text: message,
-                    icon: type,
-                    confirmButtonText: 'OK',
-                });
-            }
-        });
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
-<!--passenger table end------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-
-
 
 
 
@@ -779,10 +677,12 @@ $conn->close();
                 <div  id="Admin-table" class="card shadow border-0 mb-7">
                     <div class="card-header">
                         <h5 class="mb-0">Admins</h5>
- </div>
-<div class="table-responsive">
-<table class="table table-hover table-nowrap" >
- <?php
+                    </div>
+                    <div class="table-responsive">
+
+
+                        <table class="table table-hover table-nowrap" >
+                        <?php
 // Replace with your actual database credentials
 
 
@@ -844,20 +744,11 @@ $conn->close();
     <i class="bi bi-trash"></i> Delete
 </button>
 
- <button type="button" class="btn btn-info btn-sm m-1" id="refreshButton">
-        <i class="bi bi-arrow-clockwise"></i> Refresh
-    </button>
-<script>
-        document.getElementById("refreshButton").addEventListener("click", function() {
-            // Add your refresh functionality here
-            // For example, you can reload the current page with the following line
-            location.reload();
-        });
-    </script>
+<button type="button" class="btn btn-info btn-sm m-1">
+    <i class="bi bi-eye"></i> View
+</button>
+
 </div>
-
-
-
 </div>
 
             </div>
@@ -867,10 +758,6 @@ $conn->close();
   
 
  
-
-
-
-
 
   <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -912,9 +799,6 @@ $conn->close();
             </div>
         </div>
     </div>
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
     /* Custom CSS for light theme */
@@ -1053,7 +937,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Please select an admin to update";
     }
-      
 }
 
 // Close the database connection
@@ -1101,7 +984,53 @@ $conn->close();
 
 
 
+
+
+
+
 <!-- Delete Button -->
+
+<!-- Your modal HTML -->
+<!-- Include jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Include SweetAlert library -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#updateForm').submit(function(e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+        $.ajax({
+            type: 'POST',
+            url: 'delete_admin.php', // Replace with the path to your delete_admin.php file
+            data: formData,
+            success: function(response) {
+                if (response === 'success') {
+                    // Show success message
+                    showAlert('success', 'Record Deleted', 'The selected admin has been deleted.');
+                } else {
+                    // Show error message
+                    showAlert('error', 'Error', 'Error deleting record. Please try again.');
+                }
+            },
+            error: function() {
+                showAlert('error', 'Error', 'Something went wrong. Please try again.');
+            }
+        });
+    });
+
+    function showAlert(icon, title, text) {
+        swal({
+            title: title,
+            text: text,
+            icon: icon,
+            button: 'OK',
+        });
+    }
+});
+</script>
 
 <!-- Your modal HTML -->
 <div class="modal" id="delete">
@@ -1112,7 +1041,7 @@ $conn->close();
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="Delete" action="delete.php" method="post">
+                <form id="updateForm" action="admin.php" method="post">
                     <div class="form-group">
                         <label for="input1">Delete Selected BRGY-ADMIN </label>
                         <select name="input1" id="input1" class="form-control" required>
@@ -1125,12 +1054,12 @@ $conn->close();
                                 die("Connection failed: " . $conn->connect_error);
                             }
 
-                            $sql = "SELECT Admin FROM admintbl";
+                            $sql = "SELECT ID, Admin FROM admintbl";
                             $result = $conn->query($sql);
 
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
-                                    echo '<option value="'.$row["Admin"].'">'.$row["Admin"].'</option>';
+                                    echo '<option value="'.$row["ID"].'">'.$row["Admin"].'</option>';
                                 }
                             } else {
                                 echo "0 results";
@@ -1152,38 +1081,6 @@ $conn->close();
 
 
 
-<!-- Make sure you have the correct path to the necessary libraries -->
-
-
-<script>
-        $(document).ready(function() {
-            $('#Delete').submit(function(e) {
-                e.preventDefault();
-                var formData = $(this).serialize();
-                $.ajax({
-                    type: 'POST',
-                    url: 'delete.php', // Make sure this is the correct path to your delete.php file
-                    data: formData,
-                    dataType: 'json', // Set the dataType to 'json' to parse the JSON response
-                    success: function(response) {
-                        showAlert(response.type, response.message);
-                    },
-                    error: function() {
-                        showAlert('error', 'Something went wrong. Please try again.');
-                    }
-                });
-            });
-
-            function showAlert(type, message) {
-                Swal.fire({
-                    title: type.charAt(0).toUpperCase() + type.slice(1),
-                    text: message,
-                    icon: type,
-                    confirmButtonText: 'OK',
-                });
-            }
-        });
-    </script>
 
 
 
@@ -1211,19 +1108,7 @@ $conn->close();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 

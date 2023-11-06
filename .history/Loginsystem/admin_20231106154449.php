@@ -526,11 +526,17 @@ $conn->close();
                     </table>
                     </div>
                     <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
+                    
+                    <button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#Passengermodal" >
+    <i class="bi bi-plus-circle"></i> Create
+</button>
+
+
 <button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#Passengerupdate">
     <i class="bi bi-pencil"></i> Update
 </button>
 
-<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#passengerdelete">
+<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#Passengerdelete">
     <i class="bi bi-trash"></i> Delete
 </button>
 
@@ -549,70 +555,48 @@ $conn->close();
 
 
 
-        <div class="modal" id="Passengerupdate">
+                <div class="modal" id="Passengermodal">
         <div class="modal-dialog">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Update Passenger Information</h4>
+                    <h4 class="modal-title">Create Passenger Information</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <!-- Modal Body -->
                 <div class="modal-body">
-                <form id="updateForm" action="admin.php"  method="post">
-                <label for="SelectPassenger">Select Passenger Infomation</label>
-                        <select name="SelectPassenger" id="SelectPassenger" class="form-control" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <?php
-                      
-
-                            $conn = new mysqli($servername, $username, $password, $dbname);
-
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
-
-                            $sql = "SELECT Name FROM passengertbl";
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<option value="'.$row["Name"].'">'.$row["Name"].'</option>';
-                                }
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                            ?>
-                        </select>
-            
+                <form action="admin.php"  method="post">
     <div class="form-group">
-        <label id="PassengerAge" for="PassengerAge">Age</label>
-        <input type="text" name="PassengerAge" class="form-control" required>
+        <label id="input1" for="input1">Name</label>
+        <input name="input1" type="text" class="form-control" required>
     </div>
     <div class="form-group">
-        <label id="PassengerGender" for="PassengerGender">Gender</label>
-        <input name="PassengerGender" type="text" class="form-control" required>
+        <label id="input2" for="input2">Age</label>
+        <input type="text" name="input2" class="form-control" required>
     </div>
     <div class="form-group">
-        <label id="PassengerPhone" for="PassengerPhone">Phone</label>
-        <input type="text" name="PassengerPhone" class="form-control" required>
+        <label id="input3" for="input3">Gender</label>
+        <input name="input3" type="text" class="form-control" required>
     </div>
     <div class="form-group">
-        <label id="PassengerAddress" for="PassengerAddress">Home Address</label>
-        <input type="text" name="PassengerAddress" class="form-control" required>
+        <label id="input2" for="input2">Phone</label>
+        <input type="text" name="input2" class="form-control" required>
     </div>
     <div class="form-group">
-        <label id="PassengerEmail" for="PassengerEmail">Email</label>
-        <input type="text" name="PassengerEmail" class="form-control" required>
+        <label id="input2" for="input2">Home Address</label>
+        <input type="text" name="input2" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label id="input2" for="input2">Email</label>
+        <input type="text" name="input2" class="form-control" required>
     </div>
 
 </form>
 </div>
 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="PassengerRegister" type="button" class="btn btn-primary" >Save Passenger</button>
+                    <button id="Register" type="button" class="btn btn-primary" >Save</button>
                 </div>
 
             </div>
@@ -621,138 +605,7 @@ $conn->close();
 
 
 
-    <script>
-  $(document).ready(function() {
-    $("#PassengerRegister").click(function() {
-      var SelectPassenger = $("#SelectPassenger").val();
-      var PassengerAge = $("input[name='PassengerAge']").val();
-      var PassengerGender = $("input[name='PassengerGender']").val();
-      var PassengerPhone = $("input[name='PassengerPhone']").val();
-      var PassengerAddress = $("input[name='PassengerAddress']").val();
-      var PassengerEmail = $("input[name='PassengerEmail']").val();
-      $.post(
-        "passengerupdate.php", // Replace with the actual file name for update
-        {
-          SelectPassenger: SelectPassenger,
-          PassengerAge: PassengerAge,
-          PassengerGender: PassengerGender,
-          PassengerPhone: PassengerPhone,
-          PassengerAddress: PassengerAddress,
-          PassengerEmail: PassengerEmail
-        },
-        function(data, status) {
-          if (status === 'success') {
-            Swal.fire({
-              title: 'Updated Successfully!',
-              icon: 'success',
-              confirmButtonText: 'Okay'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                $(".swal2-popup").addClass('light-theme');
-              }
-            });
-          } else {
-            // Handle error here
-            Swal.fire({
-              title: 'Error!',
-              text: 'There was an error while updating the record.',
-              icon: 'error',
-              confirmButtonText: 'Okay'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                $(".swal2-popup").addClass('light-theme');
-              }
-            });
-          }
-        }
-      );
-    });
-  });
-</script>
 
-
-
-
-<div class="modal" id="passengerdelete">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Delete Administrator Information</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="PassengerDelete" action="passengerdelete.php" method="post">
-                    <div class="form-group">
-                        <label for="SelectPassenger">Delete Selected Passenger </label>
-                        <select name="SelectPassenger" id="SelectPassenger" class="form-control" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <?php
-                            // Your PHP code for populating the select options
-                            $conn = new mysqli($servername, $username, $password, $dbname);
-
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
-
-                            $sql = "SELECT Name FROM Passengertbl";
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<option value="'.$row["Name"].'">'.$row["Name"].'</option>';
-                                }
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                            ?>
-                        </select>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button id="PassengerDelete" type="submit" class="btn btn-danger">Delete</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<!-- Make sure you have the correct path to the necessary libraries -->
-
-
-<script>
-        $(document).ready(function() {
-            $('#PassengerDelete').submit(function(e) {
-                e.preventDefault();
-                var formData = $(this).serialize();
-                $.ajax({
-                    type: 'POST',
-                    url: 'passengerdelete.php', // Make sure this is the correct path to your delete.php file
-                    data: formData,
-                    dataType: 'json', // Set the dataType to 'json' to parse the JSON response
-                    success: function(response) {
-                        showAlert(response.type, response.message);
-                    },
-                    error: function() {
-                        showAlert('error', 'Something went wrong. Please try again.');
-                    }
-                });
-            });
-
-            function showAlert(type, message) {
-                Swal.fire({
-                    title: type.charAt(0).toUpperCase() + type.slice(1),
-                    text: message,
-                    icon: type,
-                    confirmButtonText: 'OK',
-                });
-            }
-        });
-    </script>
 
 
 
