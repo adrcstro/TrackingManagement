@@ -10,8 +10,8 @@ require_once('Config.php');
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brangay 409 Zone 42 4th District of Sampaloc Manila</title>
-  <link rel="shortcut icon" type="x-icon" href="../images/webicon.png">
+  <title>Brangay 643,Zone64 Santa-Mesa Manila</title>
+  <link rel="shortcut icon" type="x-icon" href="../images/logo.png">
   <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -302,8 +302,8 @@ if ($result->num_rows > 0) {
     echo '<table class="table table-hover table-nowrap">
             <tr>
             <thead class="thead-light">
-                <th>Drivers Name</th>
-                <th>Unit#</th>
+                <th>Name</th>
+                <th>Age</th>
                 <th>Plate Number</th>
                 <th>Drivers License</th>
                 <th>Vehicle Registration</th>
@@ -365,160 +365,23 @@ $conn->close();
 
 
                 <div class="modal" id="Driverupdate">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Update Drivers Information</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <form id="updateForm" action="driverupdate.php" method="post" enctype="multipart/form-data">
-                    <label for="SelectDriver">Select Driver Information to Update</label>
-                    <select name="SelectDriver" id="SelectDriver" class="form-control" required>
-                        <option value="" disabled selected>Select an option</option>
-                        <?php
-                                         
-                      
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-                                                  $conn = new mysqli($servername, $username, $password, $dbname);
-                      
-                                                  if ($conn->connect_error) {
-                                                      die("Connection failed: " . $conn->connect_error);
-                                                  }
-                      
-                                                  $sql = "SELECT Username FROM driverstbl";
-                                                  $result = $conn->query($sql);
-                      
-                                                  if ($result->num_rows > 0) {
-                                                      while($row = $result->fetch_assoc()) {
-                                                          echo '<option value="'.$row["Username"].'">'.$row["Username"].'</option>';
-                                                      }
-                                                  } else {
-                                                      echo "0 results";
-                                                  }
-                                                  $conn->close();
-                                                  ?>
-                      
-                      
-                    </select>
-
-                    <div class="form-group">
-                        <label id="DriverAge" for="DriverAge">Unit#</label>
-                        <input type="text" name="DriverAge" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label id="DriverPlanteNumber" for="DriverPlanteNumber">Plate Number</label>
-                        <input name="DriverPlanteNumber" type="text" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label id="DriversDriversLicense" for="DriversDriversLicense">Drivers License</label>
-                        <input type="file" name="DriversDriversLicense" accept=".jpg, .png, .jpeg, .pdf, .doc, .docx" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label id="DriverVehicleRegistration" for="DriverVehicleRegistrations">Vehicle Registration</label>
-                        <input type="file" name="DriverVehicleRegistration" accept=".jpg, .png, .jpeg, .pdf, .doc, .docx" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label id="DriversPermittoOperate" for="DriversPermittoOperate">Permit to Operate</label>
-                        <input type="file" name="DriversPermittoOperate" accept=".jpg, .png, .jpeg, .pdf, .doc, .docx" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label id="DriversPhoneNumber" for="DriversPhoneNumber">Phone Number</label>
-                        <input type="text" name="DriversPhoneNumber" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label id="DriversHomeAddress" for="DriversHomeAddress">Home Address</label>
-                        <input type="text" name="DriversHomeAddress" class="form-control" required>
-                    </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="DriversRegister" type="submit" class="btn btn-primary">Save Driver</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<script>
-  $(document).ready(function() {
-    $("#DriversRegister").click(function(e) {
-      e.preventDefault(); // Prevent default form submission
-
-      var SelectDriver = $("#SelectDriver").val();
-      var DriverAge = $("input[name='DriverAge']").val();
-      var DriverPlanteNumber = $("input[name='DriverPlanteNumber']").val();
-      var DriversDriversLicense = $("input[name='DriversDriversLicense']").prop('files')[0];
-      var DriverVehicleRegistration = $("input[name='DriverVehicleRegistration']").prop('files')[0];
-      var DriversPermittoOperate = $("input[name='DriversPermittoOperate']").prop('files')[0];
-      var DriversPhoneNumber = $("input[name='DriversPhoneNumber']").val();
-      var DriversHomeAddress = $("input[name='DriversHomeAddress']").val();
-
-      var formData = new FormData();
-      formData.append('SelectDriver', SelectDriver);
-      formData.append('DriverAge', DriverAge);
-      formData.append('DriverPlanteNumber', DriverPlanteNumber);
-      formData.append('DriversDriversLicense', DriversDriversLicense);
-      formData.append('DriverVehicleRegistration', DriverVehicleRegistration);
-      formData.append('DriversPermittoOperate', DriversPermittoOperate);
-      formData.append('DriversPhoneNumber', DriversPhoneNumber);
-      formData.append('DriversHomeAddress', DriversHomeAddress);
-
-      $.ajax({
-        url: "passengerupdate.php", // Replace with the actual file name for update
-        type: "POST",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(data) {
-          Swal.fire({
-            title: 'Updated Successfully!',
-            icon: 'success',
-            confirmButtonText: 'Okay'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              $(".swal2-popup").addClass('light-theme');
-            }
-          });
-        },
-        error: function() {
-          Swal.fire({
-            title: 'Error!',
-            text: 'There was an error while updating the record.',
-            icon: 'error',
-            confirmButtonText: 'Okay'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              $(".swal2-popup").addClass('light-theme');
-            }
-          });
-        }
-      });
-    });
-  });
-</script>
-
-
-
-<div class="modal" id="Driverdelete">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Delete Administrator Information</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="driversDelete" action="driversdelete.php" method="post">
-                    <div class="form-group">
-                        <label for="SelectDriver">Delete Selected Driver Information </label>
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Drivers Information</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                <form id="updateForm" action="driverupdate.php"  method="post" enctype="multipart/form-data">
+                <label for="SelectDriver">Select Driver Infomation to Update</label>
                         <select name="SelectDriver" id="SelectDriver" class="form-control" required>
                             <option value="" disabled selected>Select an option</option>
-                            <!-- PHP code for populating the select options -->
                             <?php
-                            require_once('Config.php');
+                      
+
                             $conn = new mysqli($servername, $username, $password, $dbname);
 
                             if ($conn->connect_error) {
@@ -538,109 +401,100 @@ $conn->close();
                             $conn->close();
                             ?>
                         </select>
-                    </div>
+            
+    <div class="form-group">
+        <label id="DriverAge" for="DriverAge">Age</label>
+        <input type="text" name="DriverAge" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label id="DriverPlanteNumber" for="DriverPlanteNumber">Plate Number</label>
+        <input name="DriverPlanteNumber" type="text" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label id="DriversDriversLicense" for="DriversDriversLicense">Drivers License</label>
+        <input type="file" name="DriversDriversLicense" accept=".jpg, .png .jpeg .pdf, .doc, .docx" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label id="DriverVehicleRegistration" for="DriverVehicleRegistrations">Vehicle Registration</label>
+        <input type="file" name="DriverVehicleRegistration" accept=".jpg, .png .jpeg .pdf, .doc, .docx" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label id="DriversPermittoOperate" for="DriversPermittoOperate">Permit to Operate</label>
+        <input type="file" name="DriversPermittoOperate" accept=".jpg, .png .jpeg .pdf, .doc, .docx" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label id="DriversPhoneNumber" for="DriversPhoneNumber">Phone Number</label>
+        <input type="text" name="DriversPhoneNumber" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label id="DriversHomeAddress" for="DriversHomeAddress">Home Address</label>
+        <input type="text" name="DriversHomeAddress" class="form-control" required>
+    </div>
+    
+</form>
+</div>
+<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="DriversRegister" type="button" class="btn btn-primary" >Save Driver</button>
+                </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" id="DriversDelete" class="btn btn-danger">Delete</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
-</div>
 
+    <script>
+  $(document).ready(function() {
+    $("#DriversRegister").click(function() {
+      var SelectDriver    = $("#SelectDriver").val();
+      var DriverAge       = $("input[name='DriverAge']").val();
+      var DriverPlanteNumber = $("input[name='DriverPlanteNumber']").val();
+      var DriversDriversLicense = $("input[name='DriversDriversLicense']").val();
+      var DriverVehicleRegistration = $("input[name='DriverVehicleRegistration']").val();
+      var DriversPermittoOperate = $("input[name='DriversPermittoOperate']").val();
+      var DriversPhoneNumber = $("input[name='DriversPhoneNumber']").val();
+      var DriversHomeAddress = $("input[name='DriversHomeAddress']").val();
+      $.post(
+        "driverupdate.php", // Replace with the actual file name for update
+        {
+            SelectDriver: SelectDriver,
+            DriverAge: DriverAge,
+            DriverPlanteNumber:DriverPlanteNumber,
+            DriversDriversLicense: DriversDriversLicense,
+            DriverVehicleRegistration:  DriverVehicleRegistration,
+            DriversPermittoOperate: DriversPermittoOperate,
+            DriversPhoneNumber:  DriversPhoneNumber,
+            DriversHomeAddress: DriversHomeAddress
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    $(document).ready(function() {
-        $('#DriversDelete').click(function() {
-            var formData = $('#driversDelete').serialize();
-            $.ajax({
-                type: 'POST',
-                url: 'driversdelete.php', // Make sure this is the correct path to your delete.php file
-                data: formData,
-                dataType: 'json', // Set the dataType to 'json' to parse the JSON response
-                success: function(response) {
-                    showAlert(response.type, response.message);
-                },
-                error: function() {
-                    showAlert('error', 'Something went wrong. Please try again.');
-                }
-            });
-        });
-
-        function showAlert(type, message) {
+        },
+        function(data, status) {
+          if (status === 'success') {
             Swal.fire({
-                title: type.charAt(0).toUpperCase() + type.slice(1),
-                text: message,
-                icon: type,
-                confirmButtonText: 'OK',
+              title: 'Updated Successfully!',
+              icon: 'success',
+              confirmButtonText: 'Okay'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                $(".swal2-popup").addClass('light-theme');
+              }
             });
+          } else {
+            // Handle error here
+            Swal.fire({
+              title: 'Error!',
+              text: 'There was an error while updating the record.',
+              icon: 'error',
+              confirmButtonText: 'Okay'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                $(".swal2-popup").addClass('light-theme');
+              }
+            });
+          }
         }
+      );
     });
+  });
 </script>
-
-
-
-
-
-
-
-
-
-<div class="modal" id="Drivertrack">
-    <div class="modal-dialog modal-lg"> <!-- Add the 'modal-lg' class to make the modal wider -->
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Track Drivers Personal Details</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <form id="updateForm" action="driverupdate.php" method="post" enctype="multipart/form-data">
-                    <label for="SelectDriver">Select Driver Information to Track</label>
-                    <select name="SelectDriver" id="SelectDriver" class="form-control" required>
-                        <option value="" disabled selected>Select an option</option>
-                        <?php
-                            $conn = new mysqli($servername, $username, $password, $dbname);
-
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
-
-                            $sql = "SELECT Username FROM driverstbl";
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<option value="'.$row["Username"].'">'.$row["Username"].'</option>';
-                                }
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                        ?>
-                    </select>
-                </form>
-            </div>
-            <div class="modal-footer">
-             
-            <button type="button" class="btn btn-primary btn-sm m-1" id="trackButton" data-toggle="modal">
-    <i class="bi bi-geo"></i> Track
-</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
 
 
 
@@ -987,7 +841,6 @@ $conn->close();
 
 
 
-<!--Admin------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 
 
 
@@ -1304,6 +1157,14 @@ $conn->close();
   });
 </script>
 
+
+
+
+
+
+
+
+
 <!-- Delete Button -->
 
 <!-- Your modal HTML -->
@@ -1394,7 +1255,50 @@ $conn->close();
 
 
 
-<!--Admin end------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

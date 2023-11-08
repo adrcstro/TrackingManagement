@@ -302,8 +302,8 @@ if ($result->num_rows > 0) {
     echo '<table class="table table-hover table-nowrap">
             <tr>
             <thead class="thead-light">
-                <th>Drivers Name</th>
-                <th>Unit#</th>
+                <th>Name</th>
+                <th>Age</th>
                 <th>Plate Number</th>
                 <th>Drivers License</th>
                 <th>Vehicle Registration</th>
@@ -405,7 +405,7 @@ $conn->close();
                     </select>
 
                     <div class="form-group">
-                        <label id="DriverAge" for="DriverAge">Unit#</label>
+                        <label id="DriverAge" for="DriverAge">Age</label>
                         <input type="text" name="DriverAge" class="form-control" required>
                     </div>
                     <div class="form-group">
@@ -581,72 +581,6 @@ $conn->close();
         }
     });
 </script>
-
-
-
-
-
-
-
-
-
-<div class="modal" id="Drivertrack">
-    <div class="modal-dialog modal-lg"> <!-- Add the 'modal-lg' class to make the modal wider -->
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Track Drivers Personal Details</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <form id="updateForm" action="driverupdate.php" method="post" enctype="multipart/form-data">
-                    <label for="SelectDriver">Select Driver Information to Track</label>
-                    <select name="SelectDriver" id="SelectDriver" class="form-control" required>
-                        <option value="" disabled selected>Select an option</option>
-                        <?php
-                            $conn = new mysqli($servername, $username, $password, $dbname);
-
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
-
-                            $sql = "SELECT Username FROM driverstbl";
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<option value="'.$row["Username"].'">'.$row["Username"].'</option>';
-                                }
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                        ?>
-                    </select>
-                </form>
-            </div>
-            <div class="modal-footer">
-             
-            <button type="button" class="btn btn-primary btn-sm m-1" id="trackButton" data-toggle="modal">
-    <i class="bi bi-geo"></i> Track
-</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -987,7 +921,6 @@ $conn->close();
 
 
 
-<!--Admin------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 
 
 
@@ -1304,6 +1237,14 @@ $conn->close();
   });
 </script>
 
+
+
+
+
+
+
+
+
 <!-- Delete Button -->
 
 <!-- Your modal HTML -->
@@ -1394,7 +1335,50 @@ $conn->close();
 
 
 
-<!--Admin end------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

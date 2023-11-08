@@ -302,8 +302,8 @@ if ($result->num_rows > 0) {
     echo '<table class="table table-hover table-nowrap">
             <tr>
             <thead class="thead-light">
-                <th>Drivers Name</th>
-                <th>Unit#</th>
+                <th>Name</th>
+                <th>Age</th>
                 <th>Plate Number</th>
                 <th>Drivers License</th>
                 <th>Vehicle Registration</th>
@@ -405,7 +405,7 @@ $conn->close();
                     </select>
 
                     <div class="form-group">
-                        <label id="DriverAge" for="DriverAge">Unit#</label>
+                        <label id="DriverAge" for="DriverAge">Age</label>
                         <input type="text" name="DriverAge" class="form-control" required>
                     </div>
                     <div class="form-group">
@@ -587,54 +587,84 @@ $conn->close();
 
 
 
-
-
-
 <div class="modal" id="Drivertrack">
-    <div class="modal-dialog modal-lg"> <!-- Add the 'modal-lg' class to make the modal wider -->
+    <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Track Drivers Personal Details</h4>
+                <h4 class="modal-title">Update Drivers Information</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <!-- Modal Body -->
             <div class="modal-body">
                 <form id="updateForm" action="driverupdate.php" method="post" enctype="multipart/form-data">
-                    <label for="SelectDriver">Select Driver Information to Track</label>
+                    <label for="SelectDriver">Select Driver Information to Update</label>
                     <select name="SelectDriver" id="SelectDriver" class="form-control" required>
                         <option value="" disabled selected>Select an option</option>
                         <?php
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+                                         
+                      
 
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
-
-                            $sql = "SELECT Username FROM driverstbl";
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<option value="'.$row["Username"].'">'.$row["Username"].'</option>';
-                                }
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                        ?>
+                                                  $conn = new mysqli($servername, $username, $password, $dbname);
+                      
+                                                  if ($conn->connect_error) {
+                                                      die("Connection failed: " . $conn->connect_error);
+                                                  }
+                      
+                                                  $sql = "SELECT Username FROM driverstbl";
+                                                  $result = $conn->query($sql);
+                      
+                                                  if ($result->num_rows > 0) {
+                                                      while($row = $result->fetch_assoc()) {
+                                                          echo '<option value="'.$row["Username"].'">'.$row["Username"].'</option>';
+                                                      }
+                                                  } else {
+                                                      echo "0 results";
+                                                  }
+                                                  $conn->close();
+                                                  ?>
+                      
+                      
                     </select>
-                </form>
+
+                    <div class="form-group">
+                        <label id="DriverAge" for="DriverAge">Age</label>
+                        <input type="text" name="DriverAge" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="DriverPlanteNumber" for="DriverPlanteNumber">Plate Number</label>
+                        <input name="DriverPlanteNumber" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="DriversDriversLicense" for="DriversDriversLicense">Drivers License</label>
+                        <input type="file" name="DriversDriversLicense" accept=".jpg, .png, .jpeg, .pdf, .doc, .docx" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="DriverVehicleRegistration" for="DriverVehicleRegistrations">Vehicle Registration</label>
+                        <input type="file" name="DriverVehicleRegistration" accept=".jpg, .png, .jpeg, .pdf, .doc, .docx" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="DriversPermittoOperate" for="DriversPermittoOperate">Permit to Operate</label>
+                        <input type="file" name="DriversPermittoOperate" accept=".jpg, .png, .jpeg, .pdf, .doc, .docx" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="DriversPhoneNumber" for="DriversPhoneNumber">Phone Number</label>
+                        <input type="text" name="DriversPhoneNumber" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="DriversHomeAddress" for="DriversHomeAddress">Home Address</label>
+                        <input type="text" name="DriversHomeAddress" class="form-control" required>
+                    </div>
             </div>
             <div class="modal-footer">
-             
-            <button type="button" class="btn btn-primary btn-sm m-1" id="trackButton" data-toggle="modal">
-    <i class="bi bi-geo"></i> Track
-</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="DriversRegister" type="submit" class="btn btn-primary">Save Driver</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
+
 
 
 

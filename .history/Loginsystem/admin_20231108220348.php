@@ -303,7 +303,7 @@ if ($result->num_rows > 0) {
             <tr>
             <thead class="thead-light">
                 <th>Drivers Name</th>
-                <th>Unit#</th>
+                <th>Age</th>
                 <th>Plate Number</th>
                 <th>Drivers License</th>
                 <th>Vehicle Registration</th>
@@ -318,7 +318,7 @@ if ($result->num_rows > 0) {
         echo '<tr>
                
                 <td>' . $row["Username"] . '</td>
-                <td>' . $row["Age"] . '</td>
+                <td>' . $row["Unit#"] . '</td>
                 <td>' . $row["Password"] . '</td>
                 <td>' . $row["DriversLicense"] . '</td>
                 <td>' . $row["VehicleRegistration"] . '</td>

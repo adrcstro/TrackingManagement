@@ -302,8 +302,8 @@ if ($result->num_rows > 0) {
     echo '<table class="table table-hover table-nowrap">
             <tr>
             <thead class="thead-light">
-                <th>Drivers Name</th>
-                <th>Unit#</th>
+                <th>Name</th>
+                <th>Age</th>
                 <th>Plate Number</th>
                 <th>Drivers License</th>
                 <th>Vehicle Registration</th>
@@ -405,7 +405,7 @@ $conn->close();
                     </select>
 
                     <div class="form-group">
-                        <label id="DriverAge" for="DriverAge">Unit#</label>
+                        <label id="DriverAge" for="DriverAge">Age</label>
                         <input type="text" name="DriverAge" class="form-control" required>
                     </div>
                     <div class="form-group">
@@ -628,9 +628,7 @@ $conn->close();
             </div>
             <div class="modal-footer">
              
-            <button type="button" class="btn btn-primary btn-sm m-1" id="trackButton" data-toggle="modal">
-    <i class="bi bi-geo"></i> Track
-</button>
+                <button id="DriversRegister" type="submit" class="btn btn-primary">Save Driver</button>
             </div>
         </div>
     </div>
