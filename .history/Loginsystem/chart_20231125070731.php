@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Styles for the modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
+
+    /* Styles for the overlay background */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Button to open the modal -->
+  <button onclick="openModal()">Open Modal</button>
+
+  <!-- The modal -->
+  <div id="myModal" class="modal">
+    <p>This is a modal dialog.</p>
+    <button onclick="closeModal()">Close Modal</button>
+    <button onclick="reloadPage()">Reload Page</button>
+  </div>
+
+  <!-- The overlay background -->
+  <div id="overlay" class="overlay"></div>
+
+  <script>
+    function openModal() {
+      document.getElementById('myModal').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('myModal').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    function reloadPage() {
+      closeModal(); // Close the modal before reloading the page
+      location.reload();
+    }
+  </script>
+
+</body>
+</html>
