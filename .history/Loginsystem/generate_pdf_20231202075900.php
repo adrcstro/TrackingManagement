@@ -130,51 +130,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // First column with color (width: 50)
             $pdf->Cell(90, 10, 'Complainee Details', 1, 0, 'C', 1);
             // Second column with color (width: 70)
-            $pdf->Cell(100, 10, 'Drivers Unit Vehicle', 1, 1, 'C', 1);
+            $pdf->Cell(100, 10, 'Proof of Identity', 1, 1, 'C', 1);
 
    // Move to the next line
             // First row, first column without color (width: 50)
             // Fetch additional data from driverstbl based on NameofComplainee
             $complaineeName = $row['NameofComplainee'];
-$driverInfoQuery = "SELECT Age, Password, PhoneNumber, HomeAddress,PermittoOperate FROM driverstbl WHERE Username = '$complaineeName'";
-$driverInfoResult = $conn->query($driverInfoQuery);
-
-    if ($driverInfoResult) {
-    if ($driverInfoResult->num_rows > 0) {
-        $driverInfo = $driverInfoResult->fetch_assoc();
-
-        // Display complainee information
-        $pdf->Cell(90, 10, "Complainee: $complaineeName", 1, 1, 'C');
+            $driverInfoQuery = "SELECT Age, Password, PhoneNumber, HomeAddress FROM driverstbl WHERE Username = '$complaineeName'";
+            $driverInfoResult = $conn->query($driverInfoQuery);
         
-        // Display Prof of Identity with the image
-    
-        $profImagePath = 'uploads/' . $driverInfo['PermittoOperate'];
+            if ($driverInfoResult->num_rows > 0) {
+                $driverInfo = $driverInfoResult->fetch_assoc();
         
-        if (file_exists($profImagePath) && (strtolower(pathinfo($profImagePath, PATHINFO_EXTENSION)) == 'jpg' || strtolower(pathinfo($profImagePath, PATHINFO_EXTENSION)) == 'jpeg' || strtolower(pathinfo($profImagePath, PATHINFO_EXTENSION)) == 'png')) {
-            // Embed the image in the cell to the right
-            $pdf->Image($profImagePath, $pdf->GetX() + 95, $pdf->GetY() - 8, 90, 50, 'JPEG');  // Adjust X position, Y position, and size as needed
-        } else {
-            // If the image file is not found or not a valid format, display a placeholder or handle accordingly
-            $pdf->Cell(100, 30, "Image Not Available", 1, 1, 'C');  // Adjust height as needed
-        }
+                // Create a grid-like structure
+                // Move to the next line// Existing cell
+// Existing cell
+$pdf->Cell(90, 10, "Complainee: $complaineeName", 1, 0, 'C'); // Change the last parameter '1' to '0'
+
+// New cell in a new column with a different height
+$newCellHeight = 20; // Set the desired height for the new cell
+$pdf->Cell(100, $newCellHeight, "New Information: ", 1, 1, 'C'); // This will start a new line after this cell
+
+
+                $pdf->Cell(90, 10, "Vehicle Number: " . $driverInfo['Age'], 1, 1, 'C');
+                $pdf->Cell(90, 10, "Plate Number: " . $driverInfo['Password'], 1, 1, 'C');
+                $pdf->Cell(90, 10, "PhoneNumber: " . $driverInfo['PhoneNumber'], 1, 1, 'C');
+                $pdf->Cell(90, 10, "Address: " . $driverInfo['HomeAddress'], 1, 1, 'C'); // Move to the next line
         
-        
-
-        // Continue displaying other information
-        $pdf->Cell(90, 10, "Vehicle Number: " . $driverInfo['Age'], 1, 1, 'C');
-        $pdf->Cell(90, 10, "Plate Number: " . $driverInfo['Password'], 1, 1, 'C');
-        $pdf->Cell(90, 10, "PhoneNumber: " . $driverInfo['PhoneNumber'], 1, 1, 'C');
-        $pdf->Cell(90, 10, "Address: " . $driverInfo['HomeAddress'], 1, 1, 'C');
-
-    } else {
-        // No information found for the complainee.
-        $pdf->Cell(50, 60, "No details found for Complainee: $complaineeName", 1, 0, 'C');
-    }
-} else {
-    // Handle the query error
-    echo "Error: " . $conn->error;
-}
-
+            } else {
+                $pdf->Cell(50, 60, "No details found for Complainee: $complaineeName", 1, 0, 'C');
+            }
             
            
         }

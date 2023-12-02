@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // First column with color (width: 50)
             $pdf->Cell(90, 10, 'Complainee Details', 1, 0, 'C', 1);
             // Second column with color (width: 70)
-            $pdf->Cell(100, 10, 'Drivers Unit Vehicle', 1, 1, 'C', 1);
+            $pdf->Cell(100, 10, 'Proof of Identity', 1, 1, 'C', 1);
 
    // Move to the next line
             // First row, first column without color (width: 50)

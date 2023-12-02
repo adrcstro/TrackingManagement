@@ -617,7 +617,7 @@ require_once('Config.php');
     <div id="PasssearchResults"></div>  
 
     <div class="modal-footer justify-content-center" style="margin-top: 1rem;">
-    <button id="filereportRegister" type="submit" value="Submit" class="btn btn-danger rounded-pill">
+    <button id="filereportRegisterr" type="submit" value="Submit" class="btn btn-danger rounded-pill">
         <i class="fas fa-exclamation-triangle"></i> File Complaint
     </button>
 

@@ -1504,7 +1504,7 @@ $conn->close();
 
 <script type="text/javascript">
   $(function(){
-    $('#filereportRegisterr').click(function(e){
+    $('#filereportRegister').click(function(e){
         var valid = this.form.checkValidity();
 
         if(valid){
