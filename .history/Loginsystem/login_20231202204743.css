@@ -301,7 +301,7 @@ main.sign-up-mode .carousel {
 
 .img-1 {
   transform: translate(0, -50px);
-
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .img-2 {

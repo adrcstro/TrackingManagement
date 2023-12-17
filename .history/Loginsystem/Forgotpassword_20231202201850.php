@@ -201,7 +201,7 @@ if (isset($_POST['reset_password'])) {
 
           <div class="carousel">
             <div class="images-wrapper">
-              <img src="../images/maps4.png" class="image img-3 show" alt="" />
+              <img src="../images/maps3.png" class="image img-3 show" alt="" />
               
             </div>
 

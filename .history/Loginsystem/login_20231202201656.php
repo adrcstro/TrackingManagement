@@ -225,8 +225,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="carousel">
   <div class="images-wrapper">
     <img src="../images/maps2.png" class="image img-1 show" data-image="img-1" alt="" />
-    <img src="../images/maps6.png" class="image img-2" data-image="img-2" alt="" />
-    <img src="../images/Forgot.svg" class="image img-3" data-image="img-3" alt="" />
+    <img src="../images/maps.png" class="image img-2" data-image="img-2" alt="" />
+    <img src="../images/Fogot.svg" class="image img-3" data-image="img-3" alt="" />
   </div>
 
   <div class="text-slider">

@@ -296,12 +296,10 @@ main.sign-up-mode .carousel {
   grid-row: 1/2;
   opacity: 0;
   transition: opacity 0.3s, transform 0.5s;
-
 }
 
 .img-1 {
   transform: translate(0, -50px);
-
 }
 
 .img-2 {

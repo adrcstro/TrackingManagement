@@ -209,6 +209,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <a href="#">Privacy Policy</a>
                 </p>
                 <input type="submit" value="Sign Up" class="sign-btn" />
+                <input type="submit" value="Sign Up" class="sign-btn" />
                 <div class="logtext">   
                 <h5 id="textcon">Continue with</h5>
                 <button type="button" class="login-with-google-btn" >
