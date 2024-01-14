@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('Config.php');
 
 ?>
@@ -2327,75 +2328,65 @@ $conn->close();
 <div class="table-responsive">
 <table class="table table-hover table-nowrap" >
 <?php
+// Start session
 
-if (isset($_GET['username'])) {
-    $usernameParam = $_GET['username'];
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $sql = "SELECT Name, Age, Gender, Phone, HomeAddress, Username FROM passengertbl WHERE Username = ?";
-    $stmt = $conn->prepare($sql);
-
-    if (!$stmt) {
-        die("Error in statement preparation: " . $conn->error);
-    }
-
-    $stmt->bind_param("s", $usernameParam);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo '<div class="container">';
-            echo '<div class="row">';
-            echo '<div class="col-md-6">';
-            echo  '<img src="../Images/Personal.svg" class="img-fluid mb-5 mt-2">';
-            echo "</div>";
-            echo '<div class="col-md-6">';
-            echo '<h2 class="mt-7 text-center" id="FAQ">Pasenger Infomation</h2>';
-            echo "<div class='container mt-2'>";
-            echo "<form>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text'  id='name' value='" . htmlspecialchars($row["Name"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text' id='age' value='" . htmlspecialchars($row["Age"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text' id='gender' value='" . htmlspecialchars($row["Gender"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text' id='phone' value='" . htmlspecialchars($row["Phone"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text' id='homeAddress' value='" . htmlspecialchars($row["HomeAddress"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text' id='username' value='" . htmlspecialchars($row["Username"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "</form>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-        }
-    } else {
-        echo "0 results";
-    }
-
-    $stmt->close();
-    $conn->close();
-} else {
-    echo "Username not provided in the URL.";
+// Check if user is not logged in, redirect to login page
+if (!isset($_SESSION['username']) || $_SESSION['usertype'] !== 'passenger') {
+    header("Location: login.php");
+    exit();
 }
 
+// Replace with your actual database credentials
+$servername = "your_servername";
+$username = "your_username";
+$password = "your_password";
+$dbname = "your_dbname";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch data for the logged-in passenger
+$username = $_SESSION['username'];
+$sql = "SELECT * FROM passengertbl WHERE Username = '$username'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo '<table class="table table-hover table-nowrap">
+            <tr>
+                <thead class="thead-light">
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Phone</th>
+                    <th>Home Address</th>
+                    <th>Email</th>
+                </thead>
+            </tr>';
+
+    // output data of the logged-in passenger
+    $row = $result->fetch_assoc();
+    echo '<tr>
+            <td>' . $row["Name"] . '</td>
+            <td>' . $row["Age"] . '</td>
+            <td>' . $row["Gender"] . '</td>
+            <td>' . $row["Phone"] . '</td>
+            <td>' . $row["HomeAddress"] . '</td>
+            <td>' . $row["Username"] . '</td>
+          </tr>';
+    echo '</table>';
+} else {
+    echo "0 results";
+}
+
+// Close connection
+$conn->close();
 ?>
-
-
 
 
          

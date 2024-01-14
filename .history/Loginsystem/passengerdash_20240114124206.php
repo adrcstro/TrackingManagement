@@ -2327,76 +2327,70 @@ $conn->close();
 <div class="table-responsive">
 <table class="table table-hover table-nowrap" >
 <?php
+// Replace with your actual database credentials
 
-if (isset($_GET['username'])) {
-    $usernameParam = $_GET['username'];
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+// Check connection
+$loggedpassengerID = isset($_GET['ID']) ? $_GET['ID'] : null;
+$loggedInUsername = isset($_GET['username']) ? $_GET['username'] : null;
 
-    $sql = "SELECT Name, Age, Gender, Phone, HomeAddress, Username FROM passengertbl WHERE Username = ?";
-    $stmt = $conn->prepare($sql);
+if ($loggedpassengerID !== null && $loggedpassengerID !== null) {
+    // Fetch user details from the database using CostumerID
+    $query = "SELECT Name, Age, Gender, Phone , HomeAddress FROM passengertbl WHERE id = '$loggedpassengerID'";
+    $result = mysqli_query($conn, $query);
 
-    if (!$stmt) {
-        die("Error in statement preparation: " . $conn->error);
-    }
-
-    $stmt->bind_param("s", $usernameParam);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo '<div class="container">';
-            echo '<div class="row">';
-            echo '<div class="col-md-6">';
-            echo  '<img src="../Images/Personal.svg" class="img-fluid mb-5 mt-2">';
-            echo "</div>";
-            echo '<div class="col-md-6">';
-            echo '<h2 class="mt-7 text-center" id="FAQ">Pasenger Infomation</h2>';
-            echo "<div class='container mt-2'>";
-            echo "<form>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text'  id='name' value='" . htmlspecialchars($row["Name"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text' id='age' value='" . htmlspecialchars($row["Age"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text' id='gender' value='" . htmlspecialchars($row["Gender"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text' id='phone' value='" . htmlspecialchars($row["Phone"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text' id='homeAddress' value='" . htmlspecialchars($row["HomeAddress"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text' id='username' value='" . htmlspecialchars($row["Username"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "</form>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-        }
+    // Check if there is a matching user
+    if (mysqli_num_rows($result) > 0) {
+        // Fetch the user data
+        $userData = mysqli_fetch_assoc($result);
+echo '<div class="container">';
+echo '<div class="row">';
+echo '<div class="col-md-6">';
+echo  '<img src="Images/personalinfo.svg" class="img-fluid mb-5 mt-2">';
+echo "</div>";
+echo '<div class="col-md-6">';
+echo '<h2 class="mt-7 text-center" id="FAQ">Edit Your Personal Information</h2>';
+echo "<div class='container mt-2'>";
+echo "<form>";
+echo "<div class='mb-3'>";
+echo "<input type='text'  id='loggedInUsername' value=Welcome:$loggedInUsername class='form-control' readonly>";
+echo "</div>";
+echo "<div class='mb-3'>";
+echo "<input type='text' id='fullName' value='{$userData['Name']}' class='form-control' readonly>";
+echo "</div>";
+echo "<div class='mb-3'>";
+echo "<input type='text' id='customerID' value=CostumerID:$loggedpassengerID class='form-control' readonly>";
+echo "</div>";
+echo "<div class='mb-3'>";
+echo "<input type='text' id='email' value=Email:{$userData['Email']} class='form-control' readonly>";
+echo "</div>";
+echo "<div class='mb-3'>";
+echo "<input type='text' id='phone' value=Phone:{$userData['Phone']} class='form-control' readonly>";
+echo "</div>";
+echo "<div class='mb-3'>";
+echo "<input type='text' id='homeAddress' value=HomeAddress:{$userData['HomeAddress']} class='form-control' readonly>";
+echo "</div>";
+echo "</form>";
+echo "</div>";
+echo "</div>";
+echo "</div>";
+echo "</div>";
     } else {
-        echo "0 results";
+        // No matching user found
+        echo "Error fetching user details.";
     }
-
-    $stmt->close();
-    $conn->close();
 } else {
-    echo "Username not provided in the URL.";
+    // CostumerID or username missing, redirect to login
+    header("Location: login.php");
+    exit();
 }
 
+// Close the database connection
+mysqli_close($conn);
 ?>
-
-
-
 
          
 </table>

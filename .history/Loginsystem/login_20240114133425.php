@@ -17,9 +17,13 @@ require_once('Config.php');
 
 <body>
 <?php
+// Start session
+session_start();
 
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -29,17 +33,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $usertype = $_POST['usertype'];
 
-    // Validate user inputs (add more validation as needed)
-
     $table_name = "";
-    $column_name = "Username, Password"; // Add the column name you want to fetch here
-
+    $column_name = ""; // Add the column name you want to fetch here
     if ($usertype == 'admin') {
         $table_name = "admintbl";
+        $column_name = "Username, Password"; // Replace with the actual column name
     } elseif ($usertype == 'driver') {
         $table_name = "driverstbl";
+        $column_name = "Username, Password"; // Replace with the actual column name
     } elseif ($usertype == 'passenger') {
         $table_name = "passengertbl";
+        $column_name = "Username, Password"; // Replace with the actual column name
     }
 
     $sql = "SELECT $column_name FROM $table_name WHERE username = ? AND password =?";
@@ -51,25 +55,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
-        $redirectUrl = '';
-        if ($usertype == 'passenger') {
-            $redirectUrl = "passengerdash.php?username=" . urlencode($row['Username']);
-        } elseif ($usertype == 'admin') {
-            $redirectUrl = "admin.php";
-        } elseif ($usertype == 'driver') {
-            $redirectUrl = "driverdash.php?username=" . urlencode($row['Username']);
-        }
+        // Start session for the user
+        $_SESSION['username'] = $username;
+        $_SESSION['usertype'] = $usertype;
 
-        header("Location: $redirectUrl");
-        exit();
+        if ($usertype == 'passenger') {
+            header("Location: passengerdash.php");
+            exit();
+        } elseif ($usertype == 'admin') {
+            header("Location: admin.php");
+            exit();
+        } elseif ($usertype == 'driver') {
+            header("Location: driverdash.php");
+            exit();
+        }
     } else {
         echo "<script>
-                alert('Login failed. Please check your username and password.');
-                window.location.href = 'login.php'; // Redirect to login page
+                swal('Error', 'Login failed. Please check your username and password.', 'error');
             </script>";
-        exit();
     }
 }
+
+// Close connection
 $conn->close();
 ?>
 

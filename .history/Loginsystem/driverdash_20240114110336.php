@@ -79,7 +79,7 @@ require_once('Config.php');
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="showWastemanagement()">
+                        <a class="nav-link" href="#">
                             <i class="bi bi-recycle"></i> Waste Management
                         </a>
                     </li>
@@ -144,13 +144,13 @@ require_once('Config.php');
                         <!-- Actions -->
                         <div class="col-sm-6 col-12 text-sm-end" id="SIdebarBTN">
                             <div class="mx-n1">
-                                <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1" data-toggle="modal" data-target="#edit">
+                                <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1">
                                     <span class=" pe-2">
                                         <i class="bi bi-pencil"></i>
                                     </span>
                                     <span>Edit</span>
                                 </a>
-                                <a href="#" class="btn d-inline-flex btn-sm btn-primary mx-1" data-toggle="modal" data-target="#create">
+                                <a href="#" class="btn d-inline-flex btn-sm btn-primary mx-1">
                                     <span class=" pe-2">
                                         <i class="bi bi-plus"></i>
                                     </span>
@@ -410,65 +410,6 @@ require_once('Config.php');
 
 
 
-     <div  id="waste-table" style="display:none;" class="card shadow border-0 mb-7">
-                    <div class="card-header">
-                        <h5 class="mb-0">Waste Management for Barangay-409</h5>
- </div>
-<div class="table-responsive">
-
-<div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <img src="../Images/waste.svg" class="img-fluid mb-5">
-        
-        </div>
-         <div class="col-md-6">
-         <h2 class="mt-7 text-center" id="FAQ"> Frequently Asked Questions</h2>
-         <div class="accordion accordion-flush p-3" id="accordionFlushExample">
-         <div class="accordion-item shadow">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-              What is a waste management system?
-            </h2>
-            <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body"> A waste management system is a streamlined process that organizations use to dispose of, reduce, reuse, and prevent waste.</div>
-            </div>
-          </div>
-          <div class="accordion-item bg-white shadow">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-              How do you initiate to Start a Brgy-409 Waste Management System?
-              </button>
-            </h2>
-            <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body">To begin the the Brgy-409 Waste MAnagement System you need to Visit our side and Create you perosnal Account</div>
-            </div>
-          </div>
-          <div class="accordion-item shadow">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-              How can users Navigate the System interms of System Instructions?
-              </button>
-            </h2>
-            <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body">The System Provides a Detailed Description on how to begin and manage waste Collection Strategie</div>
-            </div>
-          </div>
-          
-        </div>
-         </div>
-    </div>
-  </div>
-                    </div>
-                    <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
-                    <button id="btnhover" style="border-color: #603ce6; "  type="button" class="btn  btn-sm m-1">
-                   Gets Started <i class="bi bi-box-arrow-in-up-right"></i></i></button>
-</div>
-</div>
-    
-
-
-
 
      <!-- calculator sheets ------------------------------------------------------------------------------------------------------------------------------------------------>
 
@@ -490,7 +431,7 @@ require_once('Config.php');
                     <option value="outside">Outside Barangay 409</option>
                 </select>
 
-                <label>Distance:</label>
+                <label class="Labelcalculator" id="Labelcalculator" for="distance">Distance:</label>
                 <input class="Inputcalculator" type="number" id="distance" placeholder="Enter distance" step="0.1">
 
                 <select class="Inputcalculator" id="distanceUnit">
@@ -498,21 +439,9 @@ require_once('Config.php');
                     <option value="m">Meters (m)</option>
                 </select>
 
-                <label class="Labelcalculator" for="fareRate">Fare Rate (per kilometer)/(per meter)</label>
+                <label class="Labelcalculator" for="fareRate">Fare Rate (per kilometer):</label>
                 <input class="Inputcalculator" type="number" id="fareRate" placeholder="Enter fare rate">
 
-                <!-- Checkboxes for discounts -->
-                <div style="justify-content: center;"  class="discounts">
-                <input type="checkbox" id="isPWD">
-                <label for="isPWD">PWD</label>
-
-                <input type="checkbox" id="isStudent">
-                <label for="isStudent">Student</label>
-
-                <input type="checkbox" id="isSeniorCitizen">
-                <label for="isSeniorCitizen">Senior Citizen</label>
-                </div>
-                
                 <div style="text-align: center; margin-top: 30px;">
                     <button class="btn btn-primary" id="Buttoncalculator" onclick="calculateFare()">
                         <i class="fas fa-calculator"></i> Calculate Fare
@@ -522,19 +451,14 @@ require_once('Config.php');
                         <i class="fas fa-undo"></i> Reset Inputs
                     </button>
                 </div>
-
                 <script>
-                    function resetInputs() {
-                        document.getElementById("location").selectedIndex = 0;
-                        document.getElementById("distance").value = "";
-                        document.getElementById("fareRate").value = "";
-                        document.getElementById("isPWD").checked = false;
-                        document.getElementById("isStudent").checked = false;
-                        document.getElementById("isSeniorCitizen").checked = false;
-                        document.getElementById("result").innerHTML = "";
-                    }
-                </script>
-
+    function resetInputs() {
+        document.getElementById("location").selectedIndex = 0;
+        document.getElementById("distance").value = "";
+        document.getElementById("fareRate").value = "";
+        document.getElementById("result").innerHTML = "";
+    }
+</script>
                 <div id="result"></div>
             </div>
         </div>
@@ -552,145 +476,6 @@ require_once('Config.php');
 
      <!-- calculator sheets end ------------------------------------------------------------------------------------------------------------------------------------------------>
 
-     <div class="modal fade" id="create">
-        <div class="modal-dialog" id="createshortcut">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Create</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                
-                <!-- Modal Body -->
-                <div class="modal-body">
-                <div class="container mt-4">
-  <div class="row d-flex justify-content-center align-items-center">
-    
-    <div class="col-md-3">
-      <div id="shorcard" class="card shadow">
-        <img src="../Images/lostandfound.svg" class="card-img-top" alt="Card Image">
-        <div class="card-body">
-          <h5 class="card-title">Lost&Found</h5>
-          <p class="card-text">Manage Lost&Found</p>
-          <div class="shortcutbtn mt-1 d-flex justify-content-center align-items-center">  
-          <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1" data-dismiss="modal" onclick="showlostitem()">
-        <span class="pe-2">
-        <i class="bi bi-briefcase"></i>
-     </span>
-    <span>Post Item</span>
-    </a>
-    </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-    <div id="shorcard" class="card shadow">
-        <img src="../Images/complain.svg" class="card-img-top" alt="Card Image">
-        <div class="card-body">
-          <h5 class="card-title">File Complain</h5>
-          <p class="card-text">View Report</p>
-          <div class="shortcutbtn mt-2 d-flex justify-content-center align-items-center">  
-          <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1" data-dismiss="modal" onclick="showFileComplaint()">
-        <span class="pe-2">
-        <i class="bi bi-flag"></i>
-     </span>
-    <span>File Report</span>
-    </a>
-    </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-    <div id="shorcard" class="card shadow">
-        <img src="../Images/rate.svg" class="card-img-top" alt="Card Image">
-        <div class="card-body">
-          <h5 class="card-title">Rate Drivers</h5>
-          <p class="card-text">Send feedback</p>
-          <div class="shortcutbtn mt-2 d-flex justify-content-center align-items-center">  
-          <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1" data-dismiss="modal" onclick="showDriver()">
-        <span class="pe-2">
-        <i class="bi bi-star"></i>
-     </span>
-    <span>Submit Rate</span>
-    </a>
-    </div>
-        </div>
-      </div>
-    </div>
-
-
-  </div>
-</div>
-</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="edit">
-        <div class="modal-dialog" id="createshortcut">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                
-                <!-- Modal Body -->
-                <div class="modal-body">
-                <div class="container mt-4">
-                <div class="row d-flex justify-content-center align-items-center">
-    <div class="col-md-3">
-    <div id="shorcard" class="card shadow">
-        <img src="../Images/Personal.svg" class="card-img-top" alt="Card Image">
-        <div class="card-body">
-          <h5 class="card-title">Personal Information</h5>
-          <p class="card-text">Edit Your Details</p>
-          <div class="shortcutbtn mt-2 d-flex justify-content-center align-items-center">  
-          <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1" data-dismiss="modal"  onclick="showAdmin()">
-        <span class="pe-2">
-        <i class="bi bi-person"></i>
-     </span>
-    <span>Edit</span>
-    </a>
-    </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-    <div id="shorcard" class="card shadow">
-        <img src="../Images/lostandfound.svg" class="card-img-top" alt="Card Image">
-        <div class="card-body">
-          <h5 class="card-title">Lost&Found</h5>
-          <p class="card-text">Edit Lost&Found</p>
-          <div class="shortcutbtn mt-2 d-flex justify-content-center align-items-center">  
-          <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1" data-dismiss="modal" onclick="showlostitem()">
-        <span class="pe-2">
-        <i class="bi bi-briefcase"></i>
-     </span>
-    <span>Edit Item</span>
-    </a>
-    </div>
-        </div>
-      </div>
-    </div>
-
-    
-
-  
-
-  </div>
-</div>
-</div>
-            </div>
-        </div>
-    </div>
 
 
      <!-- FileComplaint sheets end ------------------------------------------------------------------------------------------------------------------------------------------------>
@@ -1059,7 +844,7 @@ $conn->close();
                 
                 <!-- Modal Body -->
                 <div class="modal-body">
-                <form action="passlfinsert.php" method="post" enctype="multipart/form-data">
+                <form action="process.php" method="post" enctype="multipart/form-data">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -1138,7 +923,7 @@ $conn->close();
 
             $.ajax({
                 type: 'POST',
-                url: 'passlfinsert.php',
+                url: 'process.php',
                 data: formData,
                 processData: false,
                 contentType: false,
@@ -1319,7 +1104,7 @@ $conn->close();
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form  action="passifdelete.php" method="post">
+                <form  action="itemsdelete.php" method="post">
                     <div class="form-group">
                         <label for="itemsID">Delete Selected Item</label>
                         <select name="itemsID" id="itemsID" class="form-control" required>
@@ -1364,7 +1149,7 @@ $conn->close();
                 var formData = $(this).serialize();
                 $.ajax({
                     type: 'POST',
-                    url: 'passifdelete.php', // Make sure this is the correct path to your delete.php file
+                    url: 'itemsdelete.php', // Make sure this is the correct path to your delete.php file
                     data: formData,
                     dataType: 'json', // Set the dataType to 'json' to parse the JSON response
                     success: function(response) {
@@ -1494,7 +1279,7 @@ $conn->close();
                 
                 <!-- Modal Body -->
                 <div class="modal-body">
-                <form action="passlfinsert.php" method="post" enctype="multipart/form-data">
+                <form action="process.php" method="post" enctype="multipart/form-data">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -1575,7 +1360,7 @@ $conn->close();
 
             $.ajax({
                 type: 'POST',
-                url: 'passlfinsert.php',
+                url: 'process.php',
                 data: formData,
                 processData: false,
                 contentType: false,
@@ -1758,7 +1543,7 @@ $conn->close();
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form  action="passifdelete.php" method="post">
+                <form  action="itemsdelete.php" method="post">
                     <div class="form-group">
                         <label for="foundItemsID">Delete Selected Item</label>
                         <select name="foundItemsID" id="foundItemsID" class="form-control" required>
@@ -1804,7 +1589,7 @@ $conn->close();
                 var formData = $(this).serialize();
                 $.ajax({
                     type: 'POST',
-                    url: 'passifdelete.php', // Make sure this is the correct path to your delete.php file
+                    url: 'itemsdelete.php', // Make sure this is the correct path to your delete.php file
                     data: formData,
                     dataType: 'json', // Set the dataType to 'json' to parse the JSON response
                     success: function(response) {
@@ -1922,7 +1707,6 @@ $conn->close();
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                
                 <form id="updateForm" action="submit_rating.php" method="post" enctype="multipart/form-data">
                     <label for="SearchDriver">Search for Driver Name</label>
                     <input type="text" name="SearchDriver" id="SearchDriver" class="form-control" placeholder="Driver's Name" required>
@@ -2208,11 +1992,6 @@ $conn->close();
               echo '</div>';
               echo '</div>';
               
-              
-
-              
-              
-              
 
           }
 
@@ -2318,103 +2097,92 @@ $conn->close();
 
 
 
-
-
-                <div  id="Admin-table" class="card shadow border-0 mb-7">
+    <div   id="Dashboard-table" style="display:none;" class="card shadow border-0 mb-7">
                     <div class="card-header">
-                        <h5 class="mb-0">Passenger Personal Details</h5>
- </div>
-<div class="table-responsive">
-<table class="table table-hover table-nowrap" >
-<?php
+                        <h5 class="mb-0">Drivers Personal Information</h5>
+                    </div>
+                    <div class="table-responsive">
 
-if (isset($_GET['username'])) {
-    $usernameParam = $_GET['username'];
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+                        <table class="table table-hover table-nowrap" >
+                        <?php
+// Replace with your actual database credentials
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
-    $sql = "SELECT Name, Age, Gender, Phone, HomeAddress, Username FROM passengertbl WHERE Username = ?";
-    $stmt = $conn->prepare($sql);
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    if (!$stmt) {
-        die("Error in statement preparation: " . $conn->error);
-    }
-
-    $stmt->bind_param("s", $usernameParam);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo '<div class="container">';
-            echo '<div class="row">';
-            echo '<div class="col-md-6">';
-            echo  '<img src="../Images/Personal.svg" class="img-fluid mb-5 mt-2">';
-            echo "</div>";
-            echo '<div class="col-md-6">';
-            echo '<h2 class="mt-7 text-center" id="FAQ">Pasenger Infomation</h2>';
-            echo "<div class='container mt-2'>";
-            echo "<form>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text'  id='name' value='" . htmlspecialchars($row["Name"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text' id='age' value='" . htmlspecialchars($row["Age"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text' id='gender' value='" . htmlspecialchars($row["Gender"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text' id='phone' value='" . htmlspecialchars($row["Phone"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text' id='homeAddress' value='" . htmlspecialchars($row["HomeAddress"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "<div class='mb-3'>";
-            echo "<input type='text' id='username' value='" . htmlspecialchars($row["Username"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "</form>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-        }
-    } else {
-        echo "0 results";
-    }
-
-    $stmt->close();
-    $conn->close();
-} else {
-    echo "Username not provided in the URL.";
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-?>
+// Fetch data from the admin table
+$sql = "SELECT * FROM driverstbl";
+$result = $conn->query($sql);
 
-
-
-
-         
-</table>
+if ($result->num_rows > 0) {
+    echo '<table class="table table-hover table-nowrap">
+            <tr>
+            <thead class="thead-light">
+                <th>Drivers Name</th>
+                <th>Unit#</th>
+                <th>Plate Number</th>
+                <th>Drivers License</th>
+                <th>Vehicle Registration</th>
+                <th>Vehicle Picture</th>
+                <th>Phone Number</th>
+                <th>Home Address</th>
+                </thead>
+                </tr>';
+              
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo '<tr>
+               
+                <td>' . $row["Username"] . '</td>
+                <td>' . $row["Age"] . '</td>
+                <td>' . $row["Password"] . '</td>
+                <td>' . $row["DriversLicense"] . '</td>
+                <td>' . $row["VehicleRegistration"] . '</td>
+                <td>' . $row["PermittoOperate"] . '</td>
+                <td>' . $row["PhoneNumber"] . '</td>
+                <td>' . $row["HomeAddress"] . '</td>
+            </tr>';
+    }
+    echo '</table>';
+} else {
+    echo "0 results";
+}
+$conn->close();
+?>            
+                        </table>
                     </div>
-                    <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
-<button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#Passengerupdate">
+
+
+                 <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
+                 <button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#Driverupdate">
     <i class="bi bi-pencil"></i> Update
 </button>
 
-<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#passengerdelete">
+<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#Driverdelete">
     <i class="bi bi-trash"></i> Delete
 </button>
+<button type="button" class="btn btn-primary btn-sm m-1" id="trackButton" data-toggle="modal" data-target="#Drivertrack">
+    <i class="bi bi-geo"></i> Track
+</button>
 
- <button type="button" class="btn btn-info btn-sm m-1" id="refreshButton2">
-        <i class="bi bi-arrow-clockwise"></i> Refresh
-    </button>
+<button id="open-modal-button"  class="btn btn-secondary btn-sm m-1">
+    <i class="fas fa-chart-line"></i> Ratings
+</button>
+
+
+<button type="button" class="btn btn-info btn-sm m-1" id="refreshButton3">
+<i class="bi bi-file-text"></i>  Refresh
+</button>
+
 <script>
-        document.getElementById("refreshButton2").addEventListener("click", function() {
+        document.getElementById("refreshButton3").addEventListener("click", function() {
             // Add your refresh functionality here
             // For example, you can reload the current page with the following line
             location.reload();
@@ -2425,162 +2193,173 @@ if (isset($_GET['username'])) {
 
 
 
-        <div class="modal" id="Passengerupdate">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Update Passenger Information</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <!-- Modal Body -->
-                <div class="modal-body">
-                <form id="updateForm" action="admin.php"  method="post">
-                <label for="SelectPassenger">Select Passenger Infomation</label>
-                        <select name="SelectPassenger" id="SelectPassenger" class="form-control" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <?php
+                <div class="modal fade" id="Driverupdate">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Update Drivers Information</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="updateForm" action="passengerupdate.php" method="post" enctype="multipart/form-data">
+                    <label for="SelectDriver">Select Driver Information to Update</label>
+                    <select name="SelectDriver" id="SelectDriver" class="form-control" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <?php
+                                         
                       
 
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+                                                  $conn = new mysqli($servername, $username, $password, $dbname);
+                      
+                                                  if ($conn->connect_error) {
+                                                      die("Connection failed: " . $conn->connect_error);
+                                                  }
+                      
+                                                  $sql = "SELECT Username FROM driverstbl";
+                                                  $result = $conn->query($sql);
+                      
+                                                  if ($result->num_rows > 0) {
+                                                      while($row = $result->fetch_assoc()) {
+                                                          echo '<option value="'.$row["Username"].'">'.$row["Username"].'</option>';
+                                                      }
+                                                  } else {
+                                                      echo "0 results";
+                                                  }
+                                                  $conn->close();
+                                                  ?>
+                      
+                      
+                    </select>
 
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
-
-                            $sql = "SELECT Name FROM passengertbl";
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<option value="'.$row["Name"].'">'.$row["Name"].'</option>';
-                                }
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                            ?>
-                        </select>
-            
-    <div class="form-group">
-        <label id="PassengerAge" for="PassengerAge">Age</label>
-        <input type="text" name="PassengerAge" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label id="PassengerGender" for="PassengerGender">Gender</label>
-        <input name="PassengerGender" type="text" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label id="PassengerPhone" for="PassengerPhone">Phone</label>
-        <input type="text" name="PassengerPhone" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label id="PassengerAddress" for="PassengerAddress">Home Address</label>
-        <input type="text" name="PassengerAddress" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label id="PassengerEmail" for="PassengerEmail">Email</label>
-        <input type="text" name="PassengerEmail" class="form-control" required>
-    </div>
-
-</form>
-</div>
-<div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="PassengerRegister" type="button" class="btn btn-primary" >Save Passenger</button>
-                </div>
-
+                    <div class="form-group">
+                        <label id="DriverAge" for="DriverAge">Unit#</label>
+                        <input type="text" name="DriverAge" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="DriverPlanteNumber" for="DriverPlanteNumber">Plate Number</label>
+                        <input name="DriverPlanteNumber" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="DriversDriversLicense" for="DriversDriversLicense">Drivers License</label>
+                        <input type="file" name="DriversDriversLicense" accept=".jpg, .png, .jpeg, .pdf, .doc, .docx" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="DriverVehicleRegistration" for="DriverVehicleRegistrations">Vehicle Registration</label>
+                        <input type="file" name="DriverVehicleRegistration" accept=".jpg, .png, .jpeg, .pdf, .doc, .docx" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="DriversPermittoOperate" for="DriversPermittoOperate">Vehicle Picture</label>
+                        <input type="file" name="DriversPermittoOperate" accept=".jpg, .png, .jpeg, .pdf, .doc, .docx" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="DriversPhoneNumber" for="DriversPhoneNumber">Phone Number</label>
+                        <input type="text" name="DriversPhoneNumber" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="DriversHomeAddress" for="DriversHomeAddress">Home Address</label>
+                        <input type="text" name="DriversHomeAddress" class="form-control" required>
+                    </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="DriversRegister" type="submit" class="btn btn-primary">Save Driver</button>
+            </div>
+            </form>
         </div>
     </div>
+</div>
 
 
-
-    <script>
+<script>
   $(document).ready(function() {
-    $("#PassengerRegister").click(function() {
-      var SelectPassenger = $("#SelectPassenger").val();
-      var PassengerAge = $("input[name='PassengerAge']").val();
-      var PassengerGender = $("input[name='PassengerGender']").val();
-      var PassengerPhone = $("input[name='PassengerPhone']").val();
-      var PassengerAddress = $("input[name='PassengerAddress']").val();
-      var PassengerEmail = $("input[name='PassengerEmail']").val();
-      $.post(
-        "passengerupdate.php", // Replace with the actual file name for update
-        {
-          SelectPassenger: SelectPassenger,
-          PassengerAge: PassengerAge,
-          PassengerGender: PassengerGender,
-          PassengerPhone: PassengerPhone,
-          PassengerAddress: PassengerAddress,
-          PassengerEmail: PassengerEmail
+    $("#DriversRegister").click(function(e) {
+      e.preventDefault(); // Prevent default form submission
+
+      var SelectDriver = $("#SelectDriver").val();
+      var DriverAge = $("input[name='DriverAge']").val();
+      var DriverPlanteNumber = $("input[name='DriverPlanteNumber']").val();
+      var DriversDriversLicense = $("input[name='DriversDriversLicense']").prop('files')[0];
+      var DriverVehicleRegistration = $("input[name='DriverVehicleRegistration']").prop('files')[0];
+      var DriversPermittoOperate = $("input[name='DriversPermittoOperate']").prop('files')[0];
+      var DriversPhoneNumber = $("input[name='DriversPhoneNumber']").val();
+      var DriversHomeAddress = $("input[name='DriversHomeAddress']").val();
+
+      var formData = new FormData();
+      formData.append('SelectDriver', SelectDriver);
+      formData.append('DriverAge', DriverAge);
+      formData.append('DriverPlanteNumber', DriverPlanteNumber);
+      formData.append('DriversDriversLicense', DriversDriversLicense);
+      formData.append('DriverVehicleRegistration', DriverVehicleRegistration);
+      formData.append('DriversPermittoOperate', DriversPermittoOperate);
+      formData.append('DriversPhoneNumber', DriversPhoneNumber);
+      formData.append('DriversHomeAddress', DriversHomeAddress);
+
+      $.ajax({
+        url: "passengerupdate.php", // Replace with the actual file name for update
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(data) {
+          Swal.fire({
+            title: 'Updated Successfully!',
+            icon: 'success',
+            confirmButtonText: 'Okay'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $(".swal2-popup").addClass('light-theme');
+            }
+          });
         },
-        function(data, status) {
-          if (status === 'success') {
-            Swal.fire({
-              title: 'Updated Successfully!',
-              icon: 'success',
-              confirmButtonText: 'Okay'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                $(".swal2-popup").addClass('light-theme');
-              }
-            });
-          } else {
-            // Handle error here
-            Swal.fire({
-              title: 'Error!',
-              text: 'There was an error while updating the record.',
-              icon: 'error',
-              confirmButtonText: 'Okay'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                $(".swal2-popup").addClass('light-theme');
-              }
-            });
-          }
+        error: function() {
+          Swal.fire({
+            title: 'Error!',
+            text: 'There was an error while updating the record.',
+            icon: 'error',
+            confirmButtonText: 'Okay'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $(".swal2-popup").addClass('light-theme');
+            }
+          });
         }
-      );
+      });
     });
   });
 </script>
 
 
 
-
-
-
-
-
-
-<div class="modal" id="passengerdelete">
+<div class="modal fade" id="Driverdelete">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Delete Passenger Information</h4>
+                <h4 class="modal-title">Delete Administrator Information</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="PassengerDelete" action="passengerdelete.php" method="post">
+                <form id="driversDelete" action="delete.php" method="post">
                     <div class="form-group">
-                        <label for="SelectPassenger">Delete Selected Passenger </label>
-                        <select name="SelectPassenger" id="SelectPassenger" class="form-control" required>
+                        <label for="SelectDriver">Delete Selected Driver Information </label>
+                        <select name="SelectDriver" id="SelectDriver" class="form-control" required>
                             <option value="" disabled selected>Select an option</option>
+                            <!-- PHP code for populating the select options -->
                             <?php
-                            // Your PHP code for populating the select options
+                            require_once('Config.php');
                             $conn = new mysqli($servername, $username, $password, $dbname);
 
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
                             }
 
-                            $sql = "SELECT Name FROM Passengertbl";
+                            $sql = "SELECT Username FROM driverstbl";
                             $result = $conn->query($sql);
 
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
-                                    echo '<option value="'.$row["Name"].'">'.$row["Name"].'</option>';
+                                    echo '<option value="'.$row["Username"].'">'.$row["Username"].'</option>';
                                 }
                             } else {
                                 echo "0 results";
@@ -2592,7 +2371,7 @@ if (isset($_GET['username'])) {
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button id="PassengerDelete" type="submit" class="btn btn-danger">Delete</button>
+                        <button type="button" id="DriversDelete" class="btn btn-danger">Delete</button>
                     </div>
                 </form>
             </div>
@@ -2601,65 +2380,218 @@ if (isset($_GET['username'])) {
 </div>
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function() {
+        $('#DriversDelete').click(function() {
+            var formData = $('#driversDelete').serialize();
+            $.ajax({
+                type: 'POST',
+                url: 'delete.php', // Make sure this is the correct path to your delete.php file
+                data: formData,
+                dataType: 'json', // Set the dataType to 'json' to parse the JSON response
+                success: function(response) {
+                    showAlert(response.type, response.message);
+                },
+                error: function() {
+                    showAlert('error', 'Something went wrong. Please try again.');
+                }
+            });
+        });
 
-<!-- Make sure you have the correct path to the necessary libraries -->
+        function showAlert(type, message) {
+            Swal.fire({
+                title: type.charAt(0).toUpperCase() + type.slice(1),
+                text: message,
+                icon: type,
+                confirmButtonText: 'OK',
+            });
+        }
+    });
+</script>
 
+
+
+
+
+
+<div class="modal fade" id="Drivertrack">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Track Drivers Personal Details</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="updateForm" action="driverupdate.php" method="post" enctype="multipart/form-data">
+                    <label for="SearchDriver">Search for Driver Information Any of these Name/VehicleNumber/PlateNumber</label>
+                    <input type="text" name="SearchDriver" id="SearchDriver" class="form-control" placeholder="Type Any of These Details to Know the Driver: Name/VehicleNumber/PlateNumber" required>
+                </form>
+                <div id="searchResults"></div>
+            </div>
+            <div class="modal-footer">
+
+            <button type="button" class="btn btn-primary btn-sm m-1" id="trackButton" data-dismiss="modal"  data-target="#mapModal" data-toggle="modal">
+    <i class="bi bi-map"></i> View in Maps
+</button>
+
+
+<button type="button" class="btn btn-primary btn-sm m-1" id="copyButton" data-toggle="modal">
+    <i class="fas fa-copy"></i> Copy Address
+</button>
 
 <script>
-        $(document).ready(function() {
-            $('#PassengerDelete').submit(function(e) {
-                e.preventDefault();
-                var formData = $(this).serialize();
-                $.ajax({
-                    type: 'POST',
-                    url: 'passengerdelete.php', // Make sure this is the correct path to your delete.php file
-                    data: formData,
-                    dataType: 'json', // Set the dataType to 'json' to parse the JSON response
-                    success: function(response) {
-                        showAlert(response.type, response.message);
-                    },
-                    error: function() {
-                        showAlert('error', 'Something went wrong. Please try again.');
-                    }
-                });
-            });
+document.getElementById('copyButton').addEventListener('click', function() {
+    // Get the input element
+    var homeAddressInput = document.getElementById('homeAddress');
 
-            function showAlert(type, message) {
-                Swal.fire({
-                    title: type.charAt(0).toUpperCase() + type.slice(1),
-                    text: message,
-                    icon: type,
-                    confirmButtonText: 'OK',
-                });
+    // Get the value of the input, excluding the "Home Address: " prefix
+    var actualAddress = homeAddressInput.value.replace('Home Address: ', '');
+
+    // Create a temporary textarea element to copy the text without the prefix
+    var tempTextArea = document.createElement('textarea');
+    tempTextArea.value = actualAddress;
+
+    // Append the textarea to the document
+    document.body.appendChild(tempTextArea);
+
+    // Select the text inside the textarea
+    tempTextArea.select();
+    tempTextArea.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy the selected text to the clipboard
+    document.execCommand('copy');
+
+    // Remove the temporary textarea
+    document.body.removeChild(tempTextArea);
+
+    // Show Sweet Alert
+    Swal.fire({
+        icon: 'success',
+        title: 'Copied!',
+        text: 'The address has been copied to the clipboard.',
+        showConfirmButton: false,
+        timer: 1500 // Adjust the timer as needed
+    });
+});
+</script>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Your existing HTML code remains unchanged -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById("SearchDriver");
+        const searchResults = document.getElementById("searchResults");
+
+        searchInput.addEventListener("input", function() {
+            const searchText = searchInput.value.toLowerCase();
+            if (searchText.length > 0) {
+                fetch(`driverDetails.php?search=${searchText}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        searchResults.innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            } else {
+                searchResults.innerHTML = "";
             }
         });
+    });
+</script>
+
+
+<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mapModalLabel">Map</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe id="mapIframe" width="100%" height="500" src=""></iframe>
+
+                    <form method="POST" class="text-center mt-3" id="addressForm" style="margin-top: 20px;">
+                        <div class="form-group row justify-content-center">
+                           
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row justify-content-center">
+                            <div class="col-sm-10">
+       <!-- Your existing buttons -->
+       <button type="button" class="btn btn-primary" onclick="updateMap()" style="margin-top: 20px; margin-right: 5px;">
+    Submit <i class="fas fa-check"></i>
+</button>
+
+<button type="button" class="btn btn-secondary ml-2" name="paste_address" onclick="pasteFromClipboard()" style="margin-top: 20px; margin-right: 5px;">
+    Paste <i class="fas fa-paste"></i>
+</button>
+
+<!-- New reset button with adjusted spacing -->
+<button type="button" class="btn btn-danger ml-2" onclick="resetFields()" style="margin-top: 20px; margin-right: 5px;">
+    Reset <i class="fas fa-times"></i>
+</button>
+
+<script>
+    function resetFields() {
+        // Reset the value of the input field with id "address"
+        document.getElementById('address').value = '';
+
+        // You can add more lines to reset other input fields if needed
+    }
+
+    function pasteFromClipboard() {
+        // Read text from the clipboard
+        navigator.clipboard.readText()
+            .then(text => {
+                // Set the value of the input field with id "address" to the text from the clipboard
+                document.getElementById('address').value = text;
+            })
+            .catch(err => {
+                console.error('Failed to read text from clipboard', err);
+            });
+    }
+</script>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+   
+    <script>
+        function updateMap() {
+            var address = document.getElementById('address').value;
+            var mapIframe = document.getElementById('mapIframe');
+            mapIframe.src = 'https://maps.google.com/maps?q=' + encodeURIComponent(address) + '&output=embed';
+        }
     </script>
 
 
 
 
-<style>
-    .modal {
-        animation: zoomIn 0.3s;
-    }
 
-    @keyframes zoomIn {
-        from { transform: scale(0); }
-        to { transform: scale(1); }
-    }
-</style>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var modal = document.getElementById('myModal');
-        modal.addEventListener('show.bs.modal', function () {
-            modal.classList.add('modal');
-        });
-        modal.addEventListener('hide.bs.modal', function () {
-            modal.classList.remove('modal');
-        });
-    });
-</script>
+
 
 
 

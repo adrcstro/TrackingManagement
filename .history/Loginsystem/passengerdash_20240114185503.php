@@ -2356,7 +2356,7 @@ if (isset($_GET['username'])) {
             echo  '<img src="../Images/Personal.svg" class="img-fluid mb-5 mt-2">';
             echo "</div>";
             echo '<div class="col-md-6">';
-            echo '<h2 class="mt-7 text-center" id="FAQ">Pasenger Infomation</h2>';
+            echo '<h2 class="mt-7 text-center" id="FAQ">User Information</h2>';
             echo "<div class='container mt-2'>";
             echo "<form>";
             echo "<div class='mb-3'>";

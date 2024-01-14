@@ -18,59 +18,78 @@ require_once('Config.php');
 <body>
 <?php
 
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+  die("Connection failed: " . $conn->connect_error);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $usertype = $_POST['usertype'];
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $usertype = $_POST['usertype'];
 
-    // Validate user inputs (add more validation as needed)
+  $table_name = "";
+  $column_name = ""; // Add the column name you want to fetch here
+  if ($usertype == 'admin') {
+      $table_name = "admintbl";
+      $column_name = "Username, Password"; // Replace with the actual column name
+  } elseif ($usertype == 'driver') {
+      $table_name = "driverstbl";
+      $column_name = "Username, Password"; // Replace with the actual column name
+  } elseif ($usertype == 'passenger') {
+      $table_name = "passengertbl";
+      $column_name = "Username, Password"; // Replace with the actual column name
+  }
 
-    $table_name = "";
-    $column_name = "Username, Password"; // Add the column name you want to fetch here
+  $sql = "SELECT $column_name FROM $table_name WHERE username = ? AND password =?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("ss", $username,$password);
+  $stmt->execute();
+  $result = $stmt->get_result();
 
-    if ($usertype == 'admin') {
-        $table_name = "admintbl";
-    } elseif ($usertype == 'driver') {
-        $table_name = "driverstbl";
-    } elseif ($usertype == 'passenger') {
-        $table_name = "passengertbl";
-    }
+  if ($result->num_rows > 0) {
 
-    $sql = "SELECT $column_name FROM $table_name WHERE username = ? AND password =?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $username, $password);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $loggedpassengerID = $row['id'];
+    $loggedriverID = $row['id'];
+    $loggedInUsername = $username;
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
 
-        $redirectUrl = '';
-        if ($usertype == 'passenger') {
-            $redirectUrl = "passengerdash.php?username=" . urlencode($row['Username']);
-        } elseif ($usertype == 'admin') {
-            $redirectUrl = "admin.php";
-        } elseif ($usertype == 'driver') {
-            $redirectUrl = "driverdash.php?username=" . urlencode($row['Username']);
-        }
 
-        header("Location: $redirectUrl");
-        exit();
-    } else {
-        echo "<script>
-                alert('Login failed. Please check your username and password.');
-                window.location.href = 'login.php'; // Redirect to login page
-            </script>";
-        exit();
-    }
+
+      $row = $result->fetch_assoc();
+
+      if ($usertype == 'passenger') {
+          echo "<script>
+                  swal('Success', 'Logged in successfully!', 'success').then(() => {
+                      window.location.href = 'passengerdash.php';
+                  });
+              </script>";
+          exit();
+      } elseif ($usertype == 'admin') {
+          echo "<script>
+                  swal('Success', 'Logged in successfully!', 'success').then(() => {
+                      window.location.href = 'admin.php';
+                  });
+              </script>";
+          exit();
+      } elseif ($usertype == 'driver') {
+          echo "<script>
+                  swal('Success', 'Logged in successfully!', 'success').then(() => {
+                      window.location.href = 'driverdash.php';
+                  });
+              </script>";
+          exit();
+      }
+  } else {
+      echo "<script>
+              swal('Error', 'Login failed. Please check your username and password.', 'error');
+          </script>";
+  }
 }
-$conn->close();
+
 ?>
 
 
