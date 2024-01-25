@@ -116,33 +116,11 @@ require_once('Config.php');
 </li>
                 </ul>
             </div>
+
+
+
         </div>
     </nav>
-
-    <script>
-function logout() {
-    // Display a SweetAlert confirmation dialog
-    Swal.fire({
-        title: "Are you sure?",
-        text: "You will be logged out!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, log me out!",
-    }).then((result) => {
-        // If the user confirms the logout, redirect to logout.php
-        if (result.isConfirmed) {
-            window.location.href = 'login.php';
-        }
-    });
-}
-</script>
-
-
-
-
-
     <!-- Main content -->
     <div class="h-screen flex-grow-1 overflow-y-lg-auto">
         <!-- Header -->
@@ -2600,21 +2578,7 @@ if (isset($_GET['Username'])) {
     $stmt->close();
     $conn->close();
 } else {
-    echo "<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('button.btn, input.btn, a.btn').forEach(function(element) {
-            element.disabled = true;
-        });
-    });
-</script>";
-    echo '<div class="container">';
-    echo '<div class="row">';
-    echo '<div class="col-md-12">';
-    echo '<h2 class="text-center" style="color: red;">SYSTEM ERROR</h2>';
-    echo '<p class="text-center" style="color: red;">Username not provided in the URL. Please login to the main SYSTEM. <br> Please logout Immediately</p>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+    echo "Username not provided in the URL.";
 }
 
 ?>

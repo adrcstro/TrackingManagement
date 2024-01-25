@@ -221,9 +221,9 @@ $conn->close();
           
           <div class="carousel">
   <div class="images-wrapper">
-    <img src="../Images/file3.jpg" class="image img-1 show" data-image="img-1" alt="" />
-    <img src="../images/maps6.png" class="image img-2" data-image="img-2" alt="" />
-    <img src="../images/Forgot.svg" class="image img-3" data-image="img-3" alt="" />
+    <img src="../Images/file3.jpg" class="image img-1 show smaller-image" data-image="img-1" alt="" />
+    <img src="../images/maps6.png" class="image img-2 smaller-image" data-image="img-2" alt="" />
+    <img src="../images/Forgot.svg" class="image img-3 smaller-image" data-image="img-3" alt="" />
   </div>
 
   <div class="text-slider">

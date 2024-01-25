@@ -226,20 +226,7 @@ $conn->close();
     <img src="../images/Forgot.svg" class="image img-3" data-image="img-3" alt="" />
   </div>
 
-  <div class="text-slider">
-    <div class="text-wrap">
-      <div class="text-group">
-        <h2>Get Started</h2>
-        <h2>Join us</h2>
-        <h2>Set new Password</h2>
-      </div>
-    </div>
-
-    <div class="bullets">
-      <span class="active" id="login" data-value="1"></span>
-     
-    </div>
-  </div>
+ 
 </div>
 
 <script>

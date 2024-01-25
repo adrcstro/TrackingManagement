@@ -3786,7 +3786,7 @@ echo "</div>";
     echo '<div class="row">';
     echo '<div class="col-md-12">';
     echo '<h2 class="text-center" style="color: red;">SYSTEM ERROR</h2>';
-    echo '<p class="text-center" style="color: red;">Username not provided in the URL. Please login to the main SYSTEM. <br> Please logout Immediately</p>';
+    echo '<p class="text-center" style="color: red;">Username not provided in the URL. Please login to the main SYSTEM.</p>';
     echo '</div>';
     echo '</div>';
     echo '</div>';

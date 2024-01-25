@@ -1867,7 +1867,7 @@ $conn->close();
             <img src="../Images/Confirmed.svg" alt="Confirm" class="img-fluid" style="max-width: 200px; height: auto;">
           </div>
           <div class="text-sm">
-            <button type="button" class="btn btn-sm btn-neutral border-base" title="Process Passenger's Complaint about the tricycle service, the local transportation authority " onclick="Confirmappointment('Confirmed')">
+            <button type="button" class="btn btn-sm btn-neutral border-base" title="Process Passenger's Complaint about the tricycle service, the local transportation authority " onclick="Confirmappointmen('Confirmed')">
               <i class="bi bi-arrow-up me-1"></i>Select
             </button>
           </div>
@@ -1885,7 +1885,7 @@ $conn->close();
             <img src="../Images/cencel.svg" alt="Cancel" class="img-fluid" style="max-width: 200px; height: auto;">
           </div>
           <div class="text-sm">
-            <button type="button" class="btn btn-sm btn-neutral border-base" title="Process Passenger's Complaint about the tricycle service, the local transportation authority " onclick=" Confirmappointment('Cancel Appointment')">
+            <button type="button" class="btn btn-sm btn-neutral border-base" title="Process Passenger's Complaint about the tricycle service, the local transportation authority " onclick=" Confirmappointmen('Cancel Appointment')">
               <i class="bi bi-arrow-up me-1"></i>Select
             </button>
           </div>
@@ -1948,7 +1948,7 @@ $conn->close();
 
 
 
-<div style="width: 80%; margin: auto; display:none;  margin-bottom: 10px;">
+<div style="width: 80%; margin: auto; display:block;  margin-bottom: 10px;">
     <label for="PASSConfirmStatus"></label>
     <input class="form-control mx-auto" name="PASSConfirmStatus" id="PASSConfirmStatus" style="width: 100%;">
 </div>
@@ -3774,22 +3774,7 @@ echo "</div>";
     $stmt->close();
     $conn->close();
 } else {
-
-    echo "<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('button.btn, input.btn, a.btn').forEach(function(element) {
-            element.disabled = true;
-        });
-    });
-</script>";
-    echo '<div class="container">';
-    echo '<div class="row">';
-    echo '<div class="col-md-12">';
-    echo '<h2 class="text-center" style="color: red;">SYSTEM ERROR</h2>';
-    echo '<p class="text-center" style="color: red;">Username not provided in the URL. Please login to the main SYSTEM. <br> Please logout Immediately</p>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+    echo "Username not provided in the URL.";
 }
 
 ?>

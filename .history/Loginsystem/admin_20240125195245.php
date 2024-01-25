@@ -3321,22 +3321,7 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
         if ($row["ComplainStatus"] === "Scheduled") {
-
-            $borderColor = ''; // Default border color
-
-            // Check conditions for setting border color
-            if ($row["PassengerConfirmation"] === $row["DriverConfirmation"] && $row["PassengerConfirmation"] === "Confirmed") {
-                $borderColor = '#00B906'; // Set border color to green
-            } elseif ($row["PassengerConfirmation"] === $row["DriverConfirmation"] && $row["PassengerConfirmation"] === "Cancel Appointment") {
-                $borderColor = '#FE0000'; // Set border color to red
-            } elseif ($row["PassengerConfirmation"] === "Confirmed" && $row["DriverConfirmation"] === "Cancel Appointment" || $row["PassengerConfirmation"] === "Cancel Appointment" && $row["DriverConfirmation"] === "Confirmed") {
-                $borderColor = '#FE0000'; // Set border color to red
-            }
-
-
-
-
-            echo '<tr style="color: ' . $borderColor . ';">
+        echo '<tr>
                
                 <td>' . $row["ComplaintID"] . '</td>
                 <td>' . $row["TypeofComplaint"] . '</td>
@@ -5093,6 +5078,102 @@ echo '<i class="fas fa-map-marker-alt location-icon" onclick="copyToClipboard(\'
   </script>
    
    
-   
+
+
+
+<!-- Include SweetAlert library -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+  let inactiveTime = 0;
+  const maxInactiveTime = 10; // 1 minute in seconds
+  const maxErrorAttempts = 3;
+
+  // Function to reset inactive time
+  function resetInactiveTime() {
+    inactiveTime = 0;
+  }
+
+  // Function to handle inactivity
+  function checkInactivity() {
+    inactiveTime++;
+    if (inactiveTime >= maxInactiveTime) {
+      showSecurityCheck();
+    }
+  }
+
+  // Function to show SweetAlert for Security Check
+  function showSecurityCheck() {
+    Swal.fire({
+      title: 'Security Check',
+      html: '<input type="password" id="password" class="swal2-input" placeholder="Enter your password">',
+      showCancelButton: true,
+      confirmButtonText: 'Submit',
+      preConfirm: () => {
+        const password = document.getElementById('password').value;
+        return fetch('check_password.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: 'password=' + encodeURIComponent(password),
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+          return response.json();
+        })
+        .catch(error => {
+          Swal.showValidationMessage(`Request failed: ${error}`);
+        });
+      },
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        const { success, attempts } = result.value;
+        if (success) {
+          resetInactiveTime();
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Invalid Password',
+            text: `Incorrect password. ${attempts} attempts remaining.`,
+          });
+          if (attempts <= 0) {
+            // Redirect to login page after max error attempts
+            window.location.href = 'login.php';
+          }
+        }
+      }
+    });
+  }
+
+  // Event listener for user activity
+  document.addEventListener('mousemove', resetInactiveTime);
+  document.addEventListener('keypress', resetInactiveTime);
+
+  // Set interval to check inactivity every second
+  setInterval(checkInactivity, 1000);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

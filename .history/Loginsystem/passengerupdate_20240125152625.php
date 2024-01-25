@@ -241,7 +241,7 @@ if (isset($_POST['Confirmid'])) {
    
   
 
-    if (!empty($confirmid)) {
+    if (!empty( $confirmid)) {
         $stmt = $conn->prepare("UPDATE complainttbl SET DriverConfirmation=? WHERE ComplaintID=?");
         $stmt->bind_param("ss",  $confirmstatus, $confirmid);
 

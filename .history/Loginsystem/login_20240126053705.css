@@ -272,16 +272,13 @@ main.sign-up-mode .carousel {
   left: 45%;
   top: 0;
   background-color: transparent;
-  border-radius: 10px;
+  border-radius: 2rem;
   display: grid;
   grid-template-rows: auto 1fr;
   padding-bottom: 2rem;
   overflow: hidden;
   transition: 0.8s ease-in-out;
 }
-
-
-
 
 .images-wrapper {
   display: grid;
@@ -299,19 +296,7 @@ main.sign-up-mode .carousel {
   grid-row: 1/2;
   opacity: 0;
   transition: opacity 0.3s, transform 0.5s;
-  border-radius: 10px;
-}
 
-
-
-
-
-
-.img-1{
- 
-    filter: brightness(60%);
-  
-  
 }
 
 .img-1 {

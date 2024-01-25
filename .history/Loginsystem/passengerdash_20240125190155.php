@@ -3774,22 +3774,13 @@ echo "</div>";
     $stmt->close();
     $conn->close();
 } else {
+    echo "Username not provided in the URL.";
 
-    echo "<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('button.btn, input.btn, a.btn').forEach(function(element) {
-            element.disabled = true;
-        });
-    });
-</script>";
-    echo '<div class="container">';
-    echo '<div class="row">';
-    echo '<div class="col-md-12">';
-    echo '<h2 class="text-center" style="color: red;">SYSTEM ERROR</h2>';
-    echo '<p class="text-center" style="color: red;">Username not provided in the URL. Please login to the main SYSTEM. <br> Please logout Immediately</p>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+   echo "<script>
+            document.querySelectorAll('*').forEach(function(element) {
+                element.disabled = true;
+            });
+          </script>";
 }
 
 ?>

@@ -281,9 +281,21 @@ main.sign-up-mode .carousel {
 }
 
 
+.image-container {
+  position: relative;
+  display: inline-block;
+}
 
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
 
 .images-wrapper {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -302,14 +314,9 @@ main.sign-up-mode .carousel {
   border-radius: 10px;
 }
 
-
-
-
-
-
 .img-1{
  
-    filter: brightness(60%);
+    filter: brightness(70%);
   
   
 }

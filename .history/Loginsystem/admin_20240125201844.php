@@ -3326,17 +3326,17 @@ if ($result->num_rows > 0) {
 
             // Check conditions for setting border color
             if ($row["PassengerConfirmation"] === $row["DriverConfirmation"] && $row["PassengerConfirmation"] === "Confirmed") {
-                $borderColor = '#00B906'; // Set border color to green
+                $borderColor = 'green'; // Set border color to green
             } elseif ($row["PassengerConfirmation"] === $row["DriverConfirmation"] && $row["PassengerConfirmation"] === "Cancel Appointment") {
-                $borderColor = '#FE0000'; // Set border color to red
+                $borderColor = 'red'; // Set border color to red
             } elseif ($row["PassengerConfirmation"] === "Confirmed" && $row["DriverConfirmation"] === "Cancel Appointment" || $row["PassengerConfirmation"] === "Cancel Appointment" && $row["DriverConfirmation"] === "Confirmed") {
-                $borderColor = '#FE0000'; // Set border color to red
+                $borderColor = 'red'; // Set border color to red
             }
 
 
 
 
-            echo '<tr style="color: ' . $borderColor . ';">
+            echo '<tr style="text-color: ' . $borderColor . ';">
                
                 <td>' . $row["ComplaintID"] . '</td>
                 <td>' . $row["TypeofComplaint"] . '</td>

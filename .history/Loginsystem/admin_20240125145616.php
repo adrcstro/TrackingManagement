@@ -3321,22 +3321,7 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
         if ($row["ComplainStatus"] === "Scheduled") {
-
-            $borderColor = ''; // Default border color
-
-            // Check conditions for setting border color
-            if ($row["PassengerConfirmation"] === $row["DriverConfirmation"] && $row["PassengerConfirmation"] === "Confirmed") {
-                $borderColor = '#00B906'; // Set border color to green
-            } elseif ($row["PassengerConfirmation"] === $row["DriverConfirmation"] && $row["PassengerConfirmation"] === "Cancel Appointment") {
-                $borderColor = '#FE0000'; // Set border color to red
-            } elseif ($row["PassengerConfirmation"] === "Confirmed" && $row["DriverConfirmation"] === "Cancel Appointment" || $row["PassengerConfirmation"] === "Cancel Appointment" && $row["DriverConfirmation"] === "Confirmed") {
-                $borderColor = '#FE0000'; // Set border color to red
-            }
-
-
-
-
-            echo '<tr style="color: ' . $borderColor . ';">
+        echo '<tr>
                
                 <td>' . $row["ComplaintID"] . '</td>
                 <td>' . $row["TypeofComplaint"] . '</td>
@@ -5091,7 +5076,6 @@ echo '<i class="fas fa-map-marker-alt location-icon" onclick="copyToClipboard(\'
       });
     });
   </script>
-   
    
    
 </body>

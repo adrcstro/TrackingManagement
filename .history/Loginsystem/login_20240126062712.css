@@ -282,7 +282,6 @@ main.sign-up-mode .carousel {
 
 
 
-
 .images-wrapper {
   display: grid;
   grid-template-columns: 1fr;
@@ -302,16 +301,8 @@ main.sign-up-mode .carousel {
   border-radius: 10px;
 }
 
-
-
-
-
-
 .img-1{
- 
-    filter: brightness(60%);
-  
-  
+  filter: brightness(70%);
 }
 
 .img-1 {

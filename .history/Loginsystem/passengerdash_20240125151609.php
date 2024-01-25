@@ -1689,7 +1689,7 @@ if (isset($_GET['Username'])) {
                         <th>Hearing Date</th>
                         <th>Hearing Time</th>
                         <th>Hearing Place</th>
-                        <th>Complainant Response</th>
+                        <th>Passenger Confirmation</th>
                     </thead>
                 </tr>';
 
@@ -1707,7 +1707,7 @@ if (isset($_GET['Username'])) {
                         <td>' . $row["hearingdate"] . '</td>
                         <td>' . $row["hearingtime"] . '</td>
                         <td>' . $row["hearingplace"] . '</td>
-                        <td>' . $row["PassengerConfirmation"] . '</td>
+                        <td>' . $row["hearingplace"] . '</td>
                     </tr>';
                 }
             }
@@ -1768,8 +1768,8 @@ $conn->close();
             <div class="modal-body">
                 <form id="updateForm"  method="post">
                     <div class="form-group">
-                        <label for="PASSConfirmid">Select Report</label>
-                        <select name="PASSConfirmid" id="PASSConfirmid" class="form-control" required>
+                        <label for="Confirmid">Select Report</label>
+                        <select name="Confirmid" id="Confirmid" class="form-control" required>
                             <option value="" disabled selected>Select an option</option>
                      
                                
@@ -1867,7 +1867,7 @@ $conn->close();
             <img src="../Images/Confirmed.svg" alt="Confirm" class="img-fluid" style="max-width: 200px; height: auto;">
           </div>
           <div class="text-sm">
-            <button type="button" class="btn btn-sm btn-neutral border-base" title="Process Passenger's Complaint about the tricycle service, the local transportation authority " onclick="Confirmappointment('Confirmed')">
+            <button type="button" class="btn btn-sm btn-neutral border-base" title="Process Passenger's Complaint about the tricycle service, the local transportation authority " onclick="updateRating('Confirmed')">
               <i class="bi bi-arrow-up me-1"></i>Select
             </button>
           </div>
@@ -1885,7 +1885,7 @@ $conn->close();
             <img src="../Images/cencel.svg" alt="Cancel" class="img-fluid" style="max-width: 200px; height: auto;">
           </div>
           <div class="text-sm">
-            <button type="button" class="btn btn-sm btn-neutral border-base" title="Process Passenger's Complaint about the tricycle service, the local transportation authority " onclick=" Confirmappointment('Cancel Appointment')">
+            <button type="button" class="btn btn-sm btn-neutral border-base" title="Process Passenger's Complaint about the tricycle service, the local transportation authority " onclick="updateRating('Cancel Appointment')">
               <i class="bi bi-arrow-up me-1"></i>Select
             </button>
           </div>
@@ -1949,13 +1949,13 @@ $conn->close();
 
 
 <div style="width: 80%; margin: auto; display:none;  margin-bottom: 10px;">
-    <label for="PASSConfirmStatus"></label>
-    <input class="form-control mx-auto" name="PASSConfirmStatus" id="PASSConfirmStatus" style="width: 100%;">
+    <label for="ConfirmStatus"></label>
+    <input class="form-control mx-auto" name="ConfirmStatus" id="ConfirmStatus" style="width: 100%;">
 </div>
 
 <script>
-    function Confirmappointment(rating) {
-        document.getElementById("PASSConfirmStatus").value = rating + "";
+    function updateRating(rating) {
+        document.getElementById("ConfirmStatus").value = rating + "";
         // You can customize this value as per your requirement
     }
 </script>
@@ -1975,15 +1975,15 @@ $conn->close();
 <script>
   $(document).ready(function() {
     $("#confirmbutton").click(function() {
-      var PASSConfirmid = $("#PASSConfirmid").val();
-      var PASSConfirmStatus = $("input[name='PASSConfirmStatus']").val();
+      var Confirmid = $("#Confirmid").val();
+      var ConfirmStatus = $("input[name='ConfirmStatus']").val();
     
 
       $.post(
         "passengerupdate.php", // Replace with the actual file name for update
         {
-            PASSConfirmid: PASSConfirmid,
-            PASSConfirmStatus:PASSConfirmStatus
+            Confirmid: Confirmid,
+            ConfirmStatus:ConfirmStatus
         },
         function(data, status) {
           if (status === 'success') {
@@ -3774,22 +3774,7 @@ echo "</div>";
     $stmt->close();
     $conn->close();
 } else {
-
-    echo "<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('button.btn, input.btn, a.btn').forEach(function(element) {
-            element.disabled = true;
-        });
-    });
-</script>";
-    echo '<div class="container">';
-    echo '<div class="row">';
-    echo '<div class="col-md-12">';
-    echo '<h2 class="text-center" style="color: red;">SYSTEM ERROR</h2>';
-    echo '<p class="text-center" style="color: red;">Username not provided in the URL. Please login to the main SYSTEM. <br> Please logout Immediately</p>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+    echo "Username not provided in the URL.";
 }
 
 ?>

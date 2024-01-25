@@ -220,11 +220,22 @@ $conn->close();
 
           
           <div class="carousel">
-  <div class="images-wrapper">
+          <div class="images-wrapper">
+  <!-- Image 1 with text -->
+  <div class="image-container">
     <img src="../Images/file3.jpg" class="image img-1 show" data-image="img-1" alt="" />
-    <img src="../images/maps6.png" class="image img-2" data-image="img-2" alt="" />
-    <img src="../images/Forgot.svg" class="image img-3" data-image="img-3" alt="" />
+    <div class="image-text">
+      BRGY-409 Community Tricycle Tracking & Report System
+    </div>
   </div>
+
+  <!-- Image 2 -->
+  <img src="../images/maps6.png" class="image img-2" data-image="img-2" alt="" />
+
+  <!-- Image 3 -->
+  <img src="../images/Forgot.svg" class="image img-3" data-image="img-3" alt="" />
+</div>
+
 
   <div class="text-slider">
     <div class="text-wrap">

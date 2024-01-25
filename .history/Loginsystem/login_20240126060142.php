@@ -222,14 +222,16 @@ $conn->close();
           <div class="carousel">
   <div class="images-wrapper">
     <img src="../Images/file3.jpg" class="image img-1 show" data-image="img-1" alt="" />
-    <img src="../images/maps6.png" class="image img-2" data-image="img-2" alt="" />
-    <img src="../images/Forgot.svg" class="image img-3" data-image="img-3" alt="" />
+    <img src="../Images/maps6.png" class="image img-2" data-image="img-2" alt="" />
+    <img src="../Images/Forgot.svg" class="image img-3" data-image="img-3" alt="" />
+    <!-- Add the logo image -->
+    <img src="../Images/logoicon.png" class="image img-logo" data-image="img-logo" alt="Logo" />
   </div>
 
   <div class="text-slider">
     <div class="text-wrap">
       <div class="text-group">
-        <h2>Get Started</h2>
+        <h2>BRGY-409</h2>
         <h2>Join us</h2>
         <h2>Set new Password</h2>
       </div>
@@ -237,10 +239,10 @@ $conn->close();
 
     <div class="bullets">
       <span class="active" id="login" data-value="1"></span>
-     
     </div>
   </div>
 </div>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {

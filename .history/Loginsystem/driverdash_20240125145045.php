@@ -133,7 +133,7 @@ function logout() {
     }).then((result) => {
         // If the user confirms the logout, redirect to logout.php
         if (result.isConfirmed) {
-            window.location.href = 'login.php';
+            window.location.href = 'logout.php';
         }
     });
 }
@@ -2600,21 +2600,7 @@ if (isset($_GET['Username'])) {
     $stmt->close();
     $conn->close();
 } else {
-    echo "<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('button.btn, input.btn, a.btn').forEach(function(element) {
-            element.disabled = true;
-        });
-    });
-</script>";
-    echo '<div class="container">';
-    echo '<div class="row">';
-    echo '<div class="col-md-12">';
-    echo '<h2 class="text-center" style="color: red;">SYSTEM ERROR</h2>';
-    echo '<p class="text-center" style="color: red;">Username not provided in the URL. Please login to the main SYSTEM. <br> Please logout Immediately</p>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+    echo "Username not provided in the URL.";
 }
 
 ?>

@@ -14,7 +14,7 @@ require_once('Config.php');
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="admin.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+       
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -63,21 +63,38 @@ require_once('Config.php');
             </a>
         </li>
         
-     
+        <li class="nav-item">
+    <a class="nav-link" href="#" onclick="showDriver()">
+        <i class="fas fa-chart-line"></i> Drivers Rating Scale
+    </a>
+</li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showCalculator()">
+                            <i class="bi bi-cash-coin"></i> Fare Calculator
+                        </a>
+                    </li>
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showWastemanagement()">
+                            <i class="bi bi-recycle"></i> Waste Management
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="showFileComplaint()">
-                            <i class="bi bi-flag"></i> Complaint
+                            <i class="bi bi-flag"></i> File Complaint
                         </a>
                     </li>
-
-                 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="showpersonalrating()">
-                        <i class="bi bi-bar-chart"></i> Personal Rating
+                        <a class="nav-link" href="#" onclick="showmanageComplaint()" >
+                        <i class="bi bi-pin-map"></i> Manage Complaint
                         </a>
                     </li>
-
 
 
 
@@ -114,10 +131,13 @@ require_once('Config.php');
         <i class="bi bi-box-arrow-left"></i> Logout
     </a>
 </li>
+
                 </ul>
             </div>
         </div>
     </nav>
+
+
 
     <script>
 function logout() {
@@ -139,10 +159,6 @@ function logout() {
 }
 </script>
 
-
-
-
-
     <!-- Main content -->
     <div class="h-screen flex-grow-1 overflow-y-lg-auto">
         <!-- Header -->
@@ -158,13 +174,13 @@ function logout() {
                         <!-- Actions -->
                         <div class="col-sm-6 col-12 text-sm-end" id="SIdebarBTN">
                             <div class="mx-n1">
-                                <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1">
+                                <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1" data-toggle="modal" data-target="#edit">
                                     <span class=" pe-2">
                                         <i class="bi bi-pencil"></i>
                                     </span>
                                     <span>Edit</span>
                                 </a>
-                                <a href="#" class="btn d-inline-flex btn-sm btn-primary mx-1">
+                                <a href="#" class="btn d-inline-flex btn-sm btn-primary mx-1" data-toggle="modal" data-target="#create">
                                     <span class=" pe-2">
                                         <i class="bi bi-plus"></i>
                                     </span>
@@ -424,15 +440,287 @@ function logout() {
 
 
 
+     <div  id="waste-table" style="display:none;" class="card shadow border-0 mb-7">
+                    <div class="card-header">
+                        <h5 class="mb-0">Waste Management for Barangay-409</h5>
+ </div>
+<div class="table-responsive">
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="../Images/waste.svg" class="img-fluid mb-5">
+        
+        </div>
+         <div class="col-md-6">
+         <h2 class="mt-7 text-center" id="FAQ"> Frequently Asked Questions</h2>
+         <div class="accordion accordion-flush p-3" id="accordionFlushExample">
+         <div class="accordion-item shadow">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+              What is a waste management system?
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body"> A waste management system is a streamlined process that organizations use to dispose of, reduce, reuse, and prevent waste.</div>
+            </div>
+          </div>
+          <div class="accordion-item bg-white shadow">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              How do you initiate to Start a Brgy-409 Waste Management System?
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">To begin the the Brgy-409 Waste MAnagement System you need to Visit our side and Create you perosnal Account</div>
+            </div>
+          </div>
+          <div class="accordion-item shadow">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              How can users Navigate the System interms of System Instructions?
+              </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">The System Provides a Detailed Description on how to begin and manage waste Collection Strategie</div>
+            </div>
+          </div>
+          
+        </div>
+         </div>
+    </div>
+  </div>
+                    </div>
+                    <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
+                    <button id="btnhover" style="border-color: #603ce6; "  type="button" class="btn  btn-sm m-1">
+                   Gets Started <i class="bi bi-box-arrow-in-up-right"></i></i></button>
+</div>
+</div>
+    
+
+
+
 
      <!-- calculator sheets ------------------------------------------------------------------------------------------------------------------------------------------------>
 
     
 
+     <div class="calculator-table card shadow border-0 mb-7" style="display:none;" id="calculator-table">
+    <div class="card-header thead-light text-center">
+        <h5 class="mb-0" id="calculator">Going Somewhere? Check your Fare</h5>
+    </div>
+
+    <div class="flex-container">
+        <div class="table-responsive">
+            <div class="calculator" style="flex: 1; padding-right: 20px;">
+                <h2>Tricycle Fare Calculator</h2>
+
+                <label for="location">Select Location:</label>
+                <select id="location">
+                    <option value="within">Within Barangay 409</option>
+                    <option value="outside">Outside Barangay 409</option>
+                </select>
+
+                <label>Distance:</label>
+                <input class="Inputcalculator" type="number" id="distance" placeholder="Enter distance" step="0.1">
+
+                <select class="Inputcalculator" id="distanceUnit">
+                    <option value="km">Kilometers (km)</option>
+                    <option value="m">Meters (m)</option>
+                </select>
+
+                <label class="Labelcalculator" for="fareRate">Fare Rate (per kilometer)/(per meter)</label>
+                <input class="Inputcalculator" type="number" id="fareRate" placeholder="Enter fare rate">
+
+                <!-- Checkboxes for discounts -->
+                <div style="justify-content: center;"  class="discounts">
+                <input type="checkbox" id="isPWD">
+                <label for="isPWD">PWD</label>
+
+                <input type="checkbox" id="isStudent">
+                <label for="isStudent">Student</label>
+
+                <input type="checkbox" id="isSeniorCitizen">
+                <label for="isSeniorCitizen">Senior Citizen</label>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn btn-primary" id="Buttoncalculator" onclick="calculateFare()">
+                        <i class="fas fa-calculator"></i> Calculate Fare
+                    </button>
+
+                    <button id="calculatorbutton" class="btn btn-danger" onclick="resetInputs()">
+                        <i class="fas fa-undo"></i> Reset Inputs
+                    </button>
+                </div>
+
+                <script>
+                    function resetInputs() {
+                        document.getElementById("location").selectedIndex = 0;
+                        document.getElementById("distance").value = "";
+                        document.getElementById("fareRate").value = "";
+                        document.getElementById("isPWD").checked = false;
+                        document.getElementById("isStudent").checked = false;
+                        document.getElementById("isSeniorCitizen").checked = false;
+                        document.getElementById("result").innerHTML = "";
+                    }
+                </script>
+
+                <div id="result"></div>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <iframe frameborder="0" style="border:0;"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2295.7344092326657!2d120.99598241619746!3d14.601942961311995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9fb6c83552d%3A0x54ad786f735dc69e!2sBrgy.%20409%2C%20Sampaloc%2C%20Manila%2C%201008%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1699840691454!5m2!1sen!2sph"
+                style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
 
 
      <!-- calculator sheets end ------------------------------------------------------------------------------------------------------------------------------------------------>
 
+     <div class="modal fade" id="create">
+        <div class="modal-dialog" id="createshortcut">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Create</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                
+                <!-- Modal Body -->
+                <div class="modal-body">
+                <div class="container mt-4">
+  <div class="row d-flex justify-content-center align-items-center">
+    
+    <div class="col-md-3">
+      <div id="shorcard" class="card shadow">
+        <img src="../Images/lostandfound.svg" class="card-img-top" alt="Card Image">
+        <div class="card-body">
+          <h5 class="card-title">Lost&Found</h5>
+          <p class="card-text">Manage Lost&Found</p>
+          <div class="shortcutbtn mt-1 d-flex justify-content-center align-items-center">  
+          <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1" data-dismiss="modal" onclick="showlostitem()">
+        <span class="pe-2">
+        <i class="bi bi-briefcase"></i>
+     </span>
+    <span>Post Item</span>
+    </a>
+    </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+    <div id="shorcard" class="card shadow">
+        <img src="../Images/complain.svg" class="card-img-top" alt="Card Image">
+        <div class="card-body">
+          <h5 class="card-title">File Complain</h5>
+          <p class="card-text">View Report</p>
+          <div class="shortcutbtn mt-2 d-flex justify-content-center align-items-center">  
+          <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1" data-dismiss="modal" onclick="showFileComplaint()">
+        <span class="pe-2">
+        <i class="bi bi-flag"></i>
+     </span>
+    <span>File Report</span>
+    </a>
+    </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+    <div id="shorcard" class="card shadow">
+        <img src="../Images/rate.svg" class="card-img-top" alt="Card Image">
+        <div class="card-body">
+          <h5 class="card-title">Rate Drivers</h5>
+          <p class="card-text">Send feedback</p>
+          <div class="shortcutbtn mt-2 d-flex justify-content-center align-items-center">  
+          <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1" data-dismiss="modal" onclick="showDriver()">
+        <span class="pe-2">
+        <i class="bi bi-star"></i>
+     </span>
+    <span>Submit Rate</span>
+    </a>
+    </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="edit">
+        <div class="modal-dialog" id="createshortcut">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                
+                <!-- Modal Body -->
+                <div class="modal-body">
+                <div class="container mt-4">
+                <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-md-3">
+    <div id="shorcard" class="card shadow">
+        <img src="../Images/Personal.svg" class="card-img-top" alt="Card Image">
+        <div class="card-body">
+          <h5 class="card-title">Personal Information</h5>
+          <p class="card-text">Edit Your Details</p>
+          <div class="shortcutbtn mt-2 d-flex justify-content-center align-items-center">  
+          <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1" data-dismiss="modal"  onclick="showAdmin()">
+        <span class="pe-2">
+        <i class="bi bi-person"></i>
+     </span>
+    <span>Edit</span>
+    </a>
+    </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+    <div id="shorcard" class="card shadow">
+        <img src="../Images/lostandfound.svg" class="card-img-top" alt="Card Image">
+        <div class="card-body">
+          <h5 class="card-title">Lost&Found</h5>
+          <p class="card-text">Edit Lost&Found</p>
+          <div class="shortcutbtn mt-2 d-flex justify-content-center align-items-center">  
+          <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1" data-dismiss="modal" onclick="showlostitem()">
+        <span class="pe-2">
+        <i class="bi bi-briefcase"></i>
+     </span>
+    <span>Edit Item</span>
+    </a>
+    </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+  
+
+  </div>
+</div>
+</div>
+            </div>
+        </div>
+    </div>
 
 
      <!-- FileComplaint sheets end ------------------------------------------------------------------------------------------------------------------------------------------------>
@@ -441,19 +729,301 @@ function logout() {
 
      <div class="calculator-table card shadow border-0 mb-7" style="display:none;" id="File-table">
     <div class="card-header thead-light text-center">
-        <h5 class="mb-0" id="calculator" >Costumer Complain About your Service</h5>
+        <h5 class="mb-0" id="calculator" >File Complain for Unprofessional Public Service</h5>
     </div>
 
-    <div class="table-responsive">
+    <div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-4 mb-4">
+            <div id="cards" class="card">
+                <img src="../Images/file3.jpg" class="card-img-top img-fluid" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Poor Customer Service</h5>
+                    <p class="card-text">Unprofessionalism can manifest through poor customer service, such as rude or disrespectful behavior from transport staff and Toda Drivers</p>
+                    <div class="text-center">
+    <a href="#" class="btn btn-primary btn-sm mt-2" data-toggle="modal" data-target="#FileReport">
+        File Complaint
+        <i class="fas fa-exclamation-triangle ml-2"></i>
+    </a>
+</div>
 
 
-<table class="table table-hover table-nowrap" >
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div id="cards" class="card">
+                <img src="../Images/file1.jpg" class="card-img-top img-fluid" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Overcharging Passengers</h5>
+                    <p class="card-text">Some tricycle drivers may engage in overcharging passengers, especially if they perceive them to be tourists or unfamiliar with local fare rates. </p>
+                    <div class="text-center">
+    <a href="#" class="btn btn-primary btn-sm mt-2" data-toggle="modal" data-target="#FileReport">
+        File Complaint
+        <i class="fas fa-exclamation-triangle ml-2"></i>
+    </a>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div id="cards" class="card">
+                <img src="../Images/file2.jpg" class="card-img-top img-fluid" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Unsafe Driving Practices</h5>
+                    <p class="card-text">Unprofessional behavior can also manifest in unsafe driving practices, such as speeding, reckless driving, or failure to adhere to traffic rules.</p>
+                    <div class="text-center">
+    <a href="#"  class="btn btn-primary btn-sm mt-2" data-toggle="modal" data-target="#FileReport">
+        File Complaint
+        <i class="fas fa-exclamation-triangle ml-2"></i>
+    </a>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+<div class="modal" id="FileReport">
+        <div id="wider-modal-dialog" class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">File Report for Unprofessional Public Service</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                
+                <!-- Modal Body -->
+    <div class="modal-body">
+    <form  id="clear" action="passengerdash.php"  autocomplete="off"  enctype="multipart/form-data" method="post">
+    <div class="form-group g-col-6 g-col-md-4 ">
+    <label  for="Fileinput1">Type of Complaint</label>
+    <select name="Fileinput1" id="Fileinput1" class="form-control" required>
+        <option value="" selected disabled>Select a complaint type</option>
+        <option value="overcharging">Overcharging</option>
+        <option value="refusal_service">Refusal to Provide Service</option>
+        <option value="reckless_driving">Reckless Driving</option>
+        <option value="vehicle_condition">Vehicle Condition</option>
+        <option value="unprofessional_behavior">Unprofessional Behavior</option>
+        <option value="overloading">Overloading</option>
+        <option value="route_deviation">Route Deviation</option>
+        <option value="lack_of_safety_measures">Lack of Safety Measures</option>
+        <option value="noise_and_air_pollution">Noise and Air Pollution</option>
+        <option value="unsanitary_conditions">Unsanitary Condition</option>
+        <option value="inadequate_lighting">Inadequate Lighting</option>
+        <option value="inefficient_service">Inefficient Service</option>
+        <!-- Add more options as needed -->
+    </select>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group g-col-6">
+            <label for="datefilereport">Select Date</label>
+            <input id="datefilereport" name="datefilereport" type="date" class="form-control" required>
+        </div>
+
+        
+        <label for="Fileinput3">Name of Complainant</label>
 <?php
-// Replace with your actual database credentials
+if (isset($_GET['Username'])) {
+    $requestedUsername = $_GET['Username'];
 
-// Assume you have the username available in the $usernameParam variable
-// Replace this with the actual method of obtaining the username parameter
-$usernameParam = $_GET['Username'];
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT Name FROM passengertbl WHERE Username = ?";
+    $stmt = $conn->prepare($sql);
+
+    if ($stmt) {
+        $stmt->bind_param("s", $requestedUsername);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            // Display the first fetched name in the input field
+            $row = $result->fetch_assoc();
+            echo '<input type="text" id="Fileinput3" name="Fileinput3" class="form-control" value="'.$row["Name"].'" readonly>';
+        } else {
+            echo "0 results";
+        }
+
+        $stmt->close();
+    } else {
+        echo "Error in statement preparation: " . $conn->error;
+    }
+
+    $conn->close();
+} else {
+    echo "Username not provided in the URL.";
+}
+?>
+
+
+
+
+
+        <div class="form-group g-col-6">
+            <label for="Fileinput4">Contact Number</label>
+            <input id="Fileinput4" name="Fileinput4" type="text" class="form-control" required>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="form-group g-col-6">
+            <label for="Fileinput5">Home Address</label>
+            <input id="Fileinput5" name="Fileinput5" type="text" class="form-control" required>
+        </div>
+        <div class="form-group g-col-6">
+            <label for="Incident-Description">Incident Description</label>
+            <input id="Incident-Description" name="Incident-Description" type="text" class="form-control" required>
+        </div>
+        <div class="form-group g-col-6">
+            <label for="Fileinput6">Submit Any Proof To Identify Driver</label>
+            <input name="Fileinput6" id="Fileinput6" type="file" class="form-control" accept=".jpg, .png .jpeg .pdf, .doc, .docx" required>
+        </div>
+    </div>
+
+    
+</div>
+
+
+
+<div class="input-group mb-3 mt-5" style="border: 1px solid #ccc;">
+<input type="text" name="PassSearchDriver" id="PassSearchDriver" class="form-control" placeholder="Search Name of Complainee" required>
+ <button class="btn btn-outline-secondary" type="button" id="button-addon2">Paste</button>
+</div>
+
+
+
+
+    <div id="PasssearchResults"></div>  
+
+    <div class="modal-footer justify-content-center" style="margin-top: 1rem;">
+    <button id="filereportRegister" type="submit" value="Submit" class="btn btn-danger">
+        <i class="fas fa-exclamation-triangle"></i> File Complaint
+    </button>
+
+    <!-- Add the new button -->
+    <button id="copyComplaineeName" type="button" onclick="pasteFromClipboard()" class="btn btn-primary">
+        <i class="fas fa-copy"></i> Copy Name
+    </button>
+</div>
+
+</form>
+</div>
+
+
+<script> 
+function pasteFromClipboard() {
+        // Read text from the clipboard
+        navigator.clipboard.readText()
+            .then(text => {
+                // Set the value of the input field with id "address" to the text from the clipboard
+                document.getElementById('PassSearchDriver').value = text;
+            })
+            .catch(err => {
+                console.error('Failed to read text from clipboard', err);
+            });
+    }
+    </script>
+
+
+
+
+
+
+
+<script>
+document.getElementById('copyComplaineeName').addEventListener('click', function() {
+    // Get the input element
+    var homeAddressInput = document.getElementById('Username');
+
+    // Get the value of the input, excluding the "Home Address: " prefix
+    var actualAddress = homeAddressInput.value.replace('Driver Name: ', '');
+
+    // Create a temporary textarea element to copy the text without the prefix
+    var tempTextArea = document.createElement('textarea');
+    tempTextArea.value = actualAddress;
+
+    // Append the textarea to the document
+    document.body.appendChild(tempTextArea);
+
+    // Select the text inside the textarea
+    tempTextArea.select();
+    tempTextArea.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy the selected text to the clipboard
+    document.execCommand('copy');
+
+    // Remove the temporary textarea
+    document.body.removeChild(tempTextArea);
+
+    // Show Sweet Alert
+    Swal.fire({
+        icon: 'success',
+        title: 'Copied!',
+        text: 'The address has been copied to the clipboard.',
+        showConfirmButton: false,
+        timer: 1500 // Adjust the timer as needed
+    });
+});
+</script>
+
+
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById("PassSearchDriver");
+        const searchResults = document.getElementById("PasssearchResults");
+
+        searchInput.addEventListener("input", function() {
+            const searchText = searchInput.value.toLowerCase();
+            if (searchText.length > 0) {
+                fetch(`passengerDriverDetails.php?search=${searchText}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        searchResults.innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            } else {
+                searchResults.innerHTML = "";
+            }
+        });
+    });
+</script>
+  
+</div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div  id="Complein-table" style="display:none;" class="card shadow border-0 mb-7">
+                    <div class="card-header">
+                        <h5 class="mb-0">Current Complain Progress</h5>
+                    </div>
+                    <div class="table-responsive">
+                    <table class="table table-hover table-nowrap">
+                    <?php
+// Replace with your actual database credentials
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -463,86 +1033,607 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch data from the complainttbl table with a WHERE clause
-$sql = "SELECT * FROM complainttbl WHERE NameofComplainee = ?";
-$stmt = $conn->prepare($sql);
+// Fetch passenger details based on the provided username
+if (isset($_GET['Username'])) {
+    $usernameParam = $_GET['Username'];
 
-if (!$stmt) {
-    die("Error in statement preparation: " . $conn->error);
-}
+    $passengerSql = "SELECT Name FROM passengertbl WHERE Username = ?";
+    $passengerStmt = $conn->prepare($passengerSql);
 
-$stmt->bind_param("s", $usernameParam);
-$stmt->execute();
-$result = $stmt->get_result();
+    if (!$passengerStmt) {
+        die("Error in statement preparation: " . $conn->error);
+    }
 
-if ($result->num_rows > 0) {
-    echo '<table class="table table-hover table-nowrap">
+    $passengerStmt->bind_param("s", $usernameParam);
+    $passengerStmt->execute();
+    $passengerResult = $passengerStmt->get_result();
+
+    if ($passengerResult->num_rows > 0) {
+        // Passenger found, fetch details
+        $passengerRow = $passengerResult->fetch_assoc();
+        $passengerName = $passengerRow['Name'];
+
+        // Fetch complaint details based on the passenger name
+        $complaintSql = "SELECT * FROM complainttbl WHERE ComplainantName = ?";
+        $complaintStmt = $conn->prepare($complaintSql);
+
+        if (!$complaintStmt) {
+            die("Error in statement preparation: " . $conn->error);
+        }
+
+        $complaintStmt->bind_param("s", $passengerName);
+        $complaintStmt->execute();
+        $complaintResult = $complaintStmt->get_result();
+
+        if ($complaintResult->num_rows > 0) {
+            // Output the complaint details
+            echo '<table class="table table-hover table-nowrap">
             <tr>
             <thead class="thead-light">
                 <th>Complain-ID</th>
                 <th>Type of Complain</th>
                 <th>Date of Report</th>
-                <th>Complainant Name</th>
-                <th>Contact Number</th>
-                <th>Address</th>
                 <th>Prof of Identity</th>
                 <th>Incident Description</th>
                 <th>Name of Complainee</th>
+                <th>Complain Status</th>
                 </thead>
                 </tr>';
+              
 
-    // output data of each row
-    while ($row = $result->fetch_assoc()) {
-        if ($row["ComplainStatus"] === "" || $row["ComplainStatus"] === "Processing") {
-        echo '<tr>
-               
-                <td>' . $row["ComplaintID"] . '</td>
-                <td>' . $row["TypeofComplaint"] . '</td>
-                <td>' . $row["DateofReport"] . '</td>
-                <td>' . $row["ComplainantName"] . '</td>
-                <td>' . $row["ContactNumber"] . '</td>
-                <td>' . $row["Address"] . '</td>
-                <td>' . $row["ProfofIdentity"] . '</td>
-                <td>' . $row["IncidentDescription"] . '</td>
-                <td>' . $row["NameofComplainee"] . '</td>
-            </tr>';
+            // Output data of each row
+            while ($row = $complaintResult->fetch_assoc()) {
+                if ($row["ComplainStatus"] === "" || $row["ComplainStatus"] === "Processing") {
+                    echo '<tr>
+                            <td>' . $row["ComplaintID"] . '</td>
+                            <td>' . $row["TypeofComplaint"] . '</td>
+                            <td>' . $row["DateofReport"] . '</td>
+                            <td>' . $row["ProfofIdentity"] . '</td>
+                            <td>' . $row["IncidentDescription"] . '</td>
+                            <td>' . $row["NameofComplainee"] . '</td>
+                            <td>' . $row["ComplainStatus"] . '</td>
+                          </tr>';
+                }
+            }
+            
+            echo '</tbody>
+                </table>';
+        } else {
+            echo "No complaints found for the passenger.";
+        }
+
+        $complaintStmt->close();
+    } else {
+        echo "Passenger not found.";
     }
-}
-    echo '</table>';
+
+    $passengerStmt->close();
 } else {
-    echo "You dont have any Complaints Keep it Up";
+    echo "Username not provided in the URL.";
 }
 
-$stmt->close();
 $conn->close();
 ?>
 
-</table>
-</div>
 
 
+                    </table>
+                    </div>
+                    <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
+                    <button type="button" class="btn btn-primary btn-sm m-1" data-toggle="modal" data-target="#ComplainUpdate">
+    <i class="bi bi-pencil"></i> Modify
+</button>
 
-</div>
+<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#Complaindelete">
+    <i class="bi bi-trash"></i> Remove
+</button>
+
+<button type="button" class="btn btn-secondary btn-sm m-1" data-toggle="modal" data-target="#ComplaintView">
+    <i class="bi bi-file-text"></i> View Report
+</button>
 
 
+<button type="button" class="btn btn-info btn-sm m-1" id="refreshButton4">
+    <i class="bi bi-arrow-clockwise"></i> Refresh
+</button>
+
+<script>
+        document.getElementById("refreshButton4").addEventListener("click", function() {
+            // Add your refresh functionality here
+            // For example, you can reload the current page with the following line
+            location.reload();
+        });
+    </script>
+                    </div>
+                </div>
 
 
+                <div class="modal fade" id="ComplainUpdate">
+        <div id="Complain-modal-dialog" class="modal-dialog">
+            <div  class="modal-content">
 
-<div class="calculator-table card shadow border-0 mb-7" style="display:none;" id="showtablehearing">
-    <div class="card-header thead-light text-center">
-        <h5 class="mb-0" id="calculator" >Scheduled Hearing Please Attended to the Given Time and Date </h5>
-    </div>
-
-    <div class="table-responsive">
-
-
-<table class="table table-hover table-nowrap" >
-<?php
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Report</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                <form id="updateForm" action="admin.php"  method="post">
+                <label for="ComplaintID">Search Complain-ID</label>
+                <select name="ComplaintID" id="ComplaintID" class="form-control" required>
+                            <option value="" disabled selected>Select Report ID</option>
+                            <?php
 // Replace with your actual database credentials
 
-// Assume you have the username available in the $usernameParam variable
-// Replace this with the actual method of obtaining the username parameter
-$usernameParam = $_GET['Username'];
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch passenger details based on the provided username
+if (isset($_GET['Username'])) {
+    $usernameParam = $_GET['Username'];
+
+    $passengerSql = "SELECT Name FROM passengertbl WHERE Username = ?";
+    $passengerStmt = $conn->prepare($passengerSql);
+
+    if (!$passengerStmt) {
+        die("Error in statement preparation: " . $conn->error);
+    }
+
+    $passengerStmt->bind_param("s", $usernameParam);
+    $passengerStmt->execute();
+    $passengerResult = $passengerStmt->get_result();
+
+    if ($passengerResult->num_rows > 0) {
+        // Passenger found, fetch details
+        $passengerRow = $passengerResult->fetch_assoc();
+        $passengerName = $passengerRow['Name'];
+
+        // Fetch complaint details based on the passenger name
+        $complaintSql = "SELECT * FROM complainttbl WHERE ComplainantName = ?";
+        $complaintStmt = $conn->prepare($complaintSql);
+
+        if (!$complaintStmt) {
+            die("Error in statement preparation: " . $conn->error);
+        }
+
+        $complaintStmt->bind_param("s", $passengerName);
+        $complaintStmt->execute();
+        $complaintResult = $complaintStmt->get_result();
+
+        if ($complaintResult->num_rows > 0) {
+           // Assuming you want a dropdown list
+            while ($row = $complaintResult->fetch_assoc()) {
+                if ($row["ComplainStatus"] === "") {
+                echo '<option value="' . $row["ComplaintID"] . '">' . $row["ComplaintID"] . '</option>';
+            }
+        }
+        } else {
+            echo "No complaints found for the passenger.";
+        }
+
+        $complaintStmt->close();
+    } else {
+        echo "Passenger not found.";
+    }
+
+    $passengerStmt->close();
+} else {
+    echo "Username not provided in the URL.";
+}
+
+$conn->close();
+?>
+
+
+                        </select>
+        <div class="row">   
+
+        <div class="col-md-6">
+        <div class="form-group g-col-6">
+    <label  for="TypeofComplaint">Type of Complaint</label>
+    <select name="TypeofComplaint" id="TypeofComplaint" class="form-control" required>
+        <option value="" selected disabled>Select a Complaint Type</option>
+        <option value="overcharging">Overcharging</option>
+        <option value="refusal_service">Refusal to Provide Service</option>
+        <option value="reckless_driving">Reckless Driving</option>
+        <option value="vehicle_condition">Vehicle Condition</option>
+        <option value="unprofessional_behavior">Unprofessional Behavior</option>
+        <option value="overloading">Overloading</option>
+        <option value="route_deviation">Route Deviation</option>
+        <option value="lack_of_safety_measures">Lack of Safety Measures</option>
+        <option value="noise_and_air_pollution">Noise and Air Pollution</option>
+        <option value="unsanitary_conditions">Unsanitary Condition</option>
+        <option value="inadequate_lighting">Inadequate Lighting</option>
+        <option value="inefficient_service">Inefficient Service</option>
+        <!-- Add more options as needed -->
+    </select>
+    </div>
+
+
+
+    <div class="form-group g-col-6">
+        <label id="DateofReport" for="DateofReport">Date of Report</label>
+        <input name="DateofReport" type="date" class="form-control" required>
+    </div>
+  
+
+
+    <label for="ComplainantName">Name of Complainant</label>
+<?php
+if (isset($_GET['Username'])) {
+    $requestedUsername = $_GET['Username'];
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT Name FROM passengertbl WHERE Username = ?";
+    $stmt = $conn->prepare($sql);
+
+    if ($stmt) {
+        $stmt->bind_param("s", $requestedUsername);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            // Display the first fetched name in the input field
+            $row = $result->fetch_assoc();
+            echo '<input type="text" id="ComplainantName" name="ComplainantName" class="form-control" value="'.$row["Name"].'" readonly>';
+        } else {
+            echo "0 results";
+        }
+
+        $stmt->close();
+    } else {
+        echo "Error in statement preparation: " . $conn->error;
+    }
+
+    $conn->close();
+} else {
+    echo "Username not provided in the URL.";
+}
+?>
+
+
+
+    </div>
+
+
+    <div class="col-md-6">
+    <div class="form-group g-col-6">
+        <label id="ContactNumber" for="ContactNumber">Contact Number</label>
+        <input type="text" name="ContactNumber" class="form-control" required>
+    </div>
+     <div class="form-group g-col-6">
+        <label id="Address" for="Address">Address</label>
+        <input type="text" name="Address" class="form-control" required>
+    </div>
+    <div class="form-group g-col-6">
+        <label  for="IncidentDescription">Incident Description</label>
+        <input id="IncidentDescription" name="IncidentDescription" type="text" class="form-control" required>
+    </div>
+    </div>
+
+
+    </div>
+
+    <div class="form-group">
+    <label for="NameofComplainee">Search Name of Complainee</label>
+    <input type="text" name="NameofComplainee" id="NameofComplainee" class="form-control" placeholder="VehicleNumber/PlateNumber" required>
+    </div>
+
+    <div id="ComplaineeResults"></div>  
+
+
+
+</form>
+</div>
+<div class="modal-footer d-flex justify-content-center ">
+                    <button id="CompplainUpdate" type="button" class="btn btn-primary">Save Report</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById("NameofComplainee");
+        const searchResults = document.getElementById("ComplaineeResults");
+
+        searchInput.addEventListener("input", function() {
+            const searchText = searchInput.value.toLowerCase();
+            if (searchText.length > 0) {
+                fetch(`passengerDriverDetails.php?search=${searchText}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        searchResults.innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            } else {
+                searchResults.innerHTML = "";
+            }
+        });
+    });
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    $("#CompplainUpdate").click(function() {
+      var ComplaintID= $("#ComplaintID").val();
+      var TypeofComplaint = $('#TypeofComplaint').val();
+      var DateofReport = $("input[name='DateofReport']").val();
+      var ComplainantName = $("input[name='ComplainantName']").val();
+      var ContactNumber = $("input[name='ContactNumber']").val();
+      var Address = $("input[name='Address']").val();
+      var NameofComplainee = $("input[name='NameofComplainee']").val();
+      var IncidentDescription = $("input[name='IncidentDescription']").val();
+
+
+
+      $.post(
+        "passengerupdate.php", // Replace with the actual file name for update
+        {
+            ComplaintID: ComplaintID,
+            TypeofComplaint: TypeofComplaint,
+            DateofReport: DateofReport,
+            ComplainantName: ComplainantName,
+          ContactNumber: ContactNumber,
+          Address: Address,
+          NameofComplainee: NameofComplainee,
+          IncidentDescription:IncidentDescription
+        },
+        function(data, status) {
+          if (status === 'success') {
+            Swal.fire({
+              title: 'Report Updated Successfully!',
+              icon: 'success',
+              confirmButtonText: 'Okay'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                $(".swal2-popup").addClass('light-theme');
+              }
+            });
+          } else {
+            // Handle error here
+            Swal.fire({
+              title: 'Error!',
+              text: 'There was an error while updating the record.',
+              icon: 'error',
+              confirmButtonText: 'Okay'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                $(".swal2-popup").addClass('light-theme');
+              }
+            });
+          }
+        }
+      );
+    });
+  });
+</script>
+
+<div class="modal fade" id="Complaindelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Report Details</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="reportdelete" action="delete.php" method="post">
+                    <div class="form-group">
+                        <label for="Selectreport">Delete Selected Report </label>
+                        <select name="Selectreport" id="Selectreport" class="form-control" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <?php
+// Replace with your actual database credentials
+
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch passenger details based on the provided username
+if (isset($_GET['Username'])) {
+    $usernameParam = $_GET['Username'];
+
+    $passengerSql = "SELECT Name FROM passengertbl WHERE Username = ?";
+    $passengerStmt = $conn->prepare($passengerSql);
+
+    if (!$passengerStmt) {
+        die("Error in statement preparation: " . $conn->error);
+    }
+
+    $passengerStmt->bind_param("s", $usernameParam);
+    $passengerStmt->execute();
+    $passengerResult = $passengerStmt->get_result();
+
+    if ($passengerResult->num_rows > 0) {
+        // Passenger found, fetch details
+        $passengerRow = $passengerResult->fetch_assoc();
+        $passengerName = $passengerRow['Name'];
+
+        // Fetch complaint details based on the passenger name
+        $complaintSql = "SELECT * FROM complainttbl WHERE ComplainantName = ?";
+        $complaintStmt = $conn->prepare($complaintSql);
+
+        if (!$complaintStmt) {
+            die("Error in statement preparation: " . $conn->error);
+        }
+
+        $complaintStmt->bind_param("s", $passengerName);
+        $complaintStmt->execute();
+        $complaintResult = $complaintStmt->get_result();
+
+        if ($complaintResult->num_rows > 0) {
+           // Assuming you want a dropdown list
+            while ($row = $complaintResult->fetch_assoc()) {
+                if ($row["ComplainStatus"] === "") {
+                echo '<option value="' . $row["ComplaintID"] . '">' . $row["ComplaintID"] . '</option>';
+            }
+        }
+          
+        } else {
+            echo "No complaints found for the passenger.";
+        }
+
+        $complaintStmt->close();
+    } else {
+        echo "Passenger not found.";
+    }
+
+    $passengerStmt->close();
+} else {
+    echo "Username not provided in the URL.";
+}
+
+$conn->close();
+?>
+                        </select>
+                    </div>
+
+                    <div class="modal-footer d-flex justify-content-center ">
+                        <button id="ReportDelete" type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+        $(document).ready(function() {
+            $('#reportdelete').submit(function(e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: 'delete.php', // Make sure this is the correct path to your delete.php file
+                    data: formData,
+                    dataType: 'json', // Set the dataType to 'json' to parse the JSON response
+                    success: function(response) {
+                        showAlert(response.type, response.message);
+                    },
+                    error: function() {
+                        showAlert('error', 'Something went wrong. Please try again.');
+                    }
+                });
+            });
+
+            function showAlert(type, message) {
+                Swal.fire({
+                    title: type.charAt(0).toUpperCase() + type.slice(1),
+                    text: message,
+                    icon: type,
+                    confirmButtonText: 'OK',
+                });
+            }
+        });
+    </script>
+
+<div class="modal fade" id="ComplaintView">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">View Complain Details</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+            <form id="complaintform" action="generate_pdf.php" method="post" enctype="multipart/form-data">
+    <label for="SearchReport">Search Complain-ID</label>
+    <input type="text" name="SearchReport" id="SearchReport" class="form-control" placeholder="Type Any of These Details to Know the Driver: Name/VehicleNumber/PlateNumber" required>
+    <div id="Complainresult"></div>
+    
+    <div class="buttonfooter" style="margin-top: 1rem;">  
+    <button type="button" class="btn btn-success btn-sm m-1" id="printButton" data-toggle="modal">
+        <i class="fas fa-print"></i> Print Report
+    </button>
+
+   
+
+</div>
+
+</form>
+
+<script>
+    document.getElementById('printButton').addEventListener('click', function() {
+        // Open a new tab/window
+        var newTab = window.open('', '_blank');
+
+        // Check if the new tab has been successfully opened
+        if (newTab) {
+            // Clone the form to preserve the original form in the current tab
+            var clonedForm = document.getElementById('complaintform').cloneNode(true);
+
+            // Append the cloned form to the new tab's document body
+            newTab.document.body.appendChild(clonedForm);
+
+            // Submit the cloned form in the new tab
+            clonedForm.submit();
+        } else {
+            // Display an error message if the new tab couldn't be opened
+            alert('Unable to open a new tab. Please enable pop-ups for this site.');
+        }
+    });
+</script>
+
+             
+            </div>
+    
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById("SearchReport");
+        const searchResults = document.getElementById("Complainresult");
+
+        searchInput.addEventListener("input", function() {
+            const searchText = searchInput.value.toLowerCase();
+            if (searchText.length > 0) {
+                fetch(`Complaindetails.php?search=${searchText}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        searchResults.innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            } else {
+                searchResults.innerHTML = "";
+            }
+        });
+    });
+</script>
+
+
+
+<div  id="ScheduledComplein-table" style="display:none;" class="card shadow border-0 mb-7">
+                    <div class="card-header">
+                        <h5 class="mb-0">Schedule for Hearing</h5>
+                    </div>
+                    <div class="table-responsive">
+                    <table class="table table-hover table-nowrap">
+                    <?php
+
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -552,65 +1643,98 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch data from the complainttbl table with a WHERE clause
-$sql = "SELECT * FROM complainttbl WHERE NameofComplainee = ?";
-$stmt = $conn->prepare($sql);
+// Fetch passenger details based on the provided username
+if (isset($_GET['Username'])) {
+    $usernameParam = $_GET['Username'];
 
-if (!$stmt) {
-    die("Error in statement preparation: " . $conn->error);
-}
+    $passengerSql = "SELECT Name FROM passengertbl WHERE Username = ?";
+    $passengerStmt = $conn->prepare($passengerSql);
 
-$stmt->bind_param("s", $usernameParam);
-$stmt->execute();
-$result = $stmt->get_result();
+    if (!$passengerStmt) {
+        die("Error in statement preparation: " . $conn->error);
+    }
 
-if ($result->num_rows > 0) {
-    echo '<table class="table table-hover table-nowrap">
-            <tr>
-            <thead class="thead-light">
-                <th>Complain-ID</th>
-                <th>Type of Complain</th>
-                <th>Date of Report</th>
-                <th>Complainant Name</th>
-                <th>Name of Complainee</th>
-                <th>Complain Status</th>
-                <th>Hearing Date</th>
-                <th>Hearing Time</th>
-                <th>Hearing Place</th>
-                <th>Complainee Response</th>
-                </thead>
+    $passengerStmt->bind_param("s", $usernameParam);
+    $passengerStmt->execute();
+    $passengerResult = $passengerStmt->get_result();
+
+    if ($passengerResult->num_rows > 0) {
+        // Passenger found, fetch details
+        $passengerRow = $passengerResult->fetch_assoc();
+        $passengerName = $passengerRow['Name'];
+
+        // Fetch complaint details based on the passenger name
+        $complaintSql = "SELECT * FROM complainttbl WHERE ComplainantName = ?";
+        $complaintStmt = $conn->prepare($complaintSql);
+
+        if (!$complaintStmt) {
+            die("Error in statement preparation: " . $conn->error);
+        }
+
+        $complaintStmt->bind_param("s", $passengerName);
+        $complaintStmt->execute();
+        $complaintResult = $complaintStmt->get_result();
+
+        if ($complaintResult->num_rows > 0) {
+            // Output the complaint details
+            echo '<table class="table table-hover table-nowrap">
+                <tr>
+                    <thead class="thead-light">
+                        <th>Complain-ID</th>
+                        <th>Type of Complain</th>
+                        <th>Date of Report</th>
+                        <th>Incident Description</th>
+                        <th>Name of Complainee</th>
+                        <th>Complain Status</th>
+                        <th>Hearing Date</th>
+                        <th>Hearing Time</th>
+                        <th>Hearing Place</th>
+                    </thead>
                 </tr>';
 
-    // output data of each row
-    while ($row = $result->fetch_assoc()) {
-        if ($row["ComplainStatus"] === "Scheduled") {
-        echo '<tr>
-               
-                <td>' . $row["ComplaintID"] . '</td>
-                <td>' . $row["TypeofComplaint"] . '</td>
-                <td>' . $row["DateofReport"] . '</td>
-                <td>' . $row["ComplainantName"] . '</td>
-                <td>' . $row["NameofComplainee"] . '</td>
-                <td>' . $row["ComplainStatus"] . '</td>
-                <td>' . $row["hearingdate"] . '</td>
-                <td>' . $row["hearingtime"] . '</td>
-                <td>' . $row["hearingplace"] . '</td>
-                <td>' . $row["DriverConfirmation"] . '</td>
-            </tr>';
+            // Output data of each row
+            while ($row = $complaintResult->fetch_assoc()) {
+                // Check if the complaint has "Scheduled" status
+                if ($row["ComplainStatus"] === "Scheduled") {
+                    echo '<tr>
+                        <td>' . $row["ComplaintID"] . '</td>
+                        <td>' . $row["TypeofComplaint"] . '</td>
+                        <td>' . $row["DateofReport"] . '</td>
+                        <td>' . $row["IncidentDescription"] . '</td>
+                        <td>' . $row["NameofComplainee"] . '</td>
+                        <td>' . $row["ComplainStatus"] . '</td>
+                        <td>' . $row["hearingdate"] . '</td>
+                        <td>' . $row["hearingtime"] . '</td>
+                        <td>' . $row["hearingplace"] . '</td>
+                    </tr>';
+                }
+            }
+
+            echo '</tbody>
+                </table>';
+        } else {
+            echo "No scheduled complaints found for the passenger.";
+        }
+
+        $complaintStmt->close();
+    } else {
+        echo "Passenger not found.";
     }
-}
-    echo '</table>';
+
+    $passengerStmt->close();
 } else {
-    echo "You dont have any Complaints Keep it Up";
+    echo "Username not provided in the URL.";
 }
 
-$stmt->close();
 $conn->close();
 ?>
 
-</table>
-</div>
-<div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
+
+
+
+                    </table>
+                    </div>
+                    <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
                     <button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#Confirmandcancel">
                     <i class="bi bi-check-circle"></i> Confirm to Attend
 </button>
@@ -627,13 +1751,12 @@ $conn->close();
         });
     </script>
                     </div>
+                </div>
 
 
-</div>
 
 
-
-<div class="modal fade" id="Confirmandcancel">
+                <div class="modal fade" id="Confirmandcancel">
     <div id="processreport" class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -647,48 +1770,7 @@ $conn->close();
                         <select name="Confirmid" id="Confirmid" class="form-control" required>
                             <option value="" disabled selected>Select an option</option>
                      
-                            <?php
-// Replace with your actual database credentials
-
-// Assume you have the username available in the $usernameParam variable
-// Replace this with the actual method of obtaining the username parameter
-$usernameParam = $_GET['Username'];
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Fetch data from the complainttbl table with a WHERE clause
-$sql = "SELECT * FROM complainttbl WHERE NameofComplainee = ?";
-$stmt = $conn->prepare($sql);
-
-if (!$stmt) {
-    die("Error in statement preparation: " . $conn->error);
-}
-
-$stmt->bind_param("s", $usernameParam);
-$stmt->execute();
-$result = $stmt->get_result();
-if ($result->num_rows > 0) {
-;
-    while ($row = $result->fetch_assoc()) {
-        if ($row["ComplainStatus"] === "Scheduled") {
-            echo '<option value="' . $row["ComplaintID"] . '">' . $row["ComplaintID"] . '</option>';
-        }
-    }
-    echo '</select>';
-} else {
-    echo "No scheduled complaints found.";
-}
-
-$stmt->close();
-$conn->close();
-?>
-                            
+                                
                         </select>
                     </div>
 
@@ -895,26 +1977,14 @@ $conn->close();
 
 
 
-
-
-
-
-
-<div class="calculator-table card shadow border-0 mb-7" style="display:none;" id="caseclosedrivercomplain">
-    <div class="card-header thead-light text-center">
-        <h5 class="mb-0" id="calculator" >List of Case Setteld </h5>
-    </div>
-
-    <div class="table-responsive">
-
-
-<table class="table table-hover table-nowrap" >
-<?php
+                <div  id="ScheduledComplein-tablecaseclose" style="display:none;" class="card shadow border-0 mb-7">
+                    <div class="card-header">
+                        <h5 class="mb-0">Passenger Complain History</h5>
+                    </div>
+                    <div class="table-responsive">
+                    <table class="table table-hover table-nowrap">
+                    <?php
 // Replace with your actual database credentials
-
-// Assume you have the username available in the $usernameParam variable
-// Replace this with the actual method of obtaining the username parameter
-$usernameParam = $_GET['Username'];
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -924,64 +1994,101 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch data from the complainttbl table with a WHERE clause
-$sql = "SELECT * FROM complainttbl WHERE NameofComplainee = ?";
-$stmt = $conn->prepare($sql);
+// Fetch passenger details based on the provided username
+if (isset($_GET['Username'])) {
+    $usernameParam = $_GET['Username'];
 
-if (!$stmt) {
-    die("Error in statement preparation: " . $conn->error);
-}
+    $passengerSql = "SELECT Name FROM passengertbl WHERE Username = ?";
+    $passengerStmt = $conn->prepare($passengerSql);
 
-$stmt->bind_param("s", $usernameParam);
-$stmt->execute();
-$result = $stmt->get_result();
+    if (!$passengerStmt) {
+        die("Error in statement preparation: " . $conn->error);
+    }
 
-if ($result->num_rows > 0) {
-    echo '<table class="table table-hover table-nowrap">
+    $passengerStmt->bind_param("s", $usernameParam);
+    $passengerStmt->execute();
+    $passengerResult = $passengerStmt->get_result();
+
+    if ($passengerResult->num_rows > 0) {
+        // Passenger found, fetch details
+        $passengerRow = $passengerResult->fetch_assoc();
+        $passengerName = $passengerRow['Name'];
+
+        // Fetch complaint details based on the passenger name
+        $complaintSql = "SELECT * FROM complainttbl WHERE ComplainantName = ?";
+        $complaintStmt = $conn->prepare($complaintSql);
+
+        if (!$complaintStmt) {
+            die("Error in statement preparation: " . $conn->error);
+        }
+
+        $complaintStmt->bind_param("s", $passengerName);
+        $complaintStmt->execute();
+        $complaintResult = $complaintStmt->get_result();
+
+        if ($complaintResult->num_rows > 0) {
+            // Output the complaint details
+            echo '<table class="table table-hover table-nowrap">
             <tr>
             <thead class="thead-light">
-                <th>Complain-ID</th>
-                <th>Type of Complain</th>
-                <th>Date of Report</th>
-                <th>Complainant Name</th>
-                <th>Contact Number</th>
-                <th>Address</th>
-                <th>Prof of Identity</th>
-                <th>Incident Description</th>
-                <th>Name of Complainee</th>
+            <th>Complain-ID</th>
+            <th>Type of Complain</th>
+            <th>Date of Report</th>
+            <th>Incident Description</th>
+            <th>Name of Complainee</th>
+            <th>Complain Status</th>
+            <th>Date Setteled</th>
+            <th>Time Setteld</th>
+            <th>Place of Hearing</th>
                 </thead>
                 </tr>';
+              
 
-    // output data of each row
-    while ($row = $result->fetch_assoc()) {
-        if ($row["ComplainStatus"] === "Case Close") {
-        echo '<tr>
-               
+            // Output data of each row
+            while ($row = $complaintResult->fetch_assoc()) {
+                
+                if ($row["ComplainStatus"] === "Case Close") {
+                echo '<tr>
                 <td>' . $row["ComplaintID"] . '</td>
                 <td>' . $row["TypeofComplaint"] . '</td>
                 <td>' . $row["DateofReport"] . '</td>
-                <td>' . $row["ComplainantName"] . '</td>
-                <td>' . $row["ContactNumber"] . '</td>
-                <td>' . $row["Address"] . '</td>
-                <td>' . $row["ProfofIdentity"] . '</td>
                 <td>' . $row["IncidentDescription"] . '</td>
                 <td>' . $row["NameofComplainee"] . '</td>
-            </tr>';
+                <td>' . $row["ComplainStatus"] . '</td>
+                <td>' . $row["hearingdate"] . '</td>
+                <td>' . $row["hearingtime"] . '</td>
+                <td>' . $row["hearingplace"] . '</td>
+                    </tr>';
+
+                }
+
+            }
+
+            echo '</tbody>
+                </table>';
+        } else {
+            echo "No complaints found for the passenger.";
+        }
+
+        $complaintStmt->close();
+    } else {
+        echo "Passenger not found.";
     }
-}
-    echo '</table>';
+
+    $passengerStmt->close();
 } else {
-    echo "You dont have any Complaints Keep it Up";
+    echo "Username not provided in the URL.";
 }
 
-$stmt->close();
 $conn->close();
 ?>
 
-</table>
-</div>
-<div class="modal-footer d-flex justify-content-center ">
-                    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#Complaindelete">
+
+
+                    </table>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center ">
+                    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#Passengerdeletecomplainhistory">
     <i class="bi bi-trash"></i> Delete History
 </button>
 
@@ -989,93 +2096,15 @@ $conn->close();
     <i class="bi bi-file-text"></i> View Report
 </button>
 </div>
-
-
-</div>
+                </div>
 
 
 
 
 
-<div class="modal fade" id="ComplaintView">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">View Complain Details</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-            <form id="complaintform" action="generate_pdf.php" method="post" enctype="multipart/form-data">
-    <label for="SearchReport">Search Complain-ID</label>
-    <input type="text" name="SearchReport" id="SearchReport" class="form-control" placeholder="Type Any of These Details to Know the Driver: Name/VehicleNumber/PlateNumber" required>
-    <div id="Complainresult"></div>
-    
-    <div class="buttonfooter" style="margin-top: 1rem;">  
-    <button type="button" class="btn btn-success btn-sm m-1" id="printButton" data-toggle="modal">
-        <i class="fas fa-print"></i> Print Report
-    </button>
+            
 
-   
-
-</div>
-
-</form>
-
-<script>
-    document.getElementById('printButton').addEventListener('click', function() {
-        // Open a new tab/window
-        var newTab = window.open('', '_blank');
-
-        // Check if the new tab has been successfully opened
-        if (newTab) {
-            // Clone the form to preserve the original form in the current tab
-            var clonedForm = document.getElementById('complaintform').cloneNode(true);
-
-            // Append the cloned form to the new tab's document body
-            newTab.document.body.appendChild(clonedForm);
-
-            // Submit the cloned form in the new tab
-            clonedForm.submit();
-        } else {
-            // Display an error message if the new tab couldn't be opened
-            alert('Unable to open a new tab. Please enable pop-ups for this site.');
-        }
-    });
-</script>
-
-             
-            </div>
-    
-        </div>
-    </div>
-</div>
-
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const searchInput = document.getElementById("SearchReport");
-        const searchResults = document.getElementById("Complainresult");
-
-        searchInput.addEventListener("input", function() {
-            const searchText = searchInput.value.toLowerCase();
-            if (searchText.length > 0) {
-                fetch(`Complaindetails.php?search=${searchText}`)
-                    .then(response => response.text())
-                    .then(data => {
-                        searchResults.innerHTML = data;
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            } else {
-                searchResults.innerHTML = "";
-            }
-        });
-    });
-</script>
-
-
-<div class="modal fade" id="Complaindelete">
+                <div class="modal fade" id="Passengerdeletecomplainhistory">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -1083,7 +2112,7 @@ $conn->close();
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="reportdelete" action="delete.php" method="post">
+                <form id="passengerreportdelete" action="delete.php" method="post">
                     <div class="form-group">
                         <label for="Selectreport">Delete Selected Report </label>
                         <select name="Selectreport" id="Selectreport" class="form-control" required>
@@ -1093,52 +2122,76 @@ $conn->close();
                             <?php
 // Replace with your actual database credentials
 
-// Assume you have the username available in the $usernameParam variable
-// Replace this with the actual method of obtaining the username parameter
-$usernameParam = $_GET['Username'];
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch data from the complainttbl table with a WHERE clause
-$sql = "SELECT * FROM complainttbl WHERE NameofComplainee = ?";
-$stmt = $conn->prepare($sql);
+// Fetch passenger details based on the provided username
+if (isset($_GET['Username'])) {
+    $usernameParam = $_GET['Username'];
 
-if (!$stmt) {
-    die("Error in statement preparation: " . $conn->error);
-}
+    $passengerSql = "SELECT Name FROM passengertbl WHERE Username = ?";
+    $passengerStmt = $conn->prepare($passengerSql);
 
-$stmt->bind_param("s", $usernameParam);
-$stmt->execute();
-$result = $stmt->get_result();
-if ($result->num_rows > 0) {
-;
-    while ($row = $result->fetch_assoc()) {
-        if ($row["ComplainStatus"] === "Case Close") {
-            echo '<option value="' . $row["ComplaintID"] . '">' . $row["ComplaintID"] . '</option>';
-        }
+    if (!$passengerStmt) {
+        die("Error in statement preparation: " . $conn->error);
     }
-    echo '</select>';
+
+    $passengerStmt->bind_param("s", $usernameParam);
+    $passengerStmt->execute();
+    $passengerResult = $passengerStmt->get_result();
+
+    if ($passengerResult->num_rows > 0) {
+        // Passenger found, fetch details
+        $passengerRow = $passengerResult->fetch_assoc();
+        $passengerName = $passengerRow['Name'];
+
+        // Fetch complaint details based on the passenger name
+        $complaintSql = "SELECT * FROM complainttbl WHERE ComplainantName = ?";
+        $complaintStmt = $conn->prepare($complaintSql);
+
+        if (!$complaintStmt) {
+            die("Error in statement preparation: " . $conn->error);
+        }
+
+        $complaintStmt->bind_param("s", $passengerName);
+        $complaintStmt->execute();
+        $complaintResult = $complaintStmt->get_result();
+
+        if ($complaintResult->num_rows > 0) {
+           // Assuming you want a dropdown list
+            while ($row = $complaintResult->fetch_assoc()) {
+                if ($row["ComplainStatus"] === "Case Close") {
+                echo '<option value="' . $row["ComplaintID"] . '">' . $row["ComplaintID"] . '</option>';
+            }
+        }
+          
+        } else {
+            echo "No complaints found for the passenger.";
+        }
+
+        $complaintStmt->close();
+    } else {
+        echo "Passenger not found.";
+    }
+
+    $passengerStmt->close();
 } else {
-    echo "No scheduled complaints found.";
+    echo "Username not provided in the URL.";
 }
 
-$stmt->close();
 $conn->close();
 ?>
-
 
 
                         </select>
                     </div>
 
                     <div class="modal-footer d-flex justify-content-center ">
-                        <button id="ReportDelete" type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</button>
+                        <button id="passengerReportDelete" type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</button>
                     </div>
                 </form>
             </div>
@@ -1151,7 +2204,7 @@ $conn->close();
 
 <script>
         $(document).ready(function() {
-            $('#reportdelete').submit(function(e) {
+            $('#passengerreportdelete').submit(function(e) {
                 e.preventDefault();
                 var formData = $(this).serialize();
                 $.ajax({
@@ -1182,176 +2235,20 @@ $conn->close();
 
 
 
-     <!-- ratings scale  ------------------------------------------------------------------------------------------------------------------------------------------------>
 
 
 
-<div   id="PErsonalrating" style="display:none;" class="card shadow border-0 mb-7">
-                    <div class="card-header">
-                        <h5 class="mb-0">My Ratings</h5>
-                    </div>
-                    <div class="table-responsive">
-                    <?php
-// Assuming you have $usernameParam available (replace it with your actual parameter)
-if (isset($_GET['Username'])) {
-    $usernameParam = $_GET['Username'];
-
-    // Database connection parameters
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Fetch DriverName from the driverstbl table based on the provided username
-    $sqlDriverName = "SELECT Username FROM driverstbl WHERE Username = ?";
-    $stmtDriverName = $conn->prepare($sqlDriverName);
-
-    if (!$stmtDriverName) {
-        die("Error in statement preparation: " . $conn->error);
-    }
-
-    $stmtDriverName->bind_param("s", $usernameParam);
-    $stmtDriverName->execute();
-    $resultDriverName = $stmtDriverName->get_result();
-
-    // Check if there is data
-    if ($resultDriverName->num_rows > 0) {
-        // Fetch DriverName
-        $rowDriverName = $resultDriverName->fetch_assoc();
-        $driverName = $rowDriverName['Username'];
-
-        // Fetch data from the rating table for a specific driver
-        $sqlRating = "SELECT DriverName, Rate FROM rating WHERE DriverName = ?";
-        $stmtRating = $conn->prepare($sqlRating);
-
-        if (!$stmtRating) {
-            die("Error in statement preparation: " . $conn->error);
-        }
-
-        $stmtRating->bind_param("s", $driverName);
-        $stmtRating->execute();
-        $resultRating = $stmtRating->get_result();
-
-        // Check if there is data
-        if ($resultRating->num_rows > 0) {
-            // Process data for the bar graph
-            $numericRatings = [];
-            while ($row = $resultRating->fetch_assoc()) {
-                $customer = $row['DriverName'];
-                $textRating = $row['Rate'];
-
-                // Convert text rating to numeric
-                switch ($textRating) {
-                    case '1':
-                        $numericRating = 1;
-                        break;
-                    case '2':
-                        $numericRating = 2;
-                        break;
-                    case '3':
-                        $numericRating = 3;
-                        break;
-                    case '4':
-                        $numericRating = 4;
-                        break;
-                    case '5':
-                        $numericRating = 5;
-                        break;
-                    default:
-                        $numericRating = 0; // Default to 0 if unknown rating
-                }
-
-                $numericRatings[] = [$customer, $numericRating];
-            }
-        } else {
-            echo "No rate found for the specified driver in the rating table.";
-        }
-
-        $stmtRating->close();
-        
-    } else {
-        echo "No data found for the specified username in the driverstbl table.";
-    }
-
-    $stmtDriverName->close();
-    $conn->close();
-} else {
-    echo "Username not provided in the URL.";
-}
-?>
-
-<!-- Create a canvas for the bar graph -->
-<canvas id="barChart" width="400" height="200"></canvas>
-
-<script>
-// Use PHP data in JavaScript
-var ratingsData = <?php echo json_encode($numericRatings); ?>;
-
-// Extract labels and data for Chart.js
-var labels = ratingsData.map(function(item) {
-    return item[0];
-});
-
-var data = ratingsData.map(function(item) {
-    return item[1];
-});
-
-// Create a bar graph
-var ctx = document.getElementById('barChart').getContext('2d');
-var barChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: 'Personal Rating Scale',
-            data: data,
-            backgroundColor: '#603ce6', // Set the bar color
-            borderColor: '#603ce6',
-            borderWidth: 1,
-        }]
-    },
-    options: {
-        scales: {
-            x: {
-                ticks: {
-                    beginAtZero: true
-                },
-                title: {
-                    display: true,
-                    text: 'Note: if Your Rating is drop down it means you have commited severat violations '
-                }
-            },
-            y: {
-                min: 0,
-                max: 5,
-                ticks: { stepSize: 1 },
-                title: {
-                    display: true,
-                    text: 'Performance Rating '
-                }
-            }
-        }
-    }
-});
-</script>
-
-                 
-                      
-                     
-
-                    </div>
-
-
-              
-                </div>
 
 
 
-     <!-- ratings scale  ------------------------------------------------------------------------------------------------------------------------------------------------>
+
+
+
+
+
+
+
+
 
 
 
@@ -1359,6 +2256,8 @@ var barChart = new Chart(ctx, {
 
 
      <!-- FileComplaint sheets end ------------------------------------------------------------------------------------------------------------------------------------------------>
+
+
 
      <div   id="Lostitem" style="display:none;" class="card shadow border-0 mb-7">
                     <div class="card-header">
@@ -1799,7 +2698,20 @@ $(function() {
 
 
 
-<div   id="founditem" style="display:none;" class="card shadow border-0 mb-7">
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div   id="founditem" style="display:none;" class="card shadow border-0 mb-7">
                     <div class="card-header">
                         <h5 class="mb-0">Found Items</h5>
                     </div>
@@ -2253,6 +3165,254 @@ $(function() {
      <!--Drivers table ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
 
+     <div   id="Dashboard-table" style="display:none;" class="card shadow border-0 mb-7">
+                    <div class="card-header">
+                        <h5 class="mb-0">Drivers Professional Public Service Rating Scale</h5>
+                    </div>
+                    <div class="table-responsive">
+
+
+                        <table class="table table-hover table-nowrap" >
+                        <?php
+// Replace with your actual database credentials
+
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch data from the admin table
+$sql = "SELECT * FROM driverstbl";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo '<table class="table table-hover table-nowrap">
+            <tr>
+            <thead class="thead-light">
+                <th>Profile</th>
+                <th>Drivers Name</th>
+                <th>Unit#</th>
+                <th>Plate Number</th>
+                <th>Vehicle Picture</th>
+                
+                </thead>
+                </tr>';
+              
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo '<tr>
+        <td><img src="uploads/' . $row["Profile"] . '" alt="Item Image" width="60"></td>
+                <td>' . $row["Username"] . '</td>
+                <td>' . $row["Age"] . '</td>
+                <td>' . $row["Password"] . '</td>
+                <td>' . $row["PermittoOperate"] . '</td>
+            </tr>';
+    }
+    echo '</table>';
+} else {
+    echo "0 results";
+}
+$conn->close();
+?>            
+                        </table>
+                    </div>
+
+
+                 <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
+               
+                 <button type="button" class="btn btn-success btn-sm m-1" id="trackButton" data-toggle="modal" data-target="#Drivertrack">
+    <i class="bi bi-check-circle"></i> Submit Rating
+</button>
+
+
+                    </div>
+                </div>
+
+
+                
+ 
+
+<div class="modal fade" id="Drivertrack">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Rate Drivers Public Service</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                
+                <form id="updateForm" action="submit_rating.php" method="post" enctype="multipart/form-data">
+                    <label for="SearchDriver">Search for Driver Name</label>
+                    <input type="text" name="SearchDriver" id="SearchDriver" class="form-control" placeholder="Driver's Name" required>
+             
+                <div id="searchResults"></div>
+            </div>
+
+ 
+            <div class="custom-btn-container">
+
+
+            <div id="Rate" style="width: 80%; margin: auto; display:none;  margin-bottom: 20px;">
+    <label for="Rate">Rate:</label>
+    <textarea class="form-control mx-auto" name="Rate" id="RateTextArea" style="width: 100%;" placeholder="Rate"></textarea>
+</div>
+    <!-- Adjust the 'width' and 'margin' values as needed -->
+    
+    <!-- Buttons for rating -->
+    <button type="button" class="btn btn-outline-secondary btn-sm m-1 custom-btn" data-toggle="modal" data-target="#commentsArea" onclick="updateRating(1)">
+    <i class="bi bi-star"></i> 1 Star
+</button>
+
+<button type="button" class="btn btn-outline-secondary btn-sm m-1 custom-btn" data-toggle="modal" data-target="#commentsArea" onclick="updateRating(2)">
+    <i class="bi bi-star"></i> 2 Stars
+</button>
+
+<button type="button" class="btn btn-outline-secondary btn-sm m-1 custom-btn" data-toggle="modal" data-target="#commentsArea" onclick="updateRating(3)">
+    <i class="bi bi-star"></i> 3 Stars
+</button>
+
+<button type="button" class="btn btn-outline-secondary btn-sm m-1 custom-btn" data-toggle="modal" data-target="#commentsArea" onclick="updateRating(4)">
+    <i class="bi bi-star"></i> 4 Stars
+</button>
+
+<button type="button" class="btn btn-outline-secondary btn-sm m-1 custom-btn" data-toggle="modal" data-target="#commentsArea" onclick="updateRating(5)">
+    <i class="bi bi-star"></i> 5 Stars
+</button>
+
+
+
+<script>
+    function updateRating(rating) {
+        document.getElementById("RateTextArea").value = rating + "";
+        // You can customize this value as per your requirement
+    }
+</script>
+
+
+
+
+<div id="commentsArea" style="display:none; width: 80%; margin: 0 auto;">
+    <label for="comments">Comments:</label>
+    <textarea class="form-control mx-auto" name="comments" id="comments" style="width: 100%;" placeholder="Comments"></textarea>
+    <!-- Adjust the 'width' and 'margin' values as needed -->
+</div>
+
+<script>
+    function showCommentsArea(rating) {
+        // Show the comments area when a button is clicked
+        document.getElementById('commentsArea').style.display = 'block';
+
+        // You can use the 'rating' parameter to do something specific for each rating if needed
+        // For example, you can store the rating in a variable or perform additional actions based on the rating
+    }
+</script>
+
+</div>
+
+
+
+            <div class="modal-footer">
+
+            <button type="button" class="btn btn-secondary btn-sm m-1"  data-toggle="modal" data-dismiss="modal">
+    <i class="fas fa-times"></i> Close
+</button>
+<button type="submit" class="btn btn-success btn-sm m-1" id="submitRatingButton" data-toggle="modal">
+    <i class="fas fa-check"></i> Submit Rating
+</button>
+
+</form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Your existing HTML code remains unchanged -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById("SearchDriver");
+        const searchResults = document.getElementById("searchResults");
+
+        searchInput.addEventListener("input", function() {
+            const searchText = searchInput.value.toLowerCase();
+            if (searchText.length > 0) {
+                fetch(`passengerDriverDetails.php?search=${searchText}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        searchResults.innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            } else {
+                searchResults.innerHTML = "";
+            }
+        });
+    });
+</script>
+
+<!-- Include SweetAlert library -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function () {
+        // When the Submit Rating button is clicked
+        $("#submitRatingButton").click(function (event) {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Get the form data
+            var formData = {
+                'SearchDriver': $('#SearchDriver').val(),
+                'Rate': $('#RateTextArea').val(),
+                'comments': $('#comments').val()
+            };
+
+            // Send an AJAX request
+            $.ajax({
+                type: "POST",
+                url: "submit_rating.php",
+                data: formData,
+                success: function (response) {
+                    if (response.includes('Rating submitted successfully')) {
+                        // Rating submitted successfully
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Rating submitted successfully',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            // You can perform other actions here if needed
+                        });
+                    } else {
+                        // Error occurred
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Error submitting rating: ' + response,
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                },
+                error: function () {
+                    // Handle errors
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Error submitting rating.',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+
 
                
 
@@ -2375,6 +3535,11 @@ $(function() {
               echo '</div>';
               echo '</div>';
               
+              
+
+              
+              
+              
 
           }
 
@@ -2484,11 +3649,9 @@ $(function() {
 
                 <div  id="Admin-table" class="card shadow border-0 mb-7">
                     <div class="card-header">
-                        <h5 class="mb-0">Driver Personal Information</h5>
+                        <h5 class="mb-0">Passenger Personal Details</h5>
  </div>
 <div class="table-responsive">
-<table class="table table-hover table-nowrap" >
-
 <?php
 
 if (isset($_GET['Username'])) {
@@ -2500,7 +3663,7 @@ if (isset($_GET['Username'])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM driverstbl WHERE Username = ?";
+    $sql = "SELECT Name, Age, Gender, Phone, HomeAddress, Username FROM passengertbl WHERE Username = ?";
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {
@@ -2516,81 +3679,50 @@ if (isset($_GET['Username'])) {
             echo '<div class="container">';
             echo '<div class="row">';
             echo '<div class="col-md-6">';
-            echo '<img src="uploads/' . htmlspecialchars($row["PermittoOperate"]) . '" style="border-radius: 5px;" class="img-fluid mb-3 mt-10">';
+            echo  '<img src="../Images/Personal.svg" class="img-fluid mb-5 mt-2">';
             echo "</div>";
             echo '<div class="col-md-6">';
+            echo '<h2 class="mt-7 text-center" id="FAQ">Passenger Information</h2>';
             echo "<div class='container mt-2'>";
             echo "<form>";
             
-            // Additional fields based on your database structure
-            echo "<div class='row text-center'>";
-            echo "<div class='col-md-12 mb-4'>"; // Adjust the margin-bottom as needed
-            echo "<div class='image-box border rounded p-2' style='display: inline-block; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);'>";
-            echo '<img src="uploads/' . htmlspecialchars($row["Profile"]) . '" class="img-fluid mb-2 mt-2" style="width: 100px; height: 100px;">'; // Adjust the width and height as needed
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-            
-            
-            
-           
-    
-
-
+            // First Column
             echo "<div class='row'>";
             echo "<div class='col-md-6 mb-3'>";
-            echo "<label for='Name'>Driver Name:</label>";
-            echo "<input type='text' id='Name' value='" . htmlspecialchars($row["Username"]) . "' class='form-control' readonly>";
+            echo "<label for='name'>Name:</label>";
+            echo "<input type='text' id='name' value='" . htmlspecialchars($row["Name"]) . "' class='form-control' readonly>";
             echo "</div>";
             echo "<div class='col-md-6 mb-3'>";
-            echo "<label for='age'>Vehicle Unit#</label>";
+            echo "<label for='age'>Age:</label>";
             echo "<input type='text' id='age' value='" . htmlspecialchars($row["Age"]) . "' class='form-control' readonly>";
             echo "</div>";
-            echo "</div>";
-            
-            echo "<div class='row'>";
             echo "<div class='col-md-6 mb-3'>";
-            echo "<label for='password'>Plate Number:</label>";
-            echo "<input type='text' id='password' value='" . htmlspecialchars($row["Password"]) . "' class='form-control' readonly>";
+            echo "<label for='gender'>Gender:</label>";
+            echo "<input type='text' id='gender' value='" . htmlspecialchars($row["Gender"]) . "' class='form-control' readonly>";
             echo "</div>";
-            
             echo "<div class='col-md-6 mb-3'>";
-            echo "<label for='phone'>Phone Number:</label>";
-            echo "<input type='text' id='phone' value='" . htmlspecialchars($row["PhoneNumber"]) . "' class='form-control' readonly>";
+            echo "<label for='phone'>Phone:</label>";
+            echo "<input type='text' id='phone' value='" . htmlspecialchars($row["Phone"]) . "' class='form-control' readonly>";
             echo "</div>";
             echo "</div>";
-
-            echo '<div class="input-group mb-3 mt-2">';  
-            echo '<input type="text" class="form-control custom-input" placeholder="Recipient\'s username" aria-label="Recipient\'s username" aria-describedby="basic-addon2" value="Drivers License:' . $row["DriversLicense"] . '" readonly>';
-            echo '<div class="input-group-append">';
-            echo '<a href="view-details.php?type=license&id=' . urlencode($row["DriversLicense"]) . '" target="_blank" class="btn btn-outline-secondary transparent-btn" type="button">View  <i class="fas fa-eye"></i></a>';
-            echo '</div>';
-            echo '</div>';
             
-            echo '<div class="input-group mb-3 mt-2">';
-            echo '<input type="text" class="form-control custom-input" placeholder="Recipient\'s username" aria-label="Recipient\'s username" aria-describedby="basic-addon2" value="Vihicle Registration:' . $row["VehicleRegistration"] . '" readonly>';
-            echo '<div class="input-group-append">';
-            echo '<a href="view-details.php?type=registration&id=' . urlencode($row["VehicleRegistration"]) . '" target="_blank" class="btn btn-outline-secondary transparent-btn" type="button">View  <i class="fas fa-eye"></i></a>';
-            echo '</div>';
-            echo '</div>';
-            
+      
+echo "<div class='mb-3'>";
+echo "<label for='homeAddress'>Home Address:</label>";
+echo "<input type='text' id='homeAddress' value='" . htmlspecialchars($row["HomeAddress"]) . "' class='form-control' readonly>";
+echo "</div>";
 
+echo "<div class='mb-3'>";
+echo "<label for='username'>Username:</label>";
+echo "<input type='text' id='username' value='" . htmlspecialchars($row["Username"]) . "' class='form-control' readonly>";
+echo "</div>";
 
-
-            
-            echo "<div class='row'>";
-            echo "<div class='col-md-12 mb-3'>";
-            echo "<label for='homeAddress'>Home Address:</label>";
-            echo "<input type='text' id='homeAddress' value='" . htmlspecialchars($row["HomeAddress"]) . "' class='form-control' readonly>";
-            echo "</div>";
-            echo "</div>";
             
             echo "</form>";
             echo "</div>";
             echo "</div>";
             echo "</div>";
             echo "</div>";
-            
             
         }
     } else {
@@ -2600,44 +3732,22 @@ if (isset($_GET['Username'])) {
     $stmt->close();
     $conn->close();
 } else {
-    echo "<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('button.btn, input.btn, a.btn').forEach(function(element) {
-            element.disabled = true;
-        });
-    });
-</script>";
-    echo '<div class="container">';
-    echo '<div class="row">';
-    echo '<div class="col-md-12">';
-    echo '<h2 class="text-center" style="color: red;">SYSTEM ERROR</h2>';
-    echo '<p class="text-center" style="color: red;">Username not provided in the URL. Please login to the main SYSTEM. <br> Please logout Immediately</p>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+    echo "Username not provided in the URL.";
 }
 
 ?>
 
 
 
+
          
-</table>
-                    </div>
-                    
+           </div>
                     <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
-
-                    <button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#addprofile" >
-    <i class="bi bi-plus-circle"></i> Add Profile
-</button>
-
-
-
-<button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#Driverupdate">
+<button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#Passengerupdate">
     <i class="bi bi-pencil"></i> Update
 </button>
 
-<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#Driverdelete">
+<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#passengerdelete">
     <i class="bi bi-trash"></i> Delete Account
 </button>
 
@@ -2656,75 +3766,82 @@ if (isset($_GET['Username'])) {
 
 
 
-
-                <div class="modal" id="addprofile">
+        <div class="modal" id="Passengerupdate">
         <div class="modal-dialog">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Add Profile</h4>
+                    <h4 class="modal-title">Update Passenger Information</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <!-- Modal Body -->
                 <div class="modal-body">
-                <form id="updateForm" action="driverdash.php"  method="post">
-                
-                <label style="display: none;" for="driverID">Confirm your Driver ID</label>
-                <select  style="display: none;" name="driverID" id="driverID" class="form-control" required>
-    <?php
+                <form id="updateForm" action="admin.php"  method="post">
+                <label for="SelectPassenger">Select Passenger Infomation</label>
+                        <select name="SelectPassenger" id="SelectPassenger" class="form-control" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <?php
+if (isset($_GET['Username'])) {
+    $requestedUsername = $_GET['Username'];
 
-    if (isset($_GET['Username'])) {
-        $usernameParam = $_GET['Username'];
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+    $sql = "SELECT Name FROM passengertbl WHERE Username = ?";
+    $stmt = $conn->prepare($sql);
 
-        $sql = "SELECT * FROM driverstbl WHERE Username = ?";
-        $stmt = $conn->prepare($sql);
-
-        if (!$stmt) {
-            die("Error in statement preparation: " . $conn->error);
-        }
-
-        $stmt->bind_param("s", $usernameParam);
+    if ($stmt) {
+        $stmt->bind_param("s", $requestedUsername);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
+            // Display the fetched names
             while ($row = $result->fetch_assoc()) {
-                echo '<option value="' . htmlspecialchars($row["id"]) . '">' . htmlspecialchars($row["id"]) . '</option>';
+                echo '<option value="'.$row["Name"].'">'.$row["Name"].'</option>';
             }
         } else {
-            echo "<option value='' disabled selected>Select ID</option>";
-            echo "<option value=''>No results found</option>";
+            echo "0 results";
         }
 
         $stmt->close();
-        $conn->close();
     } else {
-        echo "<option value='' disabled selected>Select ID</option>";
-        echo "<option value=''>Username not provided in the URL</option>";
+        echo "Error in statement preparation: " . $conn->error;
     }
 
-    ?>
-</select>
+    $conn->close();
+} else {
+    echo "Username not provided in the URL.";
+}
+?>
 
-                <div id="Filefield" class="input-wrap">
-  <label for="profile" class="custom-label">Select Image</label>
-  <input required class="form-control" type="file" id="profile" name="profile" accept=".jpg, .png .jpeg .pdf, .doc, .docx" title="Please ensure the image is clear and legible" >
-</div>
-
-              
-
+                        </select>
+            
+    <div class="form-group">
+        <label id="PassengerAge" for="PassengerAge">Age</label>
+        <input type="text" name="PassengerAge" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label id="PassengerGender" for="PassengerGender">Gender</label>
+        <input name="PassengerGender" type="text" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label id="PassengerPhone" for="PassengerPhone">Phone</label>
+        <input type="text" name="PassengerPhone" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label id="PassengerAddress" for="PassengerAddress">Home Address</label>
+        <input type="text" name="PassengerAddress" class="form-control" required>
+    </div>
 </form>
 </div>
 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="addpic" type="button" class="btn btn-primary">Save</button>
+                    <button id="PassengerRegister" type="button" class="btn btn-primary" >Save Passenger</button>
                 </div>
 
             </div>
@@ -2732,231 +3849,50 @@ if (isset($_GET['Username'])) {
     </div>
 
 
+
     <script>
-$(document).ready(function(){
-    $("#addpic").click(function(){
-        // Get selected driver ID and profile image
-        var driverID = $("#driverID").val();
-        var profileImage = $("#profile")[0].files[0];
-
-        // Check if both driverID and profileImage are selected
-        if(driverID && profileImage){
-            // Create FormData object to send file data
-            var formData = new FormData();
-            formData.append('driverID', driverID);
-            formData.append('profile', profileImage);
-
-            // Make AJAX request
-            $.ajax({
-                url: 'updateProfile.php', // Update with the actual server-side file handling script
-                type: 'POST',
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(response){
-                    // Handle success, if needed
-                    console.log(response);
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success',
-                        text: 'Profile updated successfully!',
-                    }).then(() => {
-                        // You can close the modal or perform any other action
-                        $("#addprofile").modal('hide');
-                    });
-                },
-                error: function(error){
-                    // Handle errors, if needed
-                    console.log(error);
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Error updating profile. Please try again.',
-                    });
-                }
-            });
-        } else {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Warning',
-                text: 'Please select both ID and profile image.',
-            });
-        }
-    });
-});
-
-</script>
-
-
-
-
-
-
-<div class="modal fade" id="Driverupdate">
-    <div class="modal-dialog" id="driverupdatemodal">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Update Drivers Information</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <form id="updateForm" action="passengerupdate.php" method="post" enctype="multipart/form-data">
-                    <label for="SelectDriver">Select Driver Information to Update</label>
-                    <select name="SelectDriver" id="SelectDriver" class="form-control" required>
-    <option value="" disabled selected>Select an option</option>
-
-    <?php
-    if (isset($_GET['Username'])) {
-        $requestedUsername = $_GET['Username'];
-
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $sql = "SELECT Username FROM driverstbl WHERE Username = ?";
-        $stmt = $conn->prepare($sql);
-
-        if ($stmt) {
-            $stmt->bind_param("s", $requestedUsername);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            if ($result->num_rows > 0) {
-                // Display the fetched usernames
-                while ($row = $result->fetch_assoc()) {
-                    echo '<option value="'.$row["Username"].'">'.$row["Username"].'</option>';
-                }
-            } else {
-                echo "0 results";
-            }
-
-            $stmt->close();
-        } else {
-            echo "Error in statement preparation: " . $conn->error;
-        }
-
-        $conn->close();
-    } else {
-        echo "Username not provided in the URL.";
-    }
-    ?>
-</select>
-
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label id="DriverAge" for="DriverAge">Unit#</label>
-                <input type="text" name="DriverAge" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label id="DriverPlanteNumber" for="DriverPlanteNumber">Plate Number</label>
-                <input name="DriverPlanteNumber" type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label id="DriversPhoneNumber" for="DriversPhoneNumber">Phone Number</label>
-                <input type="text" name="DriversPhoneNumber" class="form-control" required>
-            </div>
-            <div class="form-group" style="width: 100%;">
-    <label id="DriversHomeAddress" for="DriversHomeAddress">Home Address</label>
-    <input type="text" name="DriversHomeAddress" class="form-control" required>
-</div>
-
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label id="DriverVehicleRegistration" for="DriverVehicleRegistrations">Vehicle Registration</label>
-                <input type="file" name="DriverVehicleRegistration" accept=".jpg, .png, .jpeg, .pdf, .doc, .docx" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label id="DriversPermittoOperate" for="DriversPermittoOperate">Vehicle Picture</label>
-                <input type="file" name="DriversPermittoOperate" accept=".jpg, .png, .jpeg, .pdf, .doc, .docx" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label id="DriversDriversLicense" for="DriversDriversLicense">Drivers License</label>
-                <input type="file" name="DriversDriversLicense" accept=".jpg, .png, .jpeg, .pdf, .doc, .docx" class="form-control" required>
-            </div>
-           
-       
-
-        </div>
-    </div>
-</div>
-
-
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="DriversRegister" type="submit" class="btn btn-primary">Save Driver</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<script>
   $(document).ready(function() {
-    $("#DriversRegister").click(function(e) {
-      e.preventDefault(); // Prevent default form submission
-
-      var SelectDriver = $("#SelectDriver").val();
-      var DriverAge = $("input[name='DriverAge']").val();
-      var DriverPlanteNumber = $("input[name='DriverPlanteNumber']").val();
-      var DriversDriversLicense = $("input[name='DriversDriversLicense']").prop('files')[0];
-      var DriverVehicleRegistration = $("input[name='DriverVehicleRegistration']").prop('files')[0];
-      var DriversPermittoOperate = $("input[name='DriversPermittoOperate']").prop('files')[0];
-      var DriversPhoneNumber = $("input[name='DriversPhoneNumber']").val();
-      var DriversHomeAddress = $("input[name='DriversHomeAddress']").val();
-
-      var formData = new FormData();
-      formData.append('SelectDriver', SelectDriver);
-      formData.append('DriverAge', DriverAge);
-      formData.append('DriverPlanteNumber', DriverPlanteNumber);
-      formData.append('DriversDriversLicense', DriversDriversLicense);
-      formData.append('DriverVehicleRegistration', DriverVehicleRegistration);
-      formData.append('DriversPermittoOperate', DriversPermittoOperate);
-      formData.append('DriversPhoneNumber', DriversPhoneNumber);
-      formData.append('DriversHomeAddress', DriversHomeAddress);
-
-      $.ajax({
-        url: "passengerupdate.php", // Replace with the actual file name for update
-        type: "POST",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(data) {
-          Swal.fire({
-            title: 'Updated Successfully!',
-            icon: 'success',
-            confirmButtonText: 'Okay'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              $(".swal2-popup").addClass('light-theme');
-            }
-          });
+    $("#PassengerRegister").click(function() {
+      var SelectPassenger = $("#SelectPassenger").val();
+      var PassengerAge = $("input[name='PassengerAge']").val();
+      var PassengerGender = $("input[name='PassengerGender']").val();
+      var PassengerPhone = $("input[name='PassengerPhone']").val();
+      var PassengerAddress = $("input[name='PassengerAddress']").val();
+      $.post(
+        "passengerupdate.php", // Replace with the actual file name for update
+        {
+          SelectPassenger: SelectPassenger,
+          PassengerAge: PassengerAge,
+          PassengerGender: PassengerGender,
+          PassengerPhone: PassengerPhone,
+          PassengerAddress: PassengerAddress
         },
-        error: function() {
-          Swal.fire({
-            title: 'Error!',
-            text: 'There was an error while updating the record.',
-            icon: 'error',
-            confirmButtonText: 'Okay'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              $(".swal2-popup").addClass('light-theme');
-            }
-          });
+        function(data, status) {
+          if (status === 'success') {
+            Swal.fire({
+              title: 'Updated Successfully!',
+              icon: 'success',
+              confirmButtonText: 'Okay'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                $(".swal2-popup").addClass('light-theme');
+              }
+            });
+          } else {
+            // Handle error here
+            Swal.fire({
+              title: 'Error!',
+              text: 'There was an error while updating the record.',
+              icon: 'error',
+              confirmButtonText: 'Okay'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                $(".swal2-popup").addClass('light-theme');
+              }
+            });
+          }
         }
-      });
+      );
     });
   });
 </script>
@@ -2966,65 +3902,65 @@ $(document).ready(function(){
 
 
 
-<div class="modal fade" id="Driverdelete">
+
+
+
+<div class="modal" id="passengerdelete">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Delete Administrator Information</h4>
+                <h4 class="modal-title">Delete Passenger Information</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="driversDelete" action="delete.php" method="post">
+                <form id="PassengerDelete" action="delete.php" method="post">
                     <div class="form-group">
-                        <label for="SelectDriver">Delete Selected Driver Information </label>
-                        <select name="SelectDriver" id="SelectDriver" class="form-control" required>
+                        <label for="SelectPassenger">Delete Selected Passenger </label>
+                        <select name="SelectPassenger" id="SelectPassenger" class="form-control" required>
                             <option value="" disabled selected>Select an option</option>
-                            <!-- PHP code for populating the select options -->
                             <?php
-    if (isset($_GET['Username'])) {
-        $requestedUsername = $_GET['Username'];
+if (isset($_GET['Username'])) {
+    $requestedUsername = $_GET['Username'];
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $sql = "SELECT Username FROM driverstbl WHERE Username = ?";
-        $stmt = $conn->prepare($sql);
-
-        if ($stmt) {
-            $stmt->bind_param("s", $requestedUsername);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            if ($result->num_rows > 0) {
-                // Display the fetched usernames
-                while ($row = $result->fetch_assoc()) {
-                    echo '<option value="'.$row["Username"].'">'.$row["Username"].'</option>';
-                }
-            } else {
-                echo "0 results";
-            }
-
-            $stmt->close();
-        } else {
-            echo "Error in statement preparation: " . $conn->error;
-        }
-
-        $conn->close();
-    } else {
-        echo "Username not provided in the URL.";
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
-    ?>
-</select>
 
+    $sql = "SELECT Name FROM passengertbl WHERE Username = ?";
+    $stmt = $conn->prepare($sql);
+
+    if ($stmt) {
+        $stmt->bind_param("s", $requestedUsername);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            // Display the fetched names
+            while ($row = $result->fetch_assoc()) {
+                echo '<option value="'.$row["Name"].'">'.$row["Name"].'</option>';
+            }
+        } else {
+            echo "0 results";
+        }
+
+        $stmt->close();
+    } else {
+        echo "Error in statement preparation: " . $conn->error;
+    }
+
+    $conn->close();
+} else {
+    echo "Username not provided in the URL.";
+}
+?>
                         </select>
                     </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" id="DriversDelete" class="btn btn-danger">Delete</button>
+                        <button id="PassengerDelete" type="submit" class="btn btn-danger">Delete</button>
                     </div>
                 </form>
             </div>
@@ -3033,21 +3969,24 @@ $(document).ready(function(){
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Make sure you have the correct path to the necessary libraries -->
+
+
 <script>
     $(document).ready(function() {
-        $('#DriversDelete').click(function() {
-            var formData = $('#driversDelete').serialize();
+        $('#PassengerDelete').submit(function(e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
             $.ajax({
                 type: 'POST',
-                url: 'delete.php', // Make sure this is the correct path to your delete.php file
+                url: 'delete.php',
                 data: formData,
-                dataType: 'json', // Set the dataType to 'json' to parse the JSON response
+                dataType: 'json',
                 success: function(response) {
                     showAlert(response.type, response.message);
 
-                    // Check if deletion was successful
+                    // Check if the response indicates success
                     if (response.type === 'success') {
                         // Redirect to login.php
                         window.location.href = 'login.php';
@@ -3085,6 +4024,20 @@ $(document).ready(function(){
     }
 </style>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var modal = document.getElementById('myModal');
+        modal.addEventListener('show.bs.modal', function () {
+            modal.classList.add('modal');
+        });
+        modal.addEventListener('hide.bs.modal', function () {
+            modal.classList.remove('modal');
+        });
+    });
+</script>
+
+
+
 
 
 
@@ -3092,48 +4045,48 @@ $(document).ready(function(){
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="driver.js"></script>
+<script src="passengerdash.js"></script>
 
 <script type="text/javascript">
-  $(function(){
-    $('#filereportRegisterr').click(function(e){
-        var valid = this.form.checkValidity();
+$(function() {
+    $('#filereportRegister').click(function(e) {
+        e.preventDefault();
 
-        if(valid){
-            var formData = new FormData();
-            formData.append('Fileinput1', $('#Fileinput1').val());
-            formData.append('datefilereport', $('#datefilereport').val());
-            formData.append('Fileinput3', $('#Fileinput3').val());
-            formData.append('Fileinput4', $('#Fileinput4').val());
-            formData.append('Fileinput5', $('#Fileinput5').val());
-            formData.append('Fileinput6', $('#Fileinput6')[0].files[0]); // File input
-            formData.append('Fileinput5', $('#Fileinput5').val());
-            formData.append('Incident-Descriptionr', $('#Incident-Description').val());
+        var valid = $('#clear')[0].checkValidity();
 
-            e.preventDefault();    
+        if (valid) {
+            var formData = new FormData($('#clear')[0]);
 
             $.ajax({
                 type: 'POST',
-                url: 'process.php',
+                url: 'sample.php',
                 data: formData,
                 processData: false,
                 contentType: false,
                 success: function(data) {
-                    swal("Success", data, "success").then((value) => {
-                        if (value) {
-                            $('#clear')[0].reset(); // Reset the form
-                        }
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: data,
+                    }).then(function() {
+                        // Optionally, you can perform additional actions after the success message
+                        window.location.reload(); // Reload the page to reflect changes
                     });
                 },
-                error: function(data){
-                    swal("Error", "There were errors while saving the data.", "error");
-                }
+                error: function(data) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'There were errors while saving the data.',
+                    });
+                },
             });
         } else {
             // Handle invalid form data here
         }
-    });        
+    });
 });
+
 
 </script>
 

@@ -1689,7 +1689,6 @@ if (isset($_GET['Username'])) {
                         <th>Hearing Date</th>
                         <th>Hearing Time</th>
                         <th>Hearing Place</th>
-                        <th>Complainant Response</th>
                     </thead>
                 </tr>';
 
@@ -1707,7 +1706,6 @@ if (isset($_GET['Username'])) {
                         <td>' . $row["hearingdate"] . '</td>
                         <td>' . $row["hearingtime"] . '</td>
                         <td>' . $row["hearingplace"] . '</td>
-                        <td>' . $row["PassengerConfirmation"] . '</td>
                     </tr>';
                 }
             }
@@ -1737,7 +1735,7 @@ $conn->close();
                     </table>
                     </div>
                     <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
-                    <button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#Confirmandcancel">
+                    <button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#">
                     <i class="bi bi-check-circle"></i> Confirm to Attend
 </button>
 
@@ -1754,267 +1752,6 @@ $conn->close();
     </script>
                     </div>
                 </div>
-
-
-
-
-                <div class="modal fade" id="Confirmandcancel">
-    <div id="processreport" class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Confirm Appointment?</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="updateForm"  method="post">
-                    <div class="form-group">
-                        <label for="PASSConfirmid">Select Report</label>
-                        <select name="PASSConfirmid" id="PASSConfirmid" class="form-control" required>
-                            <option value="" disabled selected>Select an option</option>
-                     
-                               
-                            <?php
-// Replace with your actual database credentials
-
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Fetch passenger details based on the provided username
-if (isset($_GET['Username'])) {
-    $usernameParam = $_GET['Username'];
-
-    $passengerSql = "SELECT Name FROM passengertbl WHERE Username = ?";
-    $passengerStmt = $conn->prepare($passengerSql);
-
-    if (!$passengerStmt) {
-        die("Error in statement preparation: " . $conn->error);
-    }
-
-    $passengerStmt->bind_param("s", $usernameParam);
-    $passengerStmt->execute();
-    $passengerResult = $passengerStmt->get_result();
-
-    if ($passengerResult->num_rows > 0) {
-        // Passenger found, fetch details
-        $passengerRow = $passengerResult->fetch_assoc();
-        $passengerName = $passengerRow['Name'];
-
-        // Fetch complaint details based on the passenger name
-        $complaintSql = "SELECT * FROM complainttbl WHERE ComplainantName = ?";
-        $complaintStmt = $conn->prepare($complaintSql);
-
-        if (!$complaintStmt) {
-            die("Error in statement preparation: " . $conn->error);
-        }
-
-        $complaintStmt->bind_param("s", $passengerName);
-        $complaintStmt->execute();
-        $complaintResult = $complaintStmt->get_result();
-
-        if ($complaintResult->num_rows > 0) {
-           // Assuming you want a dropdown list
-            while ($row = $complaintResult->fetch_assoc()) {
-                if ($row["ComplainStatus"] === "Scheduled") {
-                echo '<option value="' . $row["ComplaintID"] . '">' . $row["ComplaintID"] . '</option>';
-            }
-        }
-        } else {
-            echo "No complaints found for the passenger.";
-        }
-
-        $complaintStmt->close();
-    } else {
-        echo "Passenger not found.";
-    }
-
-    $passengerStmt->close();
-} else {
-    echo "Username not provided in the URL.";
-}
-
-$conn->close();
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-                        </select>
-                    </div>
-
-
-
-                    <div class="container">
-  <div class="row g-6 mb-4 mt-3">
-    <div class="col-xl-3 col-sm-6 col-12">
-      <div class="card shadow border-2 text-center">
-        <div class="card-body" style="padding: 20px;">
-          <div class="mb-2">
-            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Confirmed Appointment</span>
-          </div>
-          <div class="mb-3">
-            <img src="../Images/Confirmed.svg" alt="Confirm" class="img-fluid" style="max-width: 200px; height: auto;">
-          </div>
-          <div class="text-sm">
-            <button type="button" class="btn btn-sm btn-neutral border-base" title="Process Passenger's Complaint about the tricycle service, the local transportation authority " onclick="Confirmappointment('Confirmed')">
-              <i class="bi bi-arrow-up me-1"></i>Select
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-xl-3 col-sm-6 col-12">
-      <div class="card shadow border-2 text-center">
-        <div class="card-body" style="padding: 20px;">
-          <div class="mb-2">
-            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Cancel Appointment</span>
-          </div>
-          <div class="mb-3">
-            <img src="../Images/cencel.svg" alt="Cancel" class="img-fluid" style="max-width: 200px; height: auto;">
-          </div>
-          <div class="text-sm">
-            <button type="button" class="btn btn-sm btn-neutral border-base" title="Process Passenger's Complaint about the tricycle service, the local transportation authority " onclick=" Confirmappointment('Cancel Appointment')">
-              <i class="bi bi-arrow-up me-1"></i>Select
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-    <div class="col-lg-6 mt-1">
-      <h2 class="mt-4 text-center" id="FAQ">Note!</h2>
-      <div class="accordion accordion-flush p-1" id="accordionFlushExample">
-        <div class="accordion-item bg-white shadow">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-              By Confirming You need to Attend the Set date Orginized by the Barangay-409 Admin
-            </button>
-          </h2>
-          <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">By Confirming this Schedule you need to attend the Scheduled dat and Time as weell as the place of hearing to Setteld Issue</div>
-          </div>
-        </div>
-
-        <div class="accordion-item shadow">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-              By Cancelling the set Schedule you need to wait 2-4 Business days to Re Process Hearing Schedule
-            </button>
-          </h2>
-          <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">By Cancelling the set Appointment the Complaint will be Rescheduled in 3-4 Business days </div>
-          </div>
-        </div>
-
-        <div class="accordion-item shadow">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-              What will happen if I will not Attend to my Schedule?
-            </button>
-          </h2>
-          <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">The Barangay Personel will personaly invite you to the barangay if you are not attending Complains Schedule</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div style="width: 80%; margin: auto; display:none;  margin-bottom: 10px;">
-    <label for="PASSConfirmStatus"></label>
-    <input class="form-control mx-auto" name="PASSConfirmStatus" id="PASSConfirmStatus" style="width: 100%;">
-</div>
-
-<script>
-    function Confirmappointment(rating) {
-        document.getElementById("PASSConfirmStatus").value = rating + "";
-        // You can customize this value as per your requirement
-    }
-</script>
-
-                    <div class="modal-footer   d-flex justify-content-center ">
-                       
-                        <button id="confirmbutton" type="button" class="btn btn-success mt-3">
-                        <i class="bi bi-check-circle-fill"></i> Confirm Appointment Status</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<script>
-  $(document).ready(function() {
-    $("#confirmbutton").click(function() {
-      var PASSConfirmid = $("#PASSConfirmid").val();
-      var PASSConfirmStatus = $("input[name='PASSConfirmStatus']").val();
-    
-
-      $.post(
-        "passengerupdate.php", // Replace with the actual file name for update
-        {
-            PASSConfirmid: PASSConfirmid,
-            PASSConfirmStatus:PASSConfirmStatus
-        },
-        function(data, status) {
-          if (status === 'success') {
-            Swal.fire({
-              title: 'Response Successfully Sent',
-              icon: 'success',
-              confirmButtonText: 'Okay'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                $(".swal2-popup").addClass('light-theme');
-              }
-            });
-          } else {
-            // Handle error here
-            Swal.fire({
-              title: 'Error!',
-              text: 'There was an error while updating the record.',
-              icon: 'error',
-              confirmButtonText: 'Okay'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                $(".swal2-popup").addClass('light-theme');
-              }
-            });
-          }
-        }
-      );
-    });
-  });
-</script>
-
 
 
 
@@ -3774,22 +3511,7 @@ echo "</div>";
     $stmt->close();
     $conn->close();
 } else {
-
-    echo "<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('button.btn, input.btn, a.btn').forEach(function(element) {
-            element.disabled = true;
-        });
-    });
-</script>";
-    echo '<div class="container">';
-    echo '<div class="row">';
-    echo '<div class="col-md-12">';
-    echo '<h2 class="text-center" style="color: red;">SYSTEM ERROR</h2>';
-    echo '<p class="text-center" style="color: red;">Username not provided in the URL. Please login to the main SYSTEM. <br> Please logout Immediately</p>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+    echo "Username not provided in the URL.";
 }
 
 ?>

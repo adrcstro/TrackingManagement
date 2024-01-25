@@ -3775,23 +3775,27 @@ echo "</div>";
     $conn->close();
 } else {
 
-    echo "<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('button.btn, input.btn, a.btn').forEach(function(element) {
-            element.disabled = true;
-        });
+    echo "  // Blur the body
+    document.body.style.filter = 'blur(5px)';
+
+    // Disable all Bootstrap navbars
+    document.querySelectorAll('.navbar').forEach(function(navbar) {
+        navbar.classList.add('disabled');
+    });
+
+    // Hide and disable all tables
+    document.querySelectorAll('table').forEach(function(table) {
+        table.style.display = 'none';
+        table.classList.add('disabled');
+    });
+
+    // Disable all other elements in the body
+    document.body.querySelectorAll('*').forEach(function(element) {
+        element.disabled = true;
+        element.classList.add('disabled');
     });
 </script>";
-    echo '<div class="container">';
-    echo '<div class="row">';
-    echo '<div class="col-md-12">';
-    echo '<h2 class="text-center" style="color: red;">SYSTEM ERROR</h2>';
-    echo '<p class="text-center" style="color: red;">Username not provided in the URL. Please login to the main SYSTEM. <br> Please logout Immediately</p>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
 }
-
 ?>
 
 

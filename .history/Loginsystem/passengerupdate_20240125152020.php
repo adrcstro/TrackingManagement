@@ -241,7 +241,7 @@ if (isset($_POST['Confirmid'])) {
    
   
 
-    if (!empty($confirmid)) {
+    if (!empty( $confirmid)) {
         $stmt = $conn->prepare("UPDATE complainttbl SET DriverConfirmation=? WHERE ComplaintID=?");
         $stmt->bind_param("ss",  $confirmstatus, $confirmid);
 
@@ -264,7 +264,7 @@ if (isset($_POST['PASSConfirmid'])) {
    
   
 
-    if (!empty($PASSconfirmid)) {
+    if (!empty( $PASSconfirmid)) {
         $stmt = $conn->prepare("UPDATE complainttbl SET PassengerConfirmation=? WHERE ComplaintID=?");
         $stmt->bind_param("ss",  $PASSconfirmstatus, $PASSconfirmid);
 

@@ -224,6 +224,8 @@ $conn->close();
     <img src="../Images/file3.jpg" class="image img-1 show" data-image="img-1" alt="" />
     <img src="../images/maps6.png" class="image img-2" data-image="img-2" alt="" />
     <img src="../images/Forgot.svg" class="image img-3" data-image="img-3" alt="" />
+    <!-- Logo image on top -->
+    <img src="../images/logoicon.png" class="image img-logo" data-image="img-logo" alt="Logo" />
   </div>
 
   <div class="text-slider">
@@ -237,10 +239,10 @@ $conn->close();
 
     <div class="bullets">
       <span class="active" id="login" data-value="1"></span>
-     
     </div>
   </div>
 </div>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {

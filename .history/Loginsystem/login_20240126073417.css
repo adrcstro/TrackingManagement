@@ -281,6 +281,16 @@ main.sign-up-mode .carousel {
 }
 
 
+.image-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white; /* Adjust the text color as needed */
+  font-size: 18px; /* Adjust the font size as needed */
+  font-weight: bold; /* Adjust the font weight as needed */
+}
 
 
 .images-wrapper {
@@ -301,11 +311,6 @@ main.sign-up-mode .carousel {
   transition: opacity 0.3s, transform 0.5s;
   border-radius: 10px;
 }
-
-
-
-
-
 
 .img-1{
  

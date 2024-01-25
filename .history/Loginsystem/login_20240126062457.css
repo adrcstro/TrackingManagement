@@ -282,7 +282,6 @@ main.sign-up-mode .carousel {
 
 
 
-
 .images-wrapper {
   display: grid;
   grid-template-columns: 1fr;
@@ -303,15 +302,8 @@ main.sign-up-mode .carousel {
 }
 
 
-
-
-
-
 .img-1{
- 
-    filter: brightness(60%);
-  
-  
+  background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
 }
 
 .img-1 {

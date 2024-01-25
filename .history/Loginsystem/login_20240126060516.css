@@ -272,7 +272,7 @@ main.sign-up-mode .carousel {
   left: 45%;
   top: 0;
   background-color: transparent;
-  border-radius: 10px;
+  border-radius: 20px;
   display: grid;
   grid-template-rows: auto 1fr;
   padding-bottom: 2rem;
@@ -281,7 +281,27 @@ main.sign-up-mode .carousel {
 }
 
 
+.img-logo {
+  width: 50%; /* Set an appropriate width for your logo */
+  height: 50%; /* Set an appropriate height for your logo */
+  z-index: 2; /* Make sure the logo appears on top of other images */
+}
 
+.images-wrapper {
+  position: relative;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 
 .images-wrapper {
   display: grid;
@@ -299,19 +319,7 @@ main.sign-up-mode .carousel {
   grid-row: 1/2;
   opacity: 0;
   transition: opacity 0.3s, transform 0.5s;
-  border-radius: 10px;
-}
-
-
-
-
-
-
-.img-1{
- 
-    filter: brightness(60%);
-  
-  
+  border-radius: 20px;
 }
 
 .img-1 {
