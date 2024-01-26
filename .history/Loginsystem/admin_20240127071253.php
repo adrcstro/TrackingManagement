@@ -4766,7 +4766,10 @@ $conn->close();
     </script>
 <?php
 // Connect to your database
-require_once('Config.php');
+$servername = "localhost"; // Replace with your server name
+$username = "root"; // Replace with your username
+$password = ""; // Replace with your password
+$dbname = "plate-to-place-v-tracking";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -4903,10 +4906,13 @@ function updateChart() {
     <div class="row">
     <?php
         // Replace these with your actual database connection details
-        require_once('Config.php');
+        $host = "localhost";
+        $username = "root";
+        $password = "";
+        $database = "plate-to-place-v-tracking";
 
         // Create a database connection
-        $your_db_connection = mysqli_connect($servername, $username, $password,$dbname);
+        $your_db_connection = mysqli_connect($host, $username, $password, $database);
 
         // Check the connection
         if (!$your_db_connection) {
