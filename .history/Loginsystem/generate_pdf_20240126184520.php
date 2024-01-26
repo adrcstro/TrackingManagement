@@ -42,17 +42,8 @@ class PDF extends TCPDF {
         // Watermark image path
         $watermarkPath = '../Images/lettericon.jpg';
         $this->Image($watermarkPath, 30, 50, 150, 150, '', '', '', false, 300, '', false, false, 0);
-
-        // Set grayscale mode for the watermark
-        $this->SetAlpha(0.5);
-        $this->SetFillColor(255, 255, 255); // White background for the watermark
-        $this->Rect(30, 50, 150, 150, 'F'); // Fill rectangle with white color
-
-        // Reset alpha to default
-        $this->SetAlpha(1);
-
-        // Set font
         $this->SetFont('times', '', 12);
+        
 
 
         // Logo

@@ -4209,7 +4209,7 @@ $conn->close();
                 
                 // Modal for full text
                 echo '<div class="modal fade newscard" id="readMoreModal' . $row['NewsID'] . '" tabindex="-1" role="dialog" aria-labelledby="readMoreModalLabel' . $row['NewsID'] . '" aria-hidden="true">';
-                echo '<div id="adminnews" class="modal-dialog" role="document">';
+                echo '<div id="homenews" class="modal-dialog" role="document">';
                 echo '<div class="modal-content">';
                 echo '<div style="background-color: #603ce3" class="modal-header">';
                 echo '<h5 style="color: #fff;" class="modal-title">' . $header . '</h5>';
@@ -4220,7 +4220,7 @@ $conn->close();
                 echo '<div class="modal-body d-flex">';
                 // Add styling to the modal image on the right
                 echo '<div class="modal-image-container" style="flex: 1;">';
-                echo '<img src="uploads/' . $image . '" class="card-img-top" alt="Card Image" style="width: 100%; height: 300px; object-fit: cover;">';
+                echo '<img src="Loginsystem/uploads/' . $image . '" class="card-img-top" alt="Card Image" style="width: 100%; height: 300px; object-fit: cover;">';
                 echo '</div>';
                 // Text content on the left
                 echo '<div style="flex: 2; padding-left: 20px;">';

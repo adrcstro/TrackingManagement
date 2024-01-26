@@ -4162,91 +4162,101 @@ $conn->close();
 
 
     <?php
-        // Replace these with your actual database connection details
-        $host = "localhost";
-        $username = "root";
-        $password = "";
-        $database = "plate-to-place-v-tracking";
+      // Replace these with your actual database connection details
+      $host = "localhost";
+      $username = "root";
+      $password = "";
+      $database = "plate-to-place-v-tracking";
 
-        // Create a database connection
-        $your_db_connection = mysqli_connect($host, $username, $password, $database);
+      // Create a database connection
+      $your_db_connection = mysqli_connect($host, $username, $password, $database);
 
-        // Check the connection
-        if (!$your_db_connection) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+      // Check the connection
+      if (!$your_db_connection) {
+          die("Connection failed: " . mysqli_connect_error());
+      }
 
-        // Fetch data from the "newsandevents" table
-        $query = "SELECT NewsID, Header,Time, Date, Body, Image FROM newsandevents";
-        $result = mysqli_query($your_db_connection, $query);
+      // Fetch data from the "newsandevents" table
+      $query = "SELECT NewsID, Header,Time, Date, Body, Image FROM newsandevents";
+      $result = mysqli_query($your_db_connection, $query);
 
-        // Check if the query was successful
-        if ($result) {
-            // Fetch data row by row
-            while ($row = mysqli_fetch_assoc($result)) {
-                $header = $row['Header'];
-                $time = $row['Time'];
-                $date = $row['Date'];
-                $body = $row['Body'];
-                $image = $row['Image'];
- 
-                // Display data in Bootstrap cards
-                echo '<div class="col-md-4 mb-4 newscard">';
-                echo '<div class="card h-100 border rounded shadow-sm">';
-                echo '<img src="uploads/' . $image . '" class="card-img-top img-fluid" alt="Card Image">';
-                echo '<div class="card-body mt-0">';
-                echo '<div class="d-flex justify-content-between">';
-                echo '<p class="card-text"><small class="text-muted">' . date('F j, Y', strtotime($date)) . ' | ' . date('g:i A', strtotime($time)) . '</small></p>';
-                echo '</div>';
-                echo '<h5 class="card-title">' . $header . '</h5>';
-                $trimmed_body = strlen($body) > 50 ? substr($body, 0, 50) . '...' : $body;
-                echo '<p class="card-text">' . $trimmed_body . ' <a href="#" class="read-more-btn" data-toggle="modal" data-target="#readMoreModal' . $row['NewsID'] . '">Read More  <i class="bi bi-arrow-right-square"></i></a></p>';
+      // Check if the query was successful
+      if ($result) {
+          // Fetch data row by row
+          while ($row = mysqli_fetch_assoc($result)) {
+              $header = $row['Header'];
+              $time = $row['Time'];
+              $date = $row['Date'];
+              $body = $row['Body'];
+              $image = $row['Image'];
 
+              // Display data in Bootstrap cards
+              echo '<div  class="col-md-4 mb-4 newscard">';
+              echo '<div class="card h-100 border rounded shadow-sm d-flex flex-column align-items-stretch">';
+              // Add styling to the card image
+              echo '<img src="Loginsystem/uploads/' . $image . '" class="card-img-top" alt="Card Image" style="width: 100%; height: 200px; object-fit: cover;">';
+              
+              echo '<div class="card-body mt-0 flex-grow-1">';
+              echo '<div class="d-flex justify-content-between">';
+              echo '<p class="card-text"><small class="text-muted">' . date('F j, Y', strtotime($date)) . ' | ' . date('g:i A', strtotime($time)) . '</small></p>';
+              echo '</div>';
+              echo '<h5 class="card-title">' . $header . '</h5>';
+              $trimmed_body = strlen($body) > 90 ? substr($body, 0, 90) . '...' : $body;
+              echo '<p class="card-text">' . $trimmed_body . '</p>';
+              echo '</div>';
+              echo '<div style="border:none;" class="card-footer text-center bg-transparent">';
+              echo '<a href="#" class="read-more-btn btn btn" data-toggle="modal" data-target="#readMoreModal' . $row['NewsID'] . '">Read More  <i class="bi bi-arrow-right-square"></i></a>';
+              echo '</div>';
+              echo '</div>';
+              echo '</div>';
+              
+              // Rest of your code remains the same...
+              
+              // Modal for full text
+           // Modal for full text
+echo '<div class="modal fade newscard" id="readMoreModal' . $row['NewsID'] . '" tabindex="-1" role="dialog" aria-labelledby="readMoreModalLabel' . $row['NewsID'] . '" aria-hidden="true">';
+echo '<div id="homenews" class="modal-dialog" role="document">';
+echo '<div class="modal-content">';
+echo '<div style="background-color: #603ce3" class="modal-header">';
+echo '<h5 style="color: #fff;" class="modal-title">' . $header . '</h5>';
+echo '<button style="background-color: #603ce3; color: #fff; border:none;" type="button" class="close" data-dismiss="modal" aria-label="Close">';
+echo '<span aria-hidden="true">&times;</span>';
+echo '</button>';
+echo '</div>';
+echo '<div class="modal-body d-flex">';
+// Add styling to the modal image on the right
+echo '<div class="modal-image-container" style="flex: 1;">';
+echo '<img src="Loginsystem/uploads/' . $image . '" class="card-img-top" alt="Card Image" style="width: 100%; height: 300px; object-fit: cover;">';
+echo '</div>';
+// Text content on the left
+echo '<div style="flex: 2; padding-left: 20px;">';
+echo '<p class="card-text mt-4"><small class="text-muted">' . date('F j, Y', strtotime($date)) . ' | ' . date('g:i A', strtotime($time)) . '</small></p>';
+echo '<p class="lead">' . $body . '</p>';
+echo '</div>';
+echo '</div>';
+echo '</div>';
+echo '</div>';
+echo '</div>';
 
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-                
-                // Modal for full text
-                echo '<div class="modal fade newscard" id="readMoreModal' . $row['NewsID'] . '" tabindex="-1" role="dialog" aria-labelledby="readMoreModalLabel' . $row['NewsID'] . '" aria-hidden="true">';
-                echo '<div id="adminnews" class="modal-dialog" role="document">';
-                echo '<div class="modal-content">';
-                echo '<div style="background-color: #603ce3" class="modal-header">';
-                echo '<h5 style="color: #fff;" class="modal-title">' . $header . '</h5>';
-                echo '<button style="background-color: #603ce3; color: #fff; border:none;" type="button" class="close" data-dismiss="modal" aria-label="Close">';
-                echo '<span aria-hidden="true">&times;</span>';
-                echo '</button>';
-                echo '</div>';
-                echo '<div class="modal-body d-flex">';
-                // Add styling to the modal image on the right
-                echo '<div class="modal-image-container" style="flex: 1;">';
-                echo '<img src="uploads/' . $image . '" class="card-img-top" alt="Card Image" style="width: 100%; height: 300px; object-fit: cover;">';
-                echo '</div>';
-                // Text content on the left
-                echo '<div style="flex: 2; padding-left: 20px;">';
-                echo '<p class="card-text mt-4"><small class="text-muted">' . date('F j, Y', strtotime($date)) . ' | ' . date('g:i A', strtotime($time)) . '</small></p>';
-                echo '<p class="lead">' . $body . '</p>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-                
-                
-                
+              
 
-            }
+              
+              
+              
 
-            // Free result set
-            mysqli_free_result($result);
-        } else {
-            // Handle the error if the query fails
-            echo "Error: " . mysqli_error($your_db_connection);
-        }
+          }
 
-        // Close the database connection
-        mysqli_close($your_db_connection);
-    ?>
+          // Free result set
+          mysqli_free_result($result);
+      } else {
+          // Handle the error if the query fails
+          echo "Error: " . mysqli_error($your_db_connection);
+      }
+
+      // Close the database connection
+      mysqli_close($your_db_connection);
+  ?>
+
 
 
     </div>

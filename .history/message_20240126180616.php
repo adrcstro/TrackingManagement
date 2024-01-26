@@ -2,7 +2,7 @@
 
 
 <?php
- $servername = "localhost";
+ $host = "localhost";
  $username = "root";
  $password = "";
  $dbname= "plate-to-place-v-tracking";

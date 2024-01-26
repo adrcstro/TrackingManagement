@@ -40,19 +40,26 @@ class PDF extends TCPDF {
         
 
         // Watermark image path
-        $watermarkPath = '../Images/lettericon.jpg';
-        $this->Image($watermarkPath, 30, 50, 150, 150, '', '', '', false, 300, '', false, false, 0);
+    // Load the original image
+$watermarkPath = '../Images/lettericon.jpg';
+$originalImage = imagecreatefromjpeg($watermarkPath);
 
-        // Set grayscale mode for the watermark
-        $this->SetAlpha(0.5);
-        $this->SetFillColor(255, 255, 255); // White background for the watermark
-        $this->Rect(30, 50, 150, 150, 'F'); // Fill rectangle with white color
+// Apply a blur effect
+imagefilter($originalImage, IMG_FILTER_GAUSSIAN_BLUR);
 
-        // Reset alpha to default
-        $this->SetAlpha(1);
+// Output the blurred image
+imagejpeg($originalImage, '../Images/lettericon_blurred.jpg');
 
-        // Set font
-        $this->SetFont('times', '', 12);
+// Close the image resources
+imagedestroy($originalImage);
+
+// Now, use the blurred image in the PDF
+$this->Image('../Images/lettericon_blurred.jpg', 30, 50, 150, 150, '', '', '', false, 300, '', false, false, 0);
+
+// Set the font
+$this->SetFont('times', '', 12);
+
+        
 
 
         // Logo

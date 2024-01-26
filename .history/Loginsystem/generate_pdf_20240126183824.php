@@ -37,21 +37,15 @@ class PDF extends TCPDF {
     public function Header() {
         // Set font
         $this->SetFont('times', 'B', 12);
-        
+        $this->SetFont('times', 'B', 12);
 
         // Watermark image path
-        $watermarkPath = '../Images/lettericon.jpg';
-        $this->Image($watermarkPath, 30, 50, 150, 150, '', '', '', false, 300, '', false, false, 0);
+        $watermarkPath = '../Images/lettericon.jpg'; // Adjust the path based on your project structure
 
-        // Set grayscale mode for the watermark
-        $this->SetAlpha(0.5);
-        $this->SetFillColor(255, 255, 255); // White background for the watermark
-        $this->Rect(30, 50, 150, 150, 'F'); // Fill rectangle with white color
+        // Set the watermark image with blur effect
+        $this->Image($watermarkPath, 0, 0, $this->w, $this->h, '', '', '', false, 300, '', false, false, 0);
 
-        // Reset alpha to default
-        $this->SetAlpha(1);
-
-        // Set font
+        // Set the font again for the main text
         $this->SetFont('times', '', 12);
 
 

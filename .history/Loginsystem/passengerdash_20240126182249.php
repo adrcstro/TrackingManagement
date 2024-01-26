@@ -3556,7 +3556,7 @@ $conn->close();
               
               // Modal for full text
               echo '<div class="modal fade newscard" id="readMoreModal' . $row['NewsID'] . '" tabindex="-1" role="dialog" aria-labelledby="readMoreModalLabel' . $row['NewsID'] . '" aria-hidden="true">';
-              echo '<div id="adminnews" class="modal-dialog" role="document">';
+              echo '<div id="passengernews" class="modal-dialog" role="document">';
               echo '<div class="modal-content">';
               echo '<div style="background-color: #603ce3" class="modal-header">';
               echo '<h5 style="color: #fff;" class="modal-title">' . $header . '</h5>';

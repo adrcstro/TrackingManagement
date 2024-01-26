@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="style.css">
    
-    
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
    
@@ -177,10 +177,8 @@
   <div class="row">
   <?php
       // Replace these with your actual database connection details
-      $host = "localhost";
-      $username = "root";
-      $password = "";
-      $database = "plate-to-place-v-tracking";
+      require_once('../Config.php');
+
 
       // Create a database connection
       $your_db_connection = mysqli_connect($host, $username, $password, $database);
@@ -205,7 +203,7 @@
               $image = $row['Image'];
 
               // Display data in Bootstrap cards
-              echo '<div  class="col-md-4 mb-4 newscard">';
+              echo '<div class="col-md-4 mb-4 newscard">';
               echo '<div class="card h-100 border rounded shadow-sm d-flex flex-column align-items-stretch">';
               // Add styling to the card image
               echo '<img src="Loginsystem/uploads/' . $image . '" class="card-img-top" alt="Card Image" style="width: 100%; height: 200px; object-fit: cover;">';
@@ -227,31 +225,28 @@
               // Rest of your code remains the same...
               
               // Modal for full text
-           // Modal for full text
-echo '<div class="modal fade newscard" id="readMoreModal' . $row['NewsID'] . '" tabindex="-1" role="dialog" aria-labelledby="readMoreModalLabel' . $row['NewsID'] . '" aria-hidden="true">';
-echo '<div id="homenews" class="modal-dialog" role="document">';
-echo '<div class="modal-content">';
-echo '<div style="background-color: #603ce3" class="modal-header">';
-echo '<h5 style="color: #fff;" class="modal-title">' . $header . '</h5>';
-echo '<button style="background-color: #603ce3; color: #fff; border:none;" type="button" class="close" data-dismiss="modal" aria-label="Close">';
-echo '<span aria-hidden="true">&times;</span>';
-echo '</button>';
-echo '</div>';
-echo '<div class="modal-body d-flex">';
-// Add styling to the modal image on the right
-echo '<div class="modal-image-container" style="flex: 1;">';
-echo '<img src="Loginsystem/uploads/' . $image . '" class="card-img-top" alt="Card Image" style="width: 100%; height: 300px; object-fit: cover;">';
-echo '</div>';
-// Text content on the left
-echo '<div style="flex: 2; padding-left: 20px;">';
-echo '<p class="card-text mt-4"><small class="text-muted">' . date('F j, Y', strtotime($date)) . ' | ' . date('g:i A', strtotime($time)) . '</small></p>';
-echo '<p class="lead">' . $body . '</p>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-
+              echo '<div class="modal fade newscard" id="readMoreModal' . $row['NewsID'] . '" tabindex="-1" role="dialog" aria-labelledby="readMoreModalLabel' . $row['NewsID'] . '" aria-hidden="true">';
+              echo '<div class="modal-dialog" role="document">';
+              echo '<div class="modal-content">';
+              echo '<div style="background-color: #603ce3" class="modal-header">';
+              echo '<h5 style="color: #fff;" class="modal-title">' . $header . '</h5>';
+              echo '<button style="background-color: #603ce3; color: #fff; border:none;" type="button" class="close" data-dismiss="modal" aria-label="Close">';
+              echo '<span aria-hidden="true">&times;</span>';
+              echo '</button>';
+              echo '</div>';
+              echo '<div class="modal-body">';
+              // Add styling to the modal image
+              echo '<img src="Loginsystem/uploads/' . $image . '" class="card-img-top" alt="Card Image" style="width: 100%; height: 300px; object-fit: cover;">';
+              
+              echo '<div>';
+              echo '<p class="card-text mt-4"><small class="text-muted">' . date('F j, Y', strtotime($date)) . ' | ' . date('g:i A', strtotime($time)) . '</small></p>';
+              echo '</div>';
+              echo '<p class="lead">' . $body . '</p>';
+              echo '</div>';
+              echo '</div>';
+              echo '</div>';
+              echo '</div>';
+              
               
 
               
@@ -538,25 +533,49 @@ In Barangay 409, a pioneering Complain and Identity Tracking System (CITS) has b
 
 <!--contact-->
   
-<section style="display: none; margin-top: 5rem;" id="Contact">
+<section style="display: none; margin-top: 5rem;   " id="Contact">
   <div class="contact-container bg-white custom-shadow mt-n6">
     <div class="form-container">
       <h3>Message Us</h3>
-      <form action="Home.php" class="contact-form ">
-      <input type="text" name="Name" id="Name" placeholder="Your Name" required>
-        <input type="email" name="Email" id="Email" placeholder="Enter Your Email..." required>
-        <textarea name="Emailcon" id="Emailcon" cols="30" rows="10" placeholder="Write Message Here"></textarea>
-        <input style="color: #fff;" type="submit" value="Send" class="send-button" id="messagesent">
+      <form action="" class="contact-form ">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" name="" id="" placeholder="Enter Your Email..." required>
+      <textarea name="" id="" cols="30" rows="10" placeholder="Write Message Here"></textarea>
+      <input type="submit" value="Send" class="send-button" id="btn-colorwhite">
       </form>
     </div>
 <!-- maps-->
 <div class="map">
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.9497197988367!2d120.99470875990235!3d14.601940135825647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9fb6c83552d%3A0x54ad786f735dc69e!2sBrgy.%20409%2C%20Sampaloc%2C%20Manila%2C%201008%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1698386693082!5m2!1sen!2sph" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
+
+
+
   </div>
 </section>
 
 <!--footer section-->
+
+
+
+<section style="display: none;" id="Contact">
+  <h2 style="margin-top: 30px; text-align: center;">Contact</h2>
+  <div class="contact-container bg-white custom-shadow mt-n6">
+    <div class="form-container">
+      <h3>Message Us</h3>
+      <form action="Home.php" class="contact-form">
+        <input type="text" name="Name" id="Name" placeholder="Your Name" required>
+        <input type="email" name="Email" id="Email" placeholder="Enter Your Email..." required>
+        <textarea name="Emailcon" id="Emailcon" cols="30" rows="10" placeholder="Write Message Here"></textarea>
+        <input style="color: #fff;" type="submit" value="Send" class="send-button" id="messagesent">
+      </form>
+    </div>
+    <!-- maps-->
+    <div class="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61774.573266469764!2d121.04906712167968!3d14.604155300000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b9e0aaae72f7%3A0x366ad7b41f98981e!2sLove%2C%20Coffee%20and%20Breakfast!5e0!3m2!1sen!2sph!4v1701085837788!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
 
 <script>
   $(document).ready(function () {
@@ -584,8 +603,6 @@ In Barangay 409, a pioneering Complain and Identity Tracking System (CITS) has b
     });
   });
 </script>
-
-
 
 
 

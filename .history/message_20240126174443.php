@@ -2,10 +2,9 @@
 
 
 <?php
- $servername = "localhost";
- $username = "root";
- $password = "";
- $dbname= "plate-to-place-v-tracking";
+require_once('./Config.php');
+
+
 
 // Create a new instance of the mysqli class for database connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,6 +13,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Name'], $_POST['Email'], $_POST['Emailcon'])) {
@@ -41,15 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Name'], $_POST['Email'
         echo "Error: 'Admin' cannot be null.";
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 

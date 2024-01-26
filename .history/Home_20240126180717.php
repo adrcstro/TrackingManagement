@@ -205,7 +205,7 @@
               $image = $row['Image'];
 
               // Display data in Bootstrap cards
-              echo '<div  class="col-md-4 mb-4 newscard">';
+              echo '<div class="col-md-4 mb-4 newscard">';
               echo '<div class="card h-100 border rounded shadow-sm d-flex flex-column align-items-stretch">';
               // Add styling to the card image
               echo '<img src="Loginsystem/uploads/' . $image . '" class="card-img-top" alt="Card Image" style="width: 100%; height: 200px; object-fit: cover;">';
@@ -227,31 +227,28 @@
               // Rest of your code remains the same...
               
               // Modal for full text
-           // Modal for full text
-echo '<div class="modal fade newscard" id="readMoreModal' . $row['NewsID'] . '" tabindex="-1" role="dialog" aria-labelledby="readMoreModalLabel' . $row['NewsID'] . '" aria-hidden="true">';
-echo '<div id="homenews" class="modal-dialog" role="document">';
-echo '<div class="modal-content">';
-echo '<div style="background-color: #603ce3" class="modal-header">';
-echo '<h5 style="color: #fff;" class="modal-title">' . $header . '</h5>';
-echo '<button style="background-color: #603ce3; color: #fff; border:none;" type="button" class="close" data-dismiss="modal" aria-label="Close">';
-echo '<span aria-hidden="true">&times;</span>';
-echo '</button>';
-echo '</div>';
-echo '<div class="modal-body d-flex">';
-// Add styling to the modal image on the right
-echo '<div class="modal-image-container" style="flex: 1;">';
-echo '<img src="Loginsystem/uploads/' . $image . '" class="card-img-top" alt="Card Image" style="width: 100%; height: 300px; object-fit: cover;">';
-echo '</div>';
-// Text content on the left
-echo '<div style="flex: 2; padding-left: 20px;">';
-echo '<p class="card-text mt-4"><small class="text-muted">' . date('F j, Y', strtotime($date)) . ' | ' . date('g:i A', strtotime($time)) . '</small></p>';
-echo '<p class="lead">' . $body . '</p>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-
+              echo '<div class="modal fade newscard" id="readMoreModal' . $row['NewsID'] . '" tabindex="-1" role="dialog" aria-labelledby="readMoreModalLabel' . $row['NewsID'] . '" aria-hidden="true">';
+              echo '<div class="modal-dialog" role="document">';
+              echo '<div class="modal-content">';
+              echo '<div style="background-color: #603ce3" class="modal-header">';
+              echo '<h5 style="color: #fff;" class="modal-title">' . $header . '</h5>';
+              echo '<button style="background-color: #603ce3; color: #fff; border:none;" type="button" class="close" data-dismiss="modal" aria-label="Close">';
+              echo '<span aria-hidden="true">&times;</span>';
+              echo '</button>';
+              echo '</div>';
+              echo '<div class="modal-body">';
+              // Add styling to the modal image
+              echo '<img src="Loginsystem/uploads/' . $image . '" class="card-img-top" alt="Card Image" style="width: 100%; height: 300px; object-fit: cover;">';
+              
+              echo '<div>';
+              echo '<p class="card-text mt-4"><small class="text-muted">' . date('F j, Y', strtotime($date)) . ' | ' . date('g:i A', strtotime($time)) . '</small></p>';
+              echo '</div>';
+              echo '<p class="lead">' . $body . '</p>';
+              echo '</div>';
+              echo '</div>';
+              echo '</div>';
+              echo '</div>';
+              
               
 
               

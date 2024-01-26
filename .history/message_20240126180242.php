@@ -2,10 +2,10 @@
 
 
 <?php
- $servername = "localhost";
+ $host = "localhost";
  $username = "root";
  $password = "";
- $dbname= "plate-to-place-v-tracking";
+ $database = "plate-to-place-v-tracking";
 
 // Create a new instance of the mysqli class for database connection
 $conn = new mysqli($servername, $username, $password, $dbname);

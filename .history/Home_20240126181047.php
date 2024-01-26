@@ -205,7 +205,7 @@
               $image = $row['Image'];
 
               // Display data in Bootstrap cards
-              echo '<div  class="col-md-4 mb-4 newscard">';
+              echo '<div class="col-md-4 mb-4 newscard">';
               echo '<div class="card h-100 border rounded shadow-sm d-flex flex-column align-items-stretch">';
               // Add styling to the card image
               echo '<img src="Loginsystem/uploads/' . $image . '" class="card-img-top" alt="Card Image" style="width: 100%; height: 200px; object-fit: cover;">';
@@ -229,7 +229,7 @@
               // Modal for full text
            // Modal for full text
 echo '<div class="modal fade newscard" id="readMoreModal' . $row['NewsID'] . '" tabindex="-1" role="dialog" aria-labelledby="readMoreModalLabel' . $row['NewsID'] . '" aria-hidden="true">';
-echo '<div id="homenews" class="modal-dialog" role="document">';
+echo '<div class="modal-dialog" role="document">';
 echo '<div class="modal-content">';
 echo '<div style="background-color: #603ce3" class="modal-header">';
 echo '<h5 style="color: #fff;" class="modal-title">' . $header . '</h5>';
