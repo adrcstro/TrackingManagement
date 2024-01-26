@@ -449,7 +449,7 @@ if (isset($_GET['Username'])) {
 
     $passengerStmt->close();
 } else {
-    echo "0";
+    echo "Username not provided in the URL.";
 }
 
 $conn->close();

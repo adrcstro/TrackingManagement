@@ -41,30 +41,18 @@ class PDF extends TCPDF {
 
         // Watermark image path
         $watermarkPath = '../Images/lettericon.jpg';
-
-        // Position and size of the watermark image
         $this->Image($watermarkPath, 30, 50, 150, 150, '', '', '', false, 300, '', false, false, 0);
-        
-        // Adjust the position and size of the white background rectangle
-        $whiteBgX = 30;
-        $whiteBgY = 50;
-        $whiteBgWidth = 150;
-        $whiteBgHeight = 150;
-        
-        // Set transparency for the white background
+
+        // Set grayscale mode for the watermark
         $this->SetAlpha(0.5);
-        
-        // Whiter background for the watermark (RGB: 255, 255, 255)
-        $this->SetFillColor(255, 255, 255);
-        $this->Rect($whiteBgX, $whiteBgY, $whiteBgWidth, $whiteBgHeight, 'F');
-        
+        $this->SetFillColor(255, 255, 255); // White background for the watermark
+        $this->Rect(30, 50, 150, 150, 'F'); // Fill rectangle with white color
+
         // Reset alpha to default
         $this->SetAlpha(1);
-        
+
         // Set font
         $this->SetFont('times', '', 12);
-        
-        
 
 
         // Logo
@@ -134,22 +122,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
         while ($row = $result->fetch_assoc()) {
             // Letter content resembling a police report
-            $letterContent = "BLOTTER REPORT\n\n";
+            $letterContent = "COMPLAINT REPORT\n\n";
 
-            $letterContent .= "I am writing to formally bring to your attention a matter that requires your immediate Action. Complaint ID: " . $row['ComplaintID'] . ". This report pertains to a " . $row['TypeofComplaint'] . " that transpired on " . $row['DateofReport'] . ". The incident involves ";
-            $letterContent .= "a complainant identified as " . $row['ComplainantName'] . ". The complainant, residing at " . $row['Address'] . " and reachable at " . $row['ContactNumber'] . ", reported an incident involving the complainee, " . $row['NameofComplainee'] . ".\n\n";
+            $letterContent .= "I am writing to formally bring to your attention a matter that requires your immediate consideration. Complaint ID: " . $row['ComplaintID'] . ". This report pertains to a " . $row['TypeofComplaint'] . " that transpired on " . $row['DateofReport'] . ". The incident involves ";
+            $letterContent .= "a complainant identified as " . $row['ComplainantName'] . ", residing at " . $row['Address'] . ", and can be reached at " . $row['ContactNumber'] . ". The complainee, " . $row['NameofComplainee'] . ", is implicated in the occurrence.\n\n";
             
-            $letterContent .= "In providing a comprehensive account of the incident, the complainant details are as follows:\n";
-            $letterContent .= "Name: " . $row['ComplainantName'] . ". ";
-            $letterContent .= "Contact Number: " . $row['ContactNumber'] . ". ";
-            $letterContent .= "Address: " . $row['Address'] . ".\n\n";
-            
-            $letterContent .= "I would like to furnish you with the following details: ";
+            $letterContent .= "In providing a comprehensive account of the incident, I would like to furnish you with the following details: ";
             $letterContent .= $row['IncidentDescription'] . ". Subsequent to this, a diligent investigation has been conducted. Actions taken during the investigation include ";
             $letterContent .= "documenting statements, gathering evidence, and interviewing relevant parties. This report encapsulates the details of the complaint, our investigative efforts, and the actions taken thus far.\n\n";
             
             $letterContent .= "We appreciate your prompt attention to this matter and anticipate your cooperation in resolving the issues presented herein. Thank you for your commitment to maintaining the integrity and safety within our community.\n\n";
             
+        
             // Set the spacing from the top
             $pdf->SetY(50);
         
@@ -157,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $pdf->MultiCell(0, 12, $letterContent);
             
      
-            
+
             // Add a table with two columns and two rows
             $pdf->SetFillColor(200, 220, 255); // Set the background color for the first row
 

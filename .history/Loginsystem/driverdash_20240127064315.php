@@ -368,7 +368,7 @@ function logout() {
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">Schedule</span>
+                                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">Schedule/span>
                                         
                                         <?php
 // Replace with your actual database credentials

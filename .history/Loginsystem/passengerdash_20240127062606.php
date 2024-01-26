@@ -388,7 +388,10 @@ function logout() {
                                         
                                         <?php
 // Your database connection information
-
+$servername = "your_servername";
+$username = "your_username";
+$password = "your_password";
+$dbname = "your_dbname";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -449,7 +452,7 @@ if (isset($_GET['Username'])) {
 
     $passengerStmt->close();
 } else {
-    echo "0";
+    echo "Username not provided in the URL.";
 }
 
 $conn->close();

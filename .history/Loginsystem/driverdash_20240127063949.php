@@ -368,15 +368,13 @@ function logout() {
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">Schedule</span>
+                                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">Schedule/span>
                                         
                                         <?php
-// Replace with your actual database credentials
+// Your database connection information
 
-
-// Assume you have the username available in the $usernameParam variable
-// Replace this with the actual method of obtaining the username parameter
-$usernameParam = $_GET['Username'];
+// Assume you have the driver's name available in the $driverName variable
+$driverName = $_GET['DriverName']; // Replace this with the actual method of obtaining the driver's name parameter
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -386,28 +384,30 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Query to get the count of rows with ComplainStatus = 'Scheduled'
-$sql = "SELECT COUNT(*) AS scheduleCount FROM complainttbl WHERE NameofComplainee = ? AND ComplainStatus = 'Scheduled'";
+// Query to get the count of scheduled complaints for the specific driver
+$sql = "SELECT COUNT(*) AS total FROM complainttbl WHERE NameofComplainee = ? AND ComplainStatus = 'Scheduled'";
 $stmt = $conn->prepare($sql);
 
 if (!$stmt) {
     die("Error in statement preparation: " . $conn->error);
 }
 
-$stmt->bind_param("s", $usernameParam);
+$stmt->bind_param("s", $driverName);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
+    // Fetch the result
     $row = $result->fetch_assoc();
-    $scheduleCount = $row["scheduleCount"];
+    $totalCount = $row["total"];
 
-    // Display the count
-    echo '<span class="h3 font-bold mb-0">' . $scheduleCount . '</span>';
+    // Display the count in the specified HTML element
+    echo '<span class="h3 font-bold mb-0">' . $totalCount . '</span>';
 } else {
-    echo "Error retrieving data from the database: " . $conn->error;
+    echo "Error retrieving data from the database.";
 }
 
+// Close the database connection
 $stmt->close();
 $conn->close();
 ?>

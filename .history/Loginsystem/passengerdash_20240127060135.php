@@ -387,74 +387,34 @@ function logout() {
                                         <span class="h6 font-semibold text-muted text-sm d-block mb-2">Schedule</span>
                                         
                                         <?php
-// Your database connection information
+                    // Your database connection information
+                   
+                    // Create connection
+                    $conn = new mysqli($servername, $username, $password, $dbname);
 
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+                    // Query to get the count of rows in the admintbl table
+                    $sql = "SELECT COUNT(*) AS total FROM complainttbl";
+                    $result = $conn->query($sql);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+                    if ($result->num_rows > 0) {
+                        // Fetch the result
+                        $row = $result->fetch_assoc();
+                        $totalCount = $row["total"];
 
-// Check if Username is provided in the URL
-if (isset($_GET['Username'])) {
-    $usernameParam = $_GET['Username'];
+                        // Display the count in the specified HTML element
+                        echo '<span class="h3 font-bold mb-0">' . $totalCount . '</span>';
+                    } else {
+                        echo "Error retrieving data from the database.";
+                    }
 
-    // Fetch passenger details based on the provided username
-    $passengerSql = "SELECT Name FROM passengertbl WHERE Username = ?";
-    $passengerStmt = $conn->prepare($passengerSql);
-
-    if (!$passengerStmt) {
-        die("Error in statement preparation: " . $conn->error);
-    }
-
-    $passengerStmt->bind_param("s", $usernameParam);
-    $passengerStmt->execute();
-    $passengerResult = $passengerStmt->get_result();
-
-    if ($passengerResult->num_rows > 0) {
-        // Passenger found, fetch details
-        $passengerRow = $passengerResult->fetch_assoc();
-        $passengerName = $passengerRow['Name'];
-
-        // Fetch the count of scheduled complaints based on the passenger name
-        $complaintSql = "SELECT COUNT(*) AS total FROM complainttbl WHERE ComplainantName = ? AND ComplainStatus = 'Scheduled'";
-        $complaintStmt = $conn->prepare($complaintSql);
-
-        if (!$complaintStmt) {
-            die("Error in statement preparation: " . $conn->error);
-        }
-
-        $complaintStmt->bind_param("s", $passengerName);
-        $complaintStmt->execute();
-        $complaintResult = $complaintStmt->get_result();
-
-        if ($complaintResult->num_rows > 0) {
-            // Fetch the result
-            $row = $complaintResult->fetch_assoc();
-            $scheduledComplaintCount = $row["total"];
-
-            // Display the count in the specified HTML element
-            echo '<span class="h3 font-bold mb-0">' . $scheduledComplaintCount . '</span>';
-        } else {
-            echo "Error retrieving scheduled complaint count from the database.";
-        }
-
-        $complaintStmt->close();
-    } else {
-        echo "Passenger not found.";
-    }
-
-    $passengerStmt->close();
-} else {
-    echo "0";
-}
-
-$conn->close();
-?>
-
+                    // Close the database connection
+                    $conn->close();
+                    ?>
                     
 
                                     </div>

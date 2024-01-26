@@ -24,10 +24,11 @@ h1{
 
 }
 
-#abtbtnservice:hover {
-    background-color: #603ce6;
-    color: #fff; /* Optional: Change the text color on hover */
-  }
+#abtbtnservice:hover{
+   
+background-color: #603ce6;
+    }
+
 
 
 a{

@@ -45,14 +45,14 @@ class PDF extends TCPDF {
         // Position and size of the watermark image
         $this->Image($watermarkPath, 30, 50, 150, 150, '', '', '', false, 300, '', false, false, 0);
         
+        // Set grayscale mode for the watermark
+        $this->SetAlpha(0.5);
+        
         // Adjust the position and size of the white background rectangle
         $whiteBgX = 30;
         $whiteBgY = 50;
         $whiteBgWidth = 150;
         $whiteBgHeight = 150;
-        
-        // Set transparency for the white background
-        $this->SetAlpha(0.5);
         
         // Whiter background for the watermark (RGB: 255, 255, 255)
         $this->SetFillColor(255, 255, 255);
@@ -63,7 +63,6 @@ class PDF extends TCPDF {
         
         // Set font
         $this->SetFont('times', '', 12);
-        
         
 
 
@@ -145,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $letterContent .= "Address: " . $row['Address'] . ".\n\n";
             
             $letterContent .= "I would like to furnish you with the following details: ";
-            $letterContent .= $row['IncidentDescription'] . ". Subsequent to this, a diligent investigation has been conducted. Actions taken during the investigation include ";
+            $letterContent .= "<b>" . $row['IncidentDescription'] . "</b>. Subsequent to this, a diligent investigation has been conducted. Actions taken during the investigation include ";
             $letterContent .= "documenting statements, gathering evidence, and interviewing relevant parties. This report encapsulates the details of the complaint, our investigative efforts, and the actions taken thus far.\n\n";
             
             $letterContent .= "We appreciate your prompt attention to this matter and anticipate your cooperation in resolving the issues presented herein. Thank you for your commitment to maintaining the integrity and safety within our community.\n\n";
@@ -157,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $pdf->MultiCell(0, 12, $letterContent);
             
      
-            
+
             // Add a table with two columns and two rows
             $pdf->SetFillColor(200, 220, 255); // Set the background color for the first row
 

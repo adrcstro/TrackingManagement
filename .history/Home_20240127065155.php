@@ -306,8 +306,7 @@ In Barangay 409, a pioneering Complain and Identity Tracking System (CITS) has b
       creating a safer and more efficient environment for both residents and tricycle operators.</p>
   <div class="abtbtn">
     <a href="https://www.philatlas.com/luzon/ncr/manila/barangay-409.html" target="_blank" class="read-more">Read More</a>
-    <a id="abtbtnservice" target="_blank" class="read-more m-2" style="background-color: transparent; border: 1px solid #603ce6; color: #603ce6; transition: background-color 0.3s;" onclick="showservices()">Services</a>
-
+    <a href="https://www.philatlas.com/luzon/ncr/manila/barangay-409.html" target="_blank" class="read-more m-2" style="background-color: transparent; border: 1px solid #603ce6; color: #603ce6;">Services</a>
   </div>
 </div>
 </section>

@@ -151,13 +151,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $letterContent .= "We appreciate your prompt attention to this matter and anticipate your cooperation in resolving the issues presented herein. Thank you for your commitment to maintaining the integrity and safety within our community.\n\n";
             
             // Set the spacing from the top
-            $pdf->SetY(50);
+            $pdf->SetY(40);
         
             // Output the letter content to the PDF
             $pdf->MultiCell(0, 12, $letterContent);
             
      
-            
+
             // Add a table with two columns and two rows
             $pdf->SetFillColor(200, 220, 255); // Set the background color for the first row
 

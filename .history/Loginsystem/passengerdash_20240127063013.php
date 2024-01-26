@@ -420,7 +420,7 @@ if (isset($_GET['Username'])) {
         $passengerName = $passengerRow['Name'];
 
         // Fetch the count of scheduled complaints based on the passenger name
-        $complaintSql = "SELECT COUNT(*) AS total FROM complainttbl WHERE ComplainantName = ? AND ComplainStatus = 'Scheduled'";
+        $complaintSql = "SELECT COUNT(*) AS total FROM complainttbl WHERE ComplainStatus, ComplainantName = ? AND ComplainStatus = 'Scheduled'";
         $complaintStmt = $conn->prepare($complaintSql);
 
         if (!$complaintStmt) {
@@ -434,8 +434,9 @@ if (isset($_GET['Username'])) {
         if ($complaintResult->num_rows > 0) {
             // Fetch the result
             $row = $complaintResult->fetch_assoc();
+            if ($row["ComplainStatus"] === "Scheduled") {
             $scheduledComplaintCount = $row["total"];
-
+            }
             // Display the count in the specified HTML element
             echo '<span class="h3 font-bold mb-0">' . $scheduledComplaintCount . '</span>';
         } else {

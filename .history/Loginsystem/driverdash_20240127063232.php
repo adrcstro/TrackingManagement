@@ -368,50 +368,37 @@ function logout() {
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">Schedule</span>
+                                        <span class="h6 font-semibold text-muted text-sm d-block mb-2">Schedule/span>
                                         
                                         <?php
-// Replace with your actual database credentials
+                    // Your database connection information
+                   
+                    // Create connection
+                    $conn = new mysqli($servername, $username, $password, $dbname);
 
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
 
-// Assume you have the username available in the $usernameParam variable
-// Replace this with the actual method of obtaining the username parameter
-$usernameParam = $_GET['Username'];
+                    // Query to get the count of rows in the admintbl table
+                    $sql = "SELECT COUNT(*) AS total FROM complainttbl";
+                    $result = $conn->query($sql);
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+                    if ($result->num_rows > 0) {
+                        // Fetch the result
+                        $row = $result->fetch_assoc();
+                        $totalCount = $row["total"];
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+                        // Display the count in the specified HTML element
+                        echo '<span class="h3 font-bold mb-0">' . $totalCount . '</span>';
+                    } else {
+                        echo "Error retrieving data from the database.";
+                    }
 
-// Query to get the count of rows with ComplainStatus = 'Scheduled'
-$sql = "SELECT COUNT(*) AS scheduleCount FROM complainttbl WHERE NameofComplainee = ? AND ComplainStatus = 'Scheduled'";
-$stmt = $conn->prepare($sql);
-
-if (!$stmt) {
-    die("Error in statement preparation: " . $conn->error);
-}
-
-$stmt->bind_param("s", $usernameParam);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $scheduleCount = $row["scheduleCount"];
-
-    // Display the count
-    echo '<span class="h3 font-bold mb-0">' . $scheduleCount . '</span>';
-} else {
-    echo "Error retrieving data from the database: " . $conn->error;
-}
-
-$stmt->close();
-$conn->close();
-?>
-
+                    // Close the database connection
+                    $conn->close();
+                    ?>
                     
 
                                     </div>

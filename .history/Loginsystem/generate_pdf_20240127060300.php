@@ -157,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $pdf->MultiCell(0, 12, $letterContent);
             
      
-            
+            $pdf->SetY(50);
             // Add a table with two columns and two rows
             $pdf->SetFillColor(200, 220, 255); // Set the background color for the first row
 

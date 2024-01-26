@@ -134,8 +134,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
         while ($row = $result->fetch_assoc()) {
             // Letter content resembling a police report
-            $letterContent = "BLOTTER REPORT\n\n";
-
+            $letterContent = '<div style="text-shadow: 2px 2px 4px #888888;">';
+            $letterContent .= "BLOTTER REPORT\n\n";
+            
             $letterContent .= "I am writing to formally bring to your attention a matter that requires your immediate Action. Complaint ID: " . $row['ComplaintID'] . ". This report pertains to a " . $row['TypeofComplaint'] . " that transpired on " . $row['DateofReport'] . ". The incident involves ";
             $letterContent .= "a complainant identified as " . $row['ComplainantName'] . ". The complainant, residing at " . $row['Address'] . " and reachable at " . $row['ContactNumber'] . ", reported an incident involving the complainee, " . $row['NameofComplainee'] . ".\n\n";
             
@@ -149,6 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $letterContent .= "documenting statements, gathering evidence, and interviewing relevant parties. This report encapsulates the details of the complaint, our investigative efforts, and the actions taken thus far.\n\n";
             
             $letterContent .= "We appreciate your prompt attention to this matter and anticipate your cooperation in resolving the issues presented herein. Thank you for your commitment to maintaining the integrity and safety within our community.\n\n";
+            $letterContent .= '</div>';
             
             // Set the spacing from the top
             $pdf->SetY(50);
@@ -157,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $pdf->MultiCell(0, 12, $letterContent);
             
      
-            
+
             // Add a table with two columns and two rows
             $pdf->SetFillColor(200, 220, 255); // Set the background color for the first row
 

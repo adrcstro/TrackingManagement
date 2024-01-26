@@ -434,8 +434,9 @@ if (isset($_GET['Username'])) {
         if ($complaintResult->num_rows > 0) {
             // Fetch the result
             $row = $complaintResult->fetch_assoc();
+            if ($row["ComplainStatus"] === "Scheduled") {
             $scheduledComplaintCount = $row["total"];
-
+            }
             // Display the count in the specified HTML element
             echo '<span class="h3 font-bold mb-0">' . $scheduledComplaintCount . '</span>';
         } else {

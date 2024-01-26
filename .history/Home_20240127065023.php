@@ -108,8 +108,8 @@
             <div class="col-lg-8">
             <h6 class="text-white">Welcome to BRGY.409 Plate-to-Place Tricycle Tracking Management</h6>
             <h1 class="display-1 fw-bold text-white">Report/File Complaint</h1>
-            <a href="#" class="btn btn-brand" onclick="redirectToSignUp()">Take an Action</a>
-            <a href="#aboutus" class="btn btn-secondary" onclick="showabout()">Get Started</a>
+            <a href="#" class="btn btn-brand"onclick="redirectToSignUp()">Take an Action</a>
+            <a href="#" class="btn btn-secondary" onclick="showabout()"  >Get Started</a>
         </div>
       </div>
     </div>
@@ -123,8 +123,8 @@
             <div class="col-lg-8">
             <h6 class="text-white">Welcome to Plate-to-Place Tricycle Tracking Management</h6>
             <h1 class="display-1 fw-bold text-white">Fast Public Service</h1>
-            <a href="#" class="btn btn-brand" onclick="redirectToSignUp()">Take an Action</a>
-            <a href="#aboutus" class="btn btn-secondary" onclick="showabout()">Get Started</a>
+            <a href="#" class="btn btn-brand">Take an Action</a>
+            <a href="#" class="btn btn-secondary" id="transbtn">Get Started</a>
         </div>
         </div>
       </div>
@@ -139,8 +139,8 @@
             <div class="col-lg-8">
             <h6 class="text-white">Welcome to Plate-to-Place Tricycle Tracking Management</h6>
             <h1 class="display-1 fw-bold text-white">Track Vehicle Information</h1>
-            <a href="#" class="btn btn-brand" onclick="redirectToSignUp()">Take an Action</a>
-            <a href="#aboutus" class="btn btn-secondary" onclick="showabout()">Get Started</a>
+            <a href="#" class="btn btn-brand">Take an Action</a>
+            <a href="#" class="btn btn-secondary">Get Started</a>
         </div>
         </div>
       </div>
@@ -306,8 +306,7 @@ In Barangay 409, a pioneering Complain and Identity Tracking System (CITS) has b
       creating a safer and more efficient environment for both residents and tricycle operators.</p>
   <div class="abtbtn">
     <a href="https://www.philatlas.com/luzon/ncr/manila/barangay-409.html" target="_blank" class="read-more">Read More</a>
-    <a id="abtbtnservice" target="_blank" class="read-more m-2" style="background-color: transparent; border: 1px solid #603ce6; color: #603ce6; transition: background-color 0.3s;" onclick="showservices()">Services</a>
-
+    <a href="https://www.philatlas.com/luzon/ncr/manila/barangay-409.html" target="_blank" class="read-more m-2" style="background-color: transparent; border: 1px solid #603ce6; color: #603ce6;">Services</a>
   </div>
 </div>
 </section>
