@@ -2667,8 +2667,8 @@ if (isset($_GET['Username'])) {
                 <div class="modal-body">
                 <form id="updateForm" action="driverdash.php"  method="post">
                 
-                <label style="display: none;" for="driverID">Confirm your Driver ID</label>
-                <select  style="display: none;" name="driverID" id="driverID" class="form-control" required>
+                <label style="display: block;" for="driverID">Confirm your Driver ID</label>
+                <select  style="display: block;" name="driverID" id="driverID" class="form-control" required>
     <?php
 
     if (isset($_GET['Username'])) {

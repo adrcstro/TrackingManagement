@@ -5,10 +5,7 @@
 require_once('../tcpdf.php');
 
 // Your database connection details
-$servername = "localhost"; // Replace with your server name
-$username = "root"; // Replace with your username
-$password = ""; // Replace with your password
-$dbname = "plate-to-place-v-tracking";
+require_once('Config.php');
 // Organization details
 $organizationName = "Republic of the Philippines";
 $organizationAddress = "City of Manila";

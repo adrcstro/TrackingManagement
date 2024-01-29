@@ -87,7 +87,7 @@ echo '</div>';
 
 echo '</div>';
 echo '<div>';
-echo '<img src="uploads/' . $row['PermittoOperate'] . '" style="border: 1px solid #ccc; border-radius: 5px; margin-top: 1rem; margin-right: 3rem; width: 350px; height: 300px;">';
+echo '<img src="uploads/' . $row['PermittoOperate'] . '" style="border: 1px solid #ccc; border-radius: 5px; margin-top: 4rem; margin-right: 3rem; width: 350px; height: 300px;">';
 echo '</div>';
 echo '</div>';
       }

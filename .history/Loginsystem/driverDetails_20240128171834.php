@@ -64,7 +64,7 @@ echo '<style>
 
 echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">';
 
-echo '<div class="input-group mb-3">';  
+echo '<div class="input-group mb-3">';
 echo '<input type="text" class="form-control custom-input" placeholder="Recipient\'s username" aria-label="Recipient\'s username" aria-describedby="basic-addon2" value="Drivers License:                  ' . $row["DriversLicense"] . '" readonly>';
 echo '<div class="input-group-append">';
 echo '<a href="view-details.php?type=license&id=' . urlencode($row["DriversLicense"]) . '" target="_blank" class="btn btn-outline-secondary transparent-btn" type="button">View  <i class="fas fa-eye"></i></a>';
@@ -72,7 +72,7 @@ echo '</div>';
 echo '</div>';
 
 echo '<div class="input-group mb-3">';
-echo '<input type="text" class="form-control custom-input" placeholder="Recipient\'s username" aria-label="Recipient\'s username" aria-describedby="basic-addon2" value="Vihicle Registration:            ' . $row["VehicleRegistration"] . '" readonly>';
+echo '<input type="text" class="form-control custom-input" placeholder="Recipient\'s username" aria-label="Recipient\'s username" aria-describedby="basic-addon2" value="Vehicle Registration:            ' . $row["VehicleRegistration"] . '" readonly>';
 echo '<div class="input-group-append">';
 echo '<a href="view-details.php?type=registration&id=' . urlencode($row["VehicleRegistration"]) . '" target="_blank" class="btn btn-outline-secondary transparent-btn" type="button">View  <i class="fas fa-eye"></i></a>';
 echo '</div>';
@@ -84,10 +84,9 @@ echo '</div>';
 
 
 
-
 echo '</div>';
 echo '<div>';
-echo '<img src="uploads/' . $row['PermittoOperate'] . '" style="border: 1px solid #ccc; border-radius: 5px; margin-top: 1rem; margin-right: 3rem; width: 350px; height: 300px;">';
+echo '<img src="uploads/' . $row['PermittoOperate'] . '" style="border: 1px solid #ccc; border-radius: 5px; margin-top: -6rem; margin-right: 3rem; width: 350px; height: 300px;">';
 echo '</div>';
 echo '</div>';
       }

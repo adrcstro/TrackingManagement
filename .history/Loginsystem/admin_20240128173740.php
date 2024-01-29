@@ -1732,7 +1732,6 @@ $(function() {
                         <?php
 // Replace with your actual database credentials
 
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -1741,13 +1740,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch data from the admin table
-$sql = "SELECT * FROM driverstbl";
+// Pagination settings
+$recordsPerPage = 5;
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$offset = ($page - 1) * $recordsPerPage;
+
+// Fetch data from the admin table with pagination
+$sql = "SELECT * FROM driverstbl LIMIT $offset, $recordsPerPage";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo '<table class="table table-hover table-nowrap">
-            <tr>
             <thead class="thead-light">
                 <th>Profile</th>
                 <th>Drivers Name</th>
@@ -1758,13 +1761,13 @@ if ($result->num_rows > 0) {
                 <th>Vehicle Picture</th>
                 <th>Phone Number</th>
                 <th>Home Address</th>
-                </thead>
-                </tr>';
+            </thead>
+            <tbody>';
               
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
+    // Output data of each row
+    while ($row = $result->fetch_assoc()) {
         echo '<tr>
-        <td><img src="uploads/' . $row["Profile"] . '" alt="Item Image" width="60"></td>
+                <td><img src="uploads/' . $row["Profile"] . '" alt="Item Image" width="60"></td>
                 <td>' . $row["Username"] . '</td>
                 <td>' . $row["Age"] . '</td>
                 <td>' . $row["Password"] . '</td>
@@ -1773,14 +1776,25 @@ if ($result->num_rows > 0) {
                 <td>' . $row["PermittoOperate"] . '</td>
                 <td>' . $row["PhoneNumber"] . '</td>
                 <td>' . $row["HomeAddress"] . '</td>
-            </tr>';
+              </tr>';
     }
-    echo '</table>';
+    echo '</tbody></table>';
+
+    // Pagination links
+    $totalPages = ceil($conn->query("SELECT COUNT(*) FROM driverstbl")->fetch_row()[0] / $recordsPerPage);
+
+    echo '<div class="pagination">';
+    for ($i = 1; $i <= $totalPages; $i++) {
+        echo '<a href="?page=' . $i . '">' . $i . '</a>';
+    }
+    echo '</div>';
 } else {
     echo "0 results";
 }
+
 $conn->close();
-?>            
+?>
+
                         </table>
                     </div>
 

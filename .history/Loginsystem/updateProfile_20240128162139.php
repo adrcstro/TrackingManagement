@@ -35,3 +35,4 @@ if (isset($_POST['driverID'])) {
     // Display error message if driverID is not provided
     echo json_encode(['status' => 'error', 'message' => 'Driver ID not provided']);
 }
+?>

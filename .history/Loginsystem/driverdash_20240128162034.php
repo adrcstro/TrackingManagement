@@ -2693,7 +2693,7 @@ if (isset($_GET['Username'])) {
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo '<option value="' . htmlspecialchars($row["Id"]) . '">' . htmlspecialchars($row["Id"]) . '</option>';
+                echo '<option value="' . htmlspecialchars($row["id"]) . '">' . htmlspecialchars($row["id"]) . '</option>';
             }
         } else {
             echo "<option value='' disabled selected>Select ID</option>";

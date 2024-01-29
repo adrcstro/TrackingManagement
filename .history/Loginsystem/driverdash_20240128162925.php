@@ -2667,8 +2667,8 @@ if (isset($_GET['Username'])) {
                 <div class="modal-body">
                 <form id="updateForm" action="driverdash.php"  method="post">
                 
-                <label style="display: none;" for="driverID">Confirm your Driver ID</label>
-                <select  style="display: none;" name="driverID" id="driverID" class="form-control" required>
+                <label for="driverID">Confirm your Driver ID</label>
+<select name="driverID" id="driverID" class="form-control" required>
     <?php
 
     if (isset($_GET['Username'])) {
@@ -2693,7 +2693,7 @@ if (isset($_GET['Username'])) {
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo '<option value="' . htmlspecialchars($row["Id"]) . '">' . htmlspecialchars($row["Id"]) . '</option>';
+                echo '<option value="' . htmlspecialchars($row["id"]) . '">' . htmlspecialchars($row["id"]) . '</option>';
             }
         } else {
             echo "<option value='' disabled selected>Select ID</option>";
@@ -2709,6 +2709,7 @@ if (isset($_GET['Username'])) {
 
     ?>
 </select>
+
 
                 <div id="Filefield" class="input-wrap">
   <label for="profile" class="custom-label">Select Image</label>

@@ -1732,7 +1732,6 @@ $(function() {
                         <?php
 // Replace with your actual database credentials
 
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -1741,13 +1740,25 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch data from the admin table
-$sql = "SELECT * FROM driverstbl";
+// Define the number of rows per page
+$rowsPerPage = 5;
+
+// Get the current page number
+if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+    $currentPage = intval($_GET['page']);
+} else {
+    $currentPage = 1;
+}
+
+// Calculate the offset for the SQL query
+$offset = ($currentPage - 1) * $rowsPerPage;
+
+// Fetch data from the admin table with pagination
+$sql = "SELECT * FROM driverstbl LIMIT $offset, $rowsPerPage";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo '<table class="table table-hover table-nowrap">
-            <tr>
             <thead class="thead-light">
                 <th>Profile</th>
                 <th>Drivers Name</th>
@@ -1758,13 +1769,13 @@ if ($result->num_rows > 0) {
                 <th>Vehicle Picture</th>
                 <th>Phone Number</th>
                 <th>Home Address</th>
-                </thead>
-                </tr>';
+            </thead>
+            <tbody>';
               
     // output data of each row
     while($row = $result->fetch_assoc()) {
         echo '<tr>
-        <td><img src="uploads/' . $row["Profile"] . '" alt="Item Image" width="60"></td>
+                <td><img src="uploads/' . $row["Profile"] . '" alt="Item Image" width="60"></td>
                 <td>' . $row["Username"] . '</td>
                 <td>' . $row["Age"] . '</td>
                 <td>' . $row["Password"] . '</td>
@@ -1775,12 +1786,22 @@ if ($result->num_rows > 0) {
                 <td>' . $row["HomeAddress"] . '</td>
             </tr>';
     }
-    echo '</table>';
+    echo '</tbody></table>';
+
+    // Pagination links
+    $totalPages = ceil($result->num_rows / $rowsPerPage);
+    echo '<div class="pagination">';
+    for ($i = 1; $i <= $totalPages; $i++) {
+        echo '<a href="?page=' . $i . '">' . $i . '</a>';
+    }
+    echo '</div>';
 } else {
     echo "0 results";
 }
+
 $conn->close();
-?>            
+?>
+
                         </table>
                     </div>
 

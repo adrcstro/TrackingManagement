@@ -2055,7 +2055,7 @@ $conn->close();
                 </form>
                 <div id="searchResults"></div>
             </div>
-            <div class="modal-footer d-flex justify-content-center ">
+            <div class="modal-footer">
 
             <button type="button" class="btn btn-primary btn-sm m-1" id="trackButton" data-dismiss="modal"  data-target="#mapModal" data-toggle="modal">
     <i class="bi bi-map"></i> View in Maps

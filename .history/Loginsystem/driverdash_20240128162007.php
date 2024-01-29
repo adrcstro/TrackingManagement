@@ -2693,7 +2693,7 @@ if (isset($_GET['Username'])) {
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo '<option value="' . htmlspecialchars($row["Id"]) . '">' . htmlspecialchars($row["Id"]) . '</option>';
+                echo '<option value="' . htmlspecialchars($row["id"]) . '">' . htmlspecialchars($row["id"]) . '</option>';
             }
         } else {
             echo "<option value='' disabled selected>Select ID</option>";
@@ -2771,12 +2771,6 @@ $(document).ready(function(){
                         text: 'Error updating profile. Please try again.',
                     });
                 }
-            });
-        } else {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Warning',
-                text: 'Please select both ID and profile image.',
             });
         }
     });

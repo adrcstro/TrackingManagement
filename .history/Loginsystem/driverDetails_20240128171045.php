@@ -33,8 +33,7 @@ if (isset($_GET['search'])) {
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo '<img src="uploads/' . $row['Profile'] . '" style="border: 1px solid #ccc; border-radius: 5px; margin-top: 2rem; margin-left: 6rem; width: 100px; height: 100px;">';
-
+            echo '<img src="uploads/' . $row['Profile'] . '" style="border: 1px solid #ccc; border-radius: 5px; margin-top: 2rem; margin-right: 3rem; width: 100px; height: 100px;">';
             // Input Fields
             echo '<div style="display: flex; flex-wrap: wrap;">';
            
@@ -87,7 +86,7 @@ echo '</div>';
 
 echo '</div>';
 echo '<div>';
-echo '<img src="uploads/' . $row['PermittoOperate'] . '" style="border: 1px solid #ccc; border-radius: 5px; margin-top: 1rem; margin-right: 3rem; width: 350px; height: 300px;">';
+echo '<img src="uploads/' . $row['PermittoOperate'] . '" style="border: 1px solid #ccc; border-radius: 5px; margin-top: 2rem; margin-right: 3rem; width: 350px; height: 300px;">';
 echo '</div>';
 echo '</div>';
       }

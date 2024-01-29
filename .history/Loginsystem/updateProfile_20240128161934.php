@@ -3,7 +3,10 @@ if (isset($_POST['driverID'])) {
     $driverID = $_POST['driverID'];
 
     // Database connection parameters
-    require_once('Config.php');
+    $servername = "localhost"; // Replace with your server name
+    $username = "root"; // Replace with your username
+    $password = ""; // Replace with your password
+    $dbname = "plate-to-place-v-tracking"; 
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -35,3 +38,4 @@ if (isset($_POST['driverID'])) {
     // Display error message if driverID is not provided
     echo json_encode(['status' => 'error', 'message' => 'Driver ID not provided']);
 }
+?>

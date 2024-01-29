@@ -9,6 +9,7 @@ $servername = "localhost"; // Replace with your server name
 $username = "root"; // Replace with your username
 $password = ""; // Replace with your password
 $dbname = "plate-to-place-v-tracking";
+
 // Organization details
 $organizationName = "Republic of the Philippines";
 $organizationAddress = "City of Manila";

@@ -1732,7 +1732,6 @@ $(function() {
                         <?php
 // Replace with your actual database credentials
 
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -1741,30 +1740,44 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch data from the admin table
-$sql = "SELECT * FROM driverstbl";
+// Set the number of rows to display per page
+$rowsPerPage = 5;
+
+// Determine the current page number
+if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+    $currentPage = intval($_GET['page']);
+} else {
+    $currentPage = 1;
+}
+
+// Calculate the offset for the query
+$offset = ($currentPage - 1) * $rowsPerPage;
+
+// Fetch data from the admin table with pagination
+$sql = "SELECT * FROM driverstbl LIMIT $offset, $rowsPerPage";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo '<table class="table table-hover table-nowrap">
-            <tr>
             <thead class="thead-light">
-                <th>Profile</th>
-                <th>Drivers Name</th>
-                <th>Unit#</th>
-                <th>Plate Number</th>
-                <th>Drivers License</th>
-                <th>Vehicle Registration</th>
-                <th>Vehicle Picture</th>
-                <th>Phone Number</th>
-                <th>Home Address</th>
-                </thead>
-                </tr>';
-              
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
+                <tr>
+                    <th>Profile</th>
+                    <th>Drivers Name</th>
+                    <th>Unit#</th>
+                    <th>Plate Number</th>
+                    <th>Drivers License</th>
+                    <th>Vehicle Registration</th>
+                    <th>Vehicle Picture</th>
+                    <th>Phone Number</th>
+                    <th>Home Address</th>
+                </tr>
+            </thead>
+            <tbody>';
+
+    // Output data of each row
+    while ($row = $result->fetch_assoc()) {
         echo '<tr>
-        <td><img src="uploads/' . $row["Profile"] . '" alt="Item Image" width="60"></td>
+                <td><img src="uploads/' . $row["Profile"] . '" alt="Item Image" width="60"></td>
                 <td>' . $row["Username"] . '</td>
                 <td>' . $row["Age"] . '</td>
                 <td>' . $row["Password"] . '</td>
@@ -1775,12 +1788,33 @@ if ($result->num_rows > 0) {
                 <td>' . $row["HomeAddress"] . '</td>
             </tr>';
     }
-    echo '</table>';
+
+    echo '</tbody></table>';
+
+    // Pagination links
+    $totalRows = $result->num_rows;
+    $totalPages = ceil($totalRows / $rowsPerPage);
+
+    echo '<nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="?page=1">First</a></li>';
+
+    for ($i = 1; $i <= $totalPages; $i++) {
+        echo '<li class="page-item ' . ($currentPage == $i ? 'active' : '') . '">
+                <a class="page-link" href="?page=' . $i . '">' . $i . '</a>
+            </li>';
+    }
+
+    echo '<li class="page-item"><a class="page-link" href="?page=' . $totalPages . '">Last</a></li>
+          </ul>
+        </nav>';
 } else {
     echo "0 results";
 }
+
 $conn->close();
-?>            
+?>
+
                         </table>
                     </div>
 
@@ -2055,7 +2089,7 @@ $conn->close();
                 </form>
                 <div id="searchResults"></div>
             </div>
-            <div class="modal-footer d-flex justify-content-center ">
+            <div class="modal-footer">
 
             <button type="button" class="btn btn-primary btn-sm m-1" id="trackButton" data-dismiss="modal"  data-target="#mapModal" data-toggle="modal">
     <i class="bi bi-map"></i> View in Maps
