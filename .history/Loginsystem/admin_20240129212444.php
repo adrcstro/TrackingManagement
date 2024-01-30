@@ -791,12 +791,12 @@ function logout() {
                 <label for="isSeniorCitizen">Senior Citizen</label>
                 </div>
                 
-                <div class="card-footer border-0 py-3 d-grid gap-1 d-md-flex justify-content-md-center mt-4">
-                    <button class="btn btn-primary btn-sm w-100 mb-1" id="Buttoncalculator" onclick="calculateFare()">
+                <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+                    <button class="btn btn-primary btn-sm w-100 mb-2" id="Buttoncalculator" onclick="calculateFare()">
                         <i class="fas fa-calculator "></i> Calculate Fare
                     </button>
 
-                    <button id="calculatorbutton" class="btn btn-danger btn-sm w-100 mb-1" onclick="resetInputs()">
+                    <button id="calculatorbutton" class="btn btn-danger btn-sm w-100 mb-2" onclick="resetInputs()">
                         <i class="fas fa-undo"></i> Reset Inputs
                     </button>
                 </div>

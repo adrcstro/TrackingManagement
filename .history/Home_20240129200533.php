@@ -227,29 +227,34 @@
               
               // Modal for full text
            // Modal for full text
-echo '<div class="modal fade newscard" id="readMoreModal' . $row['NewsID'] . '" tabindex="-1" role="dialog" aria-labelledby="readMoreModalLabel' . $row['NewsID'] . '" aria-hidden="true">';
-echo '<div id="homenews" class="modal-dialog" role="document">';
-echo '<div class="modal-content">';
-echo '<div style="background-color: #603ce3" class="modal-header">';
-echo '<h5 style="color: #fff;" class="modal-title">' . $header . '</h5>';
-echo '<button style="background-color: #603ce3; color: #fff; border:none;" type="button" class="close" data-dismiss="modal" aria-label="Close">';
-echo '<span aria-hidden="true">&times;</span>';
-echo '</button>';
-echo '</div>';
-echo '<div class="modal-body d-flex">';
-// Add styling to the modal image on the right
-echo '<div class="modal-image-container" style="flex: 1;">';
-echo '<img src="Loginsystem/uploads/' . $image . '" class="card-img-top" alt="Card Image" style="width: 100%; height: 300px; object-fit: cover;">';
-echo '</div>';
-// Text content on the left
-echo '<div style="flex: 2; padding-left: 20px;">';
-echo '<p class="card-text mt-4"><small class="text-muted">' . date('F j, Y', strtotime($date)) . ' | ' . date('g:i A', strtotime($time)) . '</small></p>';
-echo '<p style="text-align: justify;">' . $body . '</p>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
+        
+           echo "<div class=\"modal fade newscard\" id=\"readMoreModal{$row['NewsID']}\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"readMoreModalLabel{$row['NewsID']}\" aria-hidden=\"true\">";
+           echo '<div id="homenews" class="modal-dialog modal-lg" role="document">'; // Added 'modal-lg' for larger modal on larger screens
+           echo '<div class="modal-content">';
+           echo '<div style="background-color: #603ce3" class="modal-header">';
+           echo "<h5 style=\"color: #fff;\" class=\"modal-title\">{$header}</h5>";
+           echo '<button style="background-color: #603ce3; color: #fff; border:none;" type="button" class="close" data-dismiss="modal" aria-label="Close">';
+           echo '<span aria-hidden="true">&times;</span>';
+           echo '</button>';
+           echo '</div>';
+           echo '<div class="modal-body d-flex flex-wrap">'; // Added 'flex-wrap' for responsiveness
+           
+           // Add styling to the modal image on the right
+           echo '<div class="modal-image-container" style="flex: 1; min-width: 200px; max-width: 50%;">'; // Set min-width and max-width for responsiveness
+           echo "<img src=\"Loginsystem/uploads/{$image}\" class=\"card-img-top img-fluid\" alt=\"Card Image\">";
+           echo '</div>';
+           
+           // Text content on the left
+           echo '<div style="flex: 2; padding-left: 20px;">';
+           echo "<p class=\"card-text mt-4\"><small class=\"text-muted\">" . date('F j, Y', strtotime($date)) . " | " . date('g:i A', strtotime($time)) . "</small></p>";
+           echo "<p  >{$body}</p>";
+           echo '</div>';
+           echo '</div>';
+           echo '</div>';
+           echo '</div>';
+           echo '</div>';
+         
+           
 
               
 

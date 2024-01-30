@@ -791,12 +791,12 @@ function logout() {
                 <label for="isSeniorCitizen">Senior Citizen</label>
                 </div>
                 
-                <div class="card-footer border-0 py-3 d-grid gap-1 d-md-flex justify-content-md-center mt-4">
-                    <button class="btn btn-primary btn-sm w-100 mb-1" id="Buttoncalculator" onclick="calculateFare()">
-                        <i class="fas fa-calculator "></i> Calculate Fare
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn btn-primary" id="Buttoncalculator" onclick="calculateFare()">
+                        <i class="fas fa-calculator"></i> Calculate Fare
                     </button>
 
-                    <button id="calculatorbutton" class="btn btn-danger btn-sm w-100 mb-1" onclick="resetInputs()">
+                    <button id="calculatorbutton" class="btn btn-danger" onclick="resetInputs()">
                         <i class="fas fa-undo"></i> Reset Inputs
                     </button>
                 </div>
@@ -894,23 +894,23 @@ $conn->close();
                     </div>
 
 
-                    <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
+                 <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
 
                   
-                 <button type="button" class="btn btn-success btn-sm w-100 mb-2" data-toggle="modal" data-target="#postitemmodal" >
+                 <button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#postitemmodal" >
     <i class="bi bi-plus-circle"></i> Post Item
 </button>
 
 
-<button type="button" class="btn btn-warning btn-sm w-100 mb-2" data-toggle="modal" data-target="#edititem">
+<button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#edititem">
     <i class="bi bi-pencil"></i> Update
 </button>
 
-<button type="button" class="btn btn-danger btn-sm w-100 mb-2" data-toggle="modal"  data-target="#deletlostitem">
+<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#deletlostitem">
     <i class="bi bi-trash"></i> Delete
 </button>   
 
-<button type="button" class="btn btn-info btn-sm w-100 mb-2" id="refreshButton13">
+<button type="button" class="btn btn-info btn-sm m-1" id="refreshButton13">
 <i class="bi bi-file-text"></i>  Refresh
 </button>
 
@@ -1331,23 +1331,24 @@ $conn->close();
                         </table>
                     </div>
 
-                    <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
+
+                 <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
        
-                 <button type="button" class="btn btn-success btn-sm w-100 mb-2" data-toggle="modal" data-target="#posfoundtitemmodal" >
+                 <button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#posfoundtitemmodal" >
     <i class="bi bi-plus-circle"></i> Post Found Item
 </button>
 
 
-<button type="button" class="btn btn-warning btn-sm w-100 mb-2" data-toggle="modal" data-target="#editfounditem">
+<button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#editfounditem">
     <i class="bi bi-pencil"></i> Update
 </button>
 
-<button type="button" class="btn btn-danger btn-sm w-100 mb-2" data-toggle="modal"  data-target="#deletfoundlostitem">
+<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#deletfoundlostitem">
     <i class="bi bi-trash"></i> Delete
 </button>   
 
 
-<button type="button" class="btn btn-info btn-sm w-100 mb-2" id="refreshButton14">
+<button type="button" class="btn btn-info btn-sm m-1" id="refreshButton14">
 <i class="bi bi-file-text"></i>  Refresh
 </button>
 
@@ -1784,24 +1785,24 @@ $conn->close();
                     </div>
 
 
-                    <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
-                 <button type="button" class="btn btn-warning btn-sm w-100 mb-2" data-toggle="modal" data-target="#Driverupdate">
+                 <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
+                 <button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#Driverupdate">
     <i class="bi bi-pencil"></i> Update
 </button>
 
-<button type="button" class="btn btn-danger btn-sm w-100 mb-2" data-toggle="modal"  data-target="#Driverdelete">
+<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#Driverdelete">
     <i class="bi bi-trash"></i> Delete
 </button>
-<button type="button" class="btn btn-primary btn-sm w-100 mb-2" id="trackButton" data-toggle="modal" data-target="#Drivertrack">
+<button type="button" class="btn btn-primary btn-sm m-1" id="trackButton" data-toggle="modal" data-target="#Drivertrack">
     <i class="bi bi-geo"></i> Track
 </button>
 
-<button id="open-modal-button"  class="btn btn-secondary btn-sm w-100 mb-2">
+<button id="open-modal-button"  class="btn btn-secondary btn-sm m-1">
     <i class="fas fa-chart-line"></i> Ratings
 </button>
 
 
-<button type="button" class="btn btn-info btn-sm w-100 mb-2" id="refreshButton3">
+<button type="button" class="btn btn-info btn-sm m-1" id="refreshButton3">
 <i class="bi bi-file-text"></i>  Refresh
 </button>
 
@@ -2288,16 +2289,16 @@ $conn->close();
 
                     </table>
                     </div>
-                    <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
-<button type="button" class="btn btn-warning btn-sm w-100 mb-2" data-toggle="modal" data-target="#Passengerupdate">
+                    <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
+<button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#Passengerupdate">
     <i class="bi bi-pencil"></i> Update
 </button>
 
-<button type="button" class="btn btn-danger btn-sm w-100 mb-2" data-toggle="modal"  data-target="#passengerdelete">
+<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#passengerdelete">
     <i class="bi bi-trash"></i> Delete
 </button>
 
- <button type="button" class="btn btn-info btn-sm w-100 mb-2" id="refreshButton2">
+ <button type="button" class="btn btn-info btn-sm m-1" id="refreshButton2">
         <i class="bi bi-arrow-clockwise"></i> Refresh
     </button>
 <script>
@@ -2615,23 +2616,23 @@ $conn->close();
                     </table>
                     </div>
                     <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
-                    <button type="button" class="btn btn-success  btn-sm w-100 mb-2" data-toggle="modal" data-target="#ProcessComplain" >
+                    <button type="button" class="btn btn-success  btn-sm w-80 mb-2" data-toggle="modal" data-target="#ProcessComplain" >
                     <i class="bi bi-file-earmark-plus"></i> Process Complain
 </button>
-                    <button type="button" class="btn btn-primary  btn-sm w-100 mb-2" data-toggle="modal" data-target="#ComplainUpdate">
+                    <button type="button" class="btn btn-primary  btn-sm w-80 mb-2" data-toggle="modal" data-target="#ComplainUpdate">
     <i class="bi bi-arrow-up"></i> Modify
 </button>
 
-<button type="button" class="btn btn-danger  btn-sm w-100 mb-2" data-toggle="modal"  data-target="#Complaindelete">
+<button type="button" class="btn btn-danger  btn-sm w-80 mb-2" data-toggle="modal"  data-target="#Complaindelete">
     <i class="bi bi-trash"></i> Remove
 </button>
 
-<button type="button" class="btn btn-secondary  btn-sm w-100 mb-2" data-toggle="modal" data-target="#ComplaintView">
+<button type="button" class="btn btn-secondary  btn-sm w-80 mb-2" data-toggle="modal" data-target="#ComplaintView">
     <i class="bi bi-file-text"></i> View Report
 </button>
 
 
-<button type="button" class="btn btn-info  btn-sm w-100 mb-2" id="refreshButton4">
+<button type="button" class="btn btn-info  btn-sm w-80 mb-2" id="refreshButton4">
     <i class="bi bi-arrow-clockwise"></i> Refresh
 </button>
 

@@ -244,7 +244,7 @@ echo '</div>';
 // Text content on the left
 echo '<div style="flex: 2; padding-left: 20px;">';
 echo '<p class="card-text mt-4"><small class="text-muted">' . date('F j, Y', strtotime($date)) . ' | ' . date('g:i A', strtotime($time)) . '</small></p>';
-echo '<p style="text-align: justify;">' . $body . '</p>';
+echo '<p class="lead">' . $body . '</p>';
 echo '</div>';
 echo '</div>';
 echo '</div>';

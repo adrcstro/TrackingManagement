@@ -607,12 +607,12 @@ $conn->close();
 
 </table>
 </div>
-<div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
-                    <button type="button" class="btn btn-success btn-sm w-100 mb-2" data-toggle="modal" data-target="#Confirmandcancel">
+<div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
+                    <button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#Confirmandcancel">
                     <i class="bi bi-check-circle"></i> Confirm to Attend
 </button>
 
-<button type="button" class="btn btn-info btn-sm w-100 mb-2" id="refreshButton9">
+<button type="button" class="btn btn-info btn-sm m-1" id="refreshButton9">
     <i class="bi bi-arrow-clockwise"></i> Refresh Table
 </button>
 
@@ -850,6 +850,45 @@ $conn->close();
     });
   });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

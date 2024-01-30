@@ -2174,12 +2174,12 @@ $conn->close();
 
                     </table>
                     </div>
-                    <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
-                    <button type="button" class="btn btn-danger  btn-sm w-100 mb-2" data-toggle="modal"  data-target="#Passengerdeletecomplainhistory">
+                    <div class="modal-footer d-flex justify-content-center ">
+                    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#Passengerdeletecomplainhistory">
     <i class="bi bi-trash"></i> Delete History
 </button>
 
-<button type="button" class="btn btn-secondary  btn-sm w-100 mb-2" data-toggle="modal" data-target="#ComplaintView">
+<button type="button" class="btn btn-secondary btn-sm m-1" data-toggle="modal" data-target="#ComplaintView">
     <i class="bi bi-file-text"></i> View Report
 </button>
 </div>
