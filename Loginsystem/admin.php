@@ -84,11 +84,20 @@ require_once('Config.php');
                             <i class="bi bi-recycle"></i> Waste Management
                         </a>
                     </li>
+
+
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="showComplaincenter()">
                         <i class="bi bi-flag"></i> Complaint Center
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showwarning()">
+                        <i class="bi bi-exclamation-diamond"></i> Monitor Complains
+                        </a>
+                    </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-briefcase"></i> Lost&Found
@@ -399,6 +408,7 @@ function logout() {
                     if ($result->num_rows > 0) {
                         // Fetch the result
                         $row = $result->fetch_assoc();
+                        
                         $totalCount = $row["total"];
 
                         // Display the count in the specified HTML element
@@ -451,7 +461,7 @@ function logout() {
   <div class="row d-flex justify-content-center align-items-center">
     <div class="col-md-3">
       <div id="shorcard" class="card shadow ">
-        <img src="../Images/Adminshot.svg" class="card-img-top" alt="Card Image">
+        <img src="../images/Adminshot.svg" class="card-img-top" alt="Card Image">
         <div class="card-body">
           <h5 class="card-title">Administrator</h5>
           <p class="card-text">Manage Administrator</p>
@@ -471,7 +481,7 @@ function logout() {
 
     <div class="col-md-3 ">
     <div id="shorcard" class="card shadow ">
-        <img src="../Images/news.svg" class="card-img-top" alt="Card Image">
+        <img src="../images/news.svg" class="card-img-top" alt="Card Image">
         <div  class="card-body">
           <h5 class="card-title">News/Events</h5>
           <p class="card-text">Manage Announcement</p>
@@ -489,7 +499,7 @@ function logout() {
 
     <div class="col-md-3">
     <div id="shorcard" class="card shadow ">
-        <img src="../Images/lostandfound.svg" class="card-img-top" alt="Card Image">
+        <img src="../images/lostandfound.svg" class="card-img-top" alt="Card Image">
         <div class="card-body">
           <h5 class="card-title">Lost&Found</h5>
           <p class="card-text">Manage Lost&Found</p>
@@ -694,7 +704,7 @@ function logout() {
 <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <img src="../Images/waste.svg" class="img-fluid mb-5">
+        <img src="../images/waste.svg" class="img-fluid mb-5">
         
         </div>
          <div class="col-md-6">
@@ -736,8 +746,17 @@ function logout() {
   </div>
                     </div>
                     <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
-                    <button id="btnhover" style="border-color: #603ce6; "  type="button" class="btn  btn-sm m-1">
-                   Gets Started <i class="bi bi-box-arrow-in-up-right"></i></i></button>
+
+<button target="_blank" id="btnhover" style="border-color: #603ce6;" type="button" class="btn btn-sm m-1">
+    Get Started <i class="bi bi-box-arrow-in-up-right"></i>
+</button>
+
+<script>
+    document.getElementById("btnhover").addEventListener("click", function() {
+        window.open("http://barangay409wastemanagement.infinityfreeapp.com/intropage.php", '_blank');
+    });
+</script>
+
 </div>
 </div>
     
@@ -824,6 +843,155 @@ function logout() {
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div   id="issuewarning" style="display:none;" class="card shadow border-0 mb-7">
+                    <div class="card-header">
+                        <h5 class="mb-0">Issued Warning For Drivers</h5>
+                    </div>
+    
+                    <div class="table-responsive">
+                        <table class="table table-hover table-nowrap" >
+               
+
+                
+<div class="container mt-5 mb-5">
+    <div class="row">
+    <?php
+// Replace these with your actual database connection details
+
+// Create a database connection
+$your_db_connection = mysqli_connect($servername, $username, $password, $dbname);
+
+// Check the connection
+if (!$your_db_connection) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Fetch data from the "driverstbl" table
+$query = "SELECT id, Username, Age, Password, PermittoOperate, PhoneNumber, HomeAddress, Profile FROM driverstbl";
+$result = mysqli_query($your_db_connection, $query);
+
+// Check if the query was successful
+if ($result) {
+    // Fetch data row by row
+    while ($row = mysqli_fetch_assoc($result)) {
+
+        $profile = $row['Profile'];
+        $drivername = $row['Username'];
+        $ViehicleNumber = $row['Age'];
+        $PlateNumber = $row['Password'];
+        $image = $row['PermittoOperate'];
+        $phone = $row['PhoneNumber'];
+        $home = $row['HomeAddress'];
+
+        echo '<div class="col-md-4 mb-5">';
+        echo '<div class="carddriver">';
+        echo '<div style="position: relative;">'; // Add a relative position for proper stacking context
+        echo '<img src="uploads/' . $image . '" class="card-img-top-driver" alt="Card Image">';
+
+        // Displaying the copy icon
+        echo '<i class="far fa-copy copy-icon" onclick="copyToClipboard(\'driverName' . $row['id'] . '\')"></i>';
+
+        echo '</div>'; // Close the relative position div
+        echo '<div class="card-body" id="card-bodydriver"; >';
+
+        // Displaying the driver information
+        echo '<div class="d-flex justify-content-center align-items-center" style="height: 80px;">';
+        echo '<img src="uploads/' . $profile . '" class="card-img-top-driver mb-3" alt="Card Image" style="max-width: 80px; max-height: 80px;">';
+        echo '</div>';
+
+        echo '<h6 class="card-title-driver">Drivers Name: <span style="font-weight:normal;" id="driverName' . $row['id'] . '">' . $drivername . '</span></h6>';
+        echo '<h6 class="card-title-driver">Vehicle Number: <span style="font-weight:normal;">' . $ViehicleNumber . '</span></h6>';
+        echo '<h6 class="card-title-driver">Plate Number: <span style="font-weight:normal;">' . $PlateNumber . '</span></h6>';
+        echo '<h6 class="card-title-driver">Phone Number: <span style="font-weight:normal;">' . $phone . '</span></h6>';
+        echo '<h6 class="card-title-driver">Home Address: <span style="font-weight:normal;">' . $home . '</span></h6>';
+
+        // Fetching and displaying the number of complaints for each driver
+        $complaintQuery = "SELECT COUNT(*) AS numComplaints FROM complainttbl WHERE NameofComplainee = '" . mysqli_real_escape_string($your_db_connection, $drivername) . "' AND (ComplainStatus = '' OR ComplainStatus = 'Processing')";
+
+        $complaintResult = mysqli_query($your_db_connection, $complaintQuery);
+
+        if ($complaintResult) {
+            
+            $complaintRow = mysqli_fetch_assoc($complaintResult);
+            $numComplaints = $complaintRow['numComplaints'];
+        
+            echo '<div class="text-center">'; // Center the content
+        
+            echo '<h6 class="card-title-driver">Number of Complaints: <span style="font-weight:normal;">' . $numComplaints . '</span>';
+        
+            // Check if the number of complaints is greater than or equal to 3
+            if ($numComplaints >= 3) {
+                // Display Bootstrap Warning Icon with increased size
+                echo '<div style="margin-top: 5px;">'; // Add margin for spacing
+                echo '<i class="bi bi-exclamation-triangle text-warning" title="Warning: 3 or more complaints" style="font-size: 24px;"></i>'; // Adjust the font-size as needed
+                echo '</div>';
+            }
+        
+            echo '</h6>';
+            echo '</div>';
+        } else {
+            echo '<h6 class="card-title-driver">Number of Complaints: <span style="font-weight:normal;">Error fetching data</span></h6>';
+        }
+        
+     
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        
+    }
+}
+
+// ... Your existing PHP code ...
+
+?>
+        </div>
+    </div>
+                        </table>
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2460,7 +2628,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
                                 die("Connection failed: " . $conn->connect_error);
                             }
 
-                            $sql = "SELECT Name FROM Passengertbl";
+                            $sql = "SELECT Name FROM passengertbl";
                             $result = $conn->query($sql);
 
                             if ($result->num_rows > 0) {
@@ -2535,6 +2703,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 
 
+
+
 <!--passenger table end------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
 
@@ -2588,27 +2758,47 @@ if ($result->num_rows > 0) {
                 <th>Incident Description</th>
                 <th>Name of Complainee</th>
                 <th>Complain Status</th>
+                <th>View Report</th>
                 </thead>
                 </tr>';
-              
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        if ($row["ComplainStatus"] === "" || $row["ComplainStatus"] === "Processing") {
-        echo '<tr>
-               
-                <td>' . $row["ComplaintID"] . '</td>
-                <td>' . $row["TypeofComplaint"] . '</td>
-                <td>' . $row["DateofReport"] . '</td>
-                <td>' . $row["ComplainantName"] . '</td>
-                <td>' . $row["ContactNumber"] . '</td>
-                <td>' . $row["Address"] . '</td>
-                <td>' . $row["ProfofIdentity"] . '</td>
-                <td>' . $row["IncidentDescription"] . '</td>
-                <td>' . $row["NameofComplainee"] . '</td>
-                <td>' . $row["ComplainStatus"] . '</td>
-            </tr>';
+  
+while($row = $result->fetch_assoc()) {
+    $viewReportButton = '';
+    if ($row["ComplainStatus"] === "" || $row["ComplainStatus"] === "Processing") {
+    // Check if ComplainantName exists in the driverstbl table
+    $driverCheckSql = "SELECT Username FROM driverstbl WHERE Username = '" . $row["ComplainantName"] . "'";
+    $driverCheckResult = $conn->query($driverCheckSql);
+
+    if ($driverCheckResult->num_rows > 0) {
+        // ComplainantName found in driverstbl
+        $viewReportButton = '<button type="button" class="btn btn-secondary btn-sm w-100 mb-2" data-toggle="modal" data-target="#drivercomplainreport">
+                                <i class="bi bi-file-text"></i> View Report
+                            </button>';
+    } else {
+        // ComplainantName not found in driverstbl
+        $viewReportButton = '<button type="button" class="btn btn-secondary btn-sm w-100 mb-2" data-toggle="modal" data-target="#ComplaintView">
+                                <i class="bi bi-file-text"></i> View Report
+                            </button>';
     }
+
+    // Display table row
+    echo '<tr>
+            <td>' . $row["ComplaintID"] . '</td>
+            <td>' . $row["TypeofComplaint"] . '</td>
+            <td>' . $row["DateofReport"] . '</td>
+            <td>' . $row["ComplainantName"] . '</td>
+            <td>' . $row["ContactNumber"] . '</td>
+            <td>' . $row["Address"] . '</td>
+            <td>' . $row["ProfofIdentity"] . '</td>
+            <td>' . $row["IncidentDescription"] . '</td>
+            <td>' . $row["NameofComplainee"] . '</td>
+            <td>' . $row["ComplainStatus"] . '</td>
+            <td>' . $viewReportButton . '</td>
+          </tr>';
 }
+}
+// ... (remaining code)
+
     echo '</table>';
 } else {
     echo "0 results";
@@ -2630,11 +2820,6 @@ $conn->close();
 <button type="button" class="btn btn-danger  btn-sm w-100 mb-2" data-toggle="modal"  data-target="#Complaindelete">
     <i class="bi bi-trash"></i> Remove
 </button>
-
-<button type="button" class="btn btn-secondary  btn-sm w-100 mb-2" data-toggle="modal" data-target="#ComplaintView">
-    <i class="bi bi-file-text"></i> View Report
-</button>
-
 
 <button type="button" class="btn btn-info  btn-sm w-100 mb-2" id="refreshButton4">
     <i class="bi bi-arrow-clockwise"></i> Refresh
@@ -3196,7 +3381,7 @@ $conn->close();
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">View Complain Details</h4>
+                <h4 class="modal-title">View Passenger to Driver Report Details</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -3238,12 +3423,7 @@ $conn->close();
     });
 </script>
 
- 
-   
 
-
-                
-             
             </div>
     
         </div>
@@ -3277,6 +3457,91 @@ $conn->close();
 
 
 
+
+
+<div class="modal fade" id="drivercomplainreport">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">View Complain Details</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+            <form id="complaintformpassreport" action="generatedriver.php" method="post" enctype="multipart/form-data">
+
+
+            <label for="SearchReportpassenger">Search Complain-ID</label>
+    <input type="text" name="SearchReportpassenger" id="SearchReportpassenger" class="form-control" placeholder="Type Any of These Details to Know the Driver: Name/VehicleNumber/PlateNumber" required>
+
+
+    <div id="Complainresultpassreport"></div>
+    
+    <div class="buttonfooter" style="margin-top: 1rem;">  
+    <button type="button" class="btn btn-success btn-sm m-1" id="printButtonpassreport" data-toggle="modal">
+        <i class="fas fa-print"></i> Print Report
+    </button>
+
+</div>
+
+</form>
+
+<script>
+    document.getElementById('printButtonpassreport').addEventListener('click', function() {
+        // Open a new tab/window
+        var newTab = window.open('', '_blank');
+
+        // Check if the new tab has been successfully opened
+        if (newTab) {
+            // Clone the form to preserve the original form in the current tab
+            var clonedForm = document.getElementById('complaintformpassreport').cloneNode(true);
+
+            // Append the cloned form to the new tab's document body
+            newTab.document.body.appendChild(clonedForm);
+
+            // Submit the cloned form in the new tab
+            clonedForm.submit();
+        } else {
+            // Display an error message if the new tab couldn't be opened
+            alert('Unable to open a new tab. Please enable pop-ups for this site.');
+        }
+    });
+</script>
+            </div>
+    
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById("SearchReportpassenger");
+        const searchResults = document.getElementById("Complainresultpassreport");
+
+        searchInput.addEventListener("input", function() {
+            const searchText = searchInput.value.toLowerCase();
+            if (searchText.length > 0) {
+                fetch(`Complaindetails.php?search=${searchText}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        searchResults.innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            } else {
+                searchResults.innerHTML = "";
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
 <div  id="Scheduled-Complain" style="display:none;" class="card shadow border-0 mb-7">
                     <div class="card-header">
                         <h5 class="mb-0">Scheduled Complain</h5>
@@ -3302,46 +3567,62 @@ if ($result->num_rows > 0) {
     echo '<table class="table table-hover table-nowrap">
             <tr>
             <thead class="thead-light">
-                <th>Complain-ID</th>
-                <th>Type of Complain</th>
-                <th>Date of Report</th>
-                <th>Complainant Name</th>
-                <th>Contact Number</th>
-                <th>Address</th>
-                <th>Prof of Identity</th>
-                <th>Incident Description</th>
-                <th>Name of Complainee</th>
-                <th>Complain Status</th>
-                <th>Hearing Date</th>
-                <th>Hearing Time</th>
-                <th>Hearing Place</th>
-                <th>Passenger Confirmation</th>
-                <th>Driver Confirmation</th>
-
+            <th>Complain-ID</th>
+            <th>Type of Complain</th>
+            <th>Date of Report</th>
+            <th>Complainant Name</th>
+            <th>Contact Number</th>
+            <th>Address</th>
+            <th>Prof of Identity</th>
+            <th>Incident Description</th>
+            <th>Name of Complainee</th>
+            <th>Complain Status</th>
+            <th>Hearing Date</th>
+            <th>Hearing Time</th>
+            <th>Hearing Place</th>
+            <th>Driver Confirmation</th>
+            <th>Passenger Confirmation</th>
+         
+                <th>View Report</th>
                 </thead>
                 </tr>';
-              
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        if ($row["ComplainStatus"] === "Scheduled") {
+  
+while($row = $result->fetch_assoc()) {
+    $viewReportButton = '';
+    if ($row["ComplainStatus"] === "Scheduled") {
 
-            $borderColor = ''; // Default border color
+    // Check if ComplainantName exists in the driverstbl table
+    $driverCheckSql = "SELECT Username FROM driverstbl WHERE Username = '" . $row["ComplainantName"] . "'";
+    $driverCheckResult = $conn->query($driverCheckSql);
 
-            // Check conditions for setting border color
-            if ($row["PassengerConfirmation"] === $row["DriverConfirmation"] && $row["PassengerConfirmation"] === "Confirmed") {
-                $borderColor = '#00B906'; // Set border color to green
-            } elseif ($row["PassengerConfirmation"] === $row["DriverConfirmation"] && $row["PassengerConfirmation"] === "Cancel Appointment") {
-                $borderColor = '#FE0000'; // Set border color to red
-            } elseif ($row["PassengerConfirmation"] === "Confirmed" && $row["DriverConfirmation"] === "Cancel Appointment" || $row["PassengerConfirmation"] === "Cancel Appointment" && $row["DriverConfirmation"] === "Confirmed") {
-                $borderColor = '#FE0000'; // Set border color to red
-            }
+    if ($driverCheckResult->num_rows > 0) {
+        // ComplainantName found in driverstbl
+        $viewReportButton = '<button type="button" class="btn btn-secondary btn-sm w-100 mb-2" data-toggle="modal" data-target="#drivercomplainreport">
+                                <i class="bi bi-file-text"></i> View Report
+                            </button>';
+    } else {
+        // ComplainantName not found in driverstbl
+        $viewReportButton = '<button type="button" class="btn btn-secondary btn-sm w-100 mb-2" data-toggle="modal" data-target="#ComplaintView">
+                                <i class="bi bi-file-text"></i> View Report
+                            </button>';
+    }
 
 
+    $borderColor = ''; // Default border color
+
+    // Check conditions for setting border color
+    if ($row["PassengerConfirmation"] === $row["DriverConfirmation"] && $row["PassengerConfirmation"] === "Confirmed") {
+        $borderColor = '#00B906'; // Set border color to green
+    } elseif ($row["PassengerConfirmation"] === $row["DriverConfirmation"] && $row["PassengerConfirmation"] === "Cancel Appointment") {
+        $borderColor = '#FE0000'; // Set border color to red
+    } elseif ($row["PassengerConfirmation"] === "Confirmed" && $row["DriverConfirmation"] === "Cancel Appointment" || $row["PassengerConfirmation"] === "Cancel Appointment" && $row["DriverConfirmation"] === "Confirmed") {
+        $borderColor = '#FE0000'; // Set border color to red
+    }
 
 
-            echo '<tr style="color: ' . $borderColor . ';">
-               
-                <td>' . $row["ComplaintID"] . '</td>
+    // Display table row
+    echo '<tr style="color: ' . $borderColor . ';">
+    <td>' . $row["ComplaintID"] . '</td>
                 <td>' . $row["TypeofComplaint"] . '</td>
                 <td>' . $row["DateofReport"] . '</td>
                 <td>' . $row["ComplainantName"] . '</td>
@@ -3356,10 +3637,12 @@ if ($result->num_rows > 0) {
                 <td>' . $row["hearingplace"] . '</td>
                 <td>' . $row["PassengerConfirmation"] . '</td>
                 <td>' . $row["DriverConfirmation"] . '</td>
-
-            </tr>';
-    }
+            <td>' . $viewReportButton . '</td>
+          </tr>';
 }
+}
+// ... (remaining code)
+
     echo '</table>';
 } else {
     echo "0 results";
@@ -3374,13 +3657,11 @@ $conn->close();
 
 
                     <button type="button" class="btn btn-success btn-sm w-100 mb-2" data-toggle="modal" data-target="#Reprocessyourcomplain" >
-                    <i class="bi bi-calendar-date"></i> Reschedule Hearing
+                    <i class="bi bi-calendar-date"></i> Re Process Complain
 </button>
                  
 
-<button type="button" class="btn btn-secondary  btn-sm w-100 mb-2" data-toggle="modal" data-target="#ComplaintView">
-    <i class="bi bi-file-text"></i> View Report
-</button>
+
 
 
 <button type="button" class="btn btn-info  btn-sm w-100 mb-2" id="refreshButton7">
@@ -3663,8 +3944,10 @@ $conn->close();
                     </div>
                     <div class="table-responsive">
                     <table class="table table-hover table-nowrap">
+    
                     <?php
 // Replace with your actual database credentials
+
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -3681,59 +3964,73 @@ if ($result->num_rows > 0) {
     echo '<table class="table table-hover table-nowrap">
             <tr>
             <thead class="thead-light">
-                <th>Complain-ID</th>
-                <th>Type of Complain</th>
-                <th>Date of Report</th>
-                <th>Complainant Name</th>
-                <th>Contact Number</th>
-                <th>Address</th>
-                <th>Prof of Identity</th>
-                <th>Incident Description</th>
-                <th>Name of Complainee</th>
-                <th>Complain Status</th>
-                <th>Hearing Date</th>
-                <th>Hearing Time</th>
-                <th>Hearing Place</th>
+            <th>Complain-ID</th>
+            <th>Type of Complain</th>
+            <th>Date of Report</th>
+            <th>Complainant Name</th>
+            <th>Contact Number</th>
+            <th>Address</th>
+            <th>Prof of Identity</th>
+            <th>Incident Description</th>
+            <th>Name of Complainee</th>
+            <th>Complain Status</th>
+            <th>Date Setteld</th>
+            <th>Time Setteld</th>
+            <th>Hearing Place</th>
+                <th>View Report</th>
                 </thead>
                 </tr>';
-              
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        if ($row["ComplainStatus"] === "Case Close") {
-        echo '<tr>
-               
-                <td>' . $row["ComplaintID"] . '</td>
-                <td>' . $row["TypeofComplaint"] . '</td>
-                <td>' . $row["DateofReport"] . '</td>
-                <td>' . $row["ComplainantName"] . '</td>
-                <td>' . $row["ContactNumber"] . '</td>
-                <td>' . $row["Address"] . '</td>
-                <td>' . $row["ProfofIdentity"] . '</td>
-                <td>' . $row["IncidentDescription"] . '</td>
-                <td>' . $row["NameofComplainee"] . '</td>
-                <td>' . $row["ComplainStatus"] . '</td>
-                <td>' . $row["hearingdate"] . '</td>
-                <td>' . $row["PassengerConfirmation"] . '</td>
-                <td>' . $row["DriverConfirmation"] . '</td>
-            </tr>';
+  
+while($row = $result->fetch_assoc()) {
+    $viewReportButton = '';
+    if ($row["ComplainStatus"] === "Case Close") {
+    // Check if ComplainantName exists in the driverstbl table
+    $driverCheckSql = "SELECT Username FROM driverstbl WHERE Username = '" . $row["ComplainantName"] . "'";
+    $driverCheckResult = $conn->query($driverCheckSql);
+
+    if ($driverCheckResult->num_rows > 0) {
+        // ComplainantName found in driverstbl
+        $viewReportButton = '<button type="button" class="btn btn-secondary btn-sm w-100 mb-2" data-toggle="modal" data-target="#drivercomplainreport">
+                                <i class="bi bi-file-text"></i> View Report
+                            </button>';
+    } else {
+        // ComplainantName not found in driverstbl
+        $viewReportButton = '<button type="button" class="btn btn-secondary btn-sm w-100 mb-2" data-toggle="modal" data-target="#ComplaintView">
+                                <i class="bi bi-file-text"></i> View Report
+                            </button>';
     }
+
+    // Display table row
+    echo '<tr>
+    <td>' . $row["ComplaintID"] . '</td>
+    <td>' . $row["TypeofComplaint"] . '</td>
+    <td>' . $row["DateofReport"] . '</td>
+    <td>' . $row["ComplainantName"] . '</td>
+    <td>' . $row["ContactNumber"] . '</td>
+    <td>' . $row["Address"] . '</td>
+    <td>' . $row["ProfofIdentity"] . '</td>
+    <td>' . $row["IncidentDescription"] . '</td>
+    <td>' . $row["NameofComplainee"] . '</td>
+    <td>' . $row["ComplainStatus"] . '</td>
+    <td>' . $row["hearingdate"] . '</td>
+    <td>' . $row["hearingtime"] . '</td>
+    <td>' . $row["hearingplace"] . '</td>
+            <td>' . $viewReportButton . '</td>
+          </tr>';
 }
+}
+// ... (remaining code)
+
     echo '</table>';
 } else {
     echo "0 results";
 }
 $conn->close();
-?>            
-
+?>     
 
                     </table>
                     </div>
                   
-                    <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
-                    <button type="button" class="btn btn-secondary  btn-sm w-100 mb-2" data-toggle="modal" data-target="#ComplaintView">
-    <i class="bi bi-file-text"></i> View Report
-</button>
-</div>
                 </div>
 
 

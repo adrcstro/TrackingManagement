@@ -94,7 +94,7 @@ require_once('Config.php');
 
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="showwarning()">
-                        <i class="bi bi-exclamation-diamond"></i> Issued a Warning
+                        <i class="bi bi-exclamation-diamond"></i> Monitor Complains
                         </a>
                     </li>
 

@@ -1,6 +1,5 @@
 <?php
 require_once('Config.php');
-
 ?>
 
 
@@ -85,11 +84,20 @@ require_once('Config.php');
                             <i class="bi bi-recycle"></i> Waste Management
                         </a>
                     </li>
+
+
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="showComplaincenter()">
                         <i class="bi bi-flag"></i> Complaint Center
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showwarning()">
+                        <i class="bi bi-exclamation-diamond"></i> Monitor Complains
+                        </a>
+                    </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-briefcase"></i> Lost&Found
@@ -123,17 +131,37 @@ require_once('Config.php');
                 <ul class="navbar-nav">
                    
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php">
+                        <a class="nav-link" href="#" onclick="logout()">
                             <i class="bi bi-box-arrow-left"></i> Logout
                         </a>
                     </li>
                 </ul>
             </div>
-
-
-
         </div>
     </nav>
+
+    <script>
+function logout() {
+    // Display a SweetAlert confirmation dialog
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You will be logged out!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, log me out!",
+    }).then((result) => {
+        // If the user confirms the logout, redirect to logout.php
+        if (result.isConfirmed) {
+            window.location.href = 'login.php';
+        }
+    });
+}
+</script>
+
+
+
     <!-- Main content -->
     <div class="h-screen flex-grow-1 overflow-y-lg-auto">
         <!-- Header -->
@@ -380,6 +408,7 @@ require_once('Config.php');
                     if ($result->num_rows > 0) {
                         // Fetch the result
                         $row = $result->fetch_assoc();
+                        
                         $totalCount = $row["total"];
 
                         // Display the count in the specified HTML element
@@ -432,7 +461,7 @@ require_once('Config.php');
   <div class="row d-flex justify-content-center align-items-center">
     <div class="col-md-3">
       <div id="shorcard" class="card shadow ">
-        <img src="../Images/Adminshot.svg" class="card-img-top" alt="Card Image">
+        <img src="../images/Adminshot.svg" class="card-img-top" alt="Card Image">
         <div class="card-body">
           <h5 class="card-title">Administrator</h5>
           <p class="card-text">Manage Administrator</p>
@@ -452,7 +481,7 @@ require_once('Config.php');
 
     <div class="col-md-3 ">
     <div id="shorcard" class="card shadow ">
-        <img src="../Images/news.svg" class="card-img-top" alt="Card Image">
+        <img src="../images/news.svg" class="card-img-top" alt="Card Image">
         <div  class="card-body">
           <h5 class="card-title">News/Events</h5>
           <p class="card-text">Manage Announcement</p>
@@ -470,7 +499,7 @@ require_once('Config.php');
 
     <div class="col-md-3">
     <div id="shorcard" class="card shadow ">
-        <img src="../Images/lostandfound.svg" class="card-img-top" alt="Card Image">
+        <img src="../images/lostandfound.svg" class="card-img-top" alt="Card Image">
         <div class="card-body">
           <h5 class="card-title">Lost&Found</h5>
           <p class="card-text">Manage Lost&Found</p>
@@ -509,7 +538,7 @@ require_once('Config.php');
                 <div class="row d-flex justify-content-center align-items-center">
     <div class="col-md-3">
     <div id="shorcard" class="card shadow">
-        <img src="../Images/Adminshot.svg" class="card-img-top" alt="Card Image">
+        <img src="../images/Adminshot.svg" class="card-img-top" alt="Card Image">
         <div class="card-body">
           <h5 class="card-title">Administrator</h5>
           <p class="card-text">Edit Administrator</p>
@@ -527,7 +556,7 @@ require_once('Config.php');
 
     <div class="col-md-3">
     <div id="shorcard" class="card shadow ">
-        <img src="../Images/complain.svg" class="card-img-top" alt="Card Image">
+        <img src="../images/complain.svg" class="card-img-top" alt="Card Image">
         <div class="card-body">
           <h5 class="card-title">Complain Center</h5>
           <p class="card-text">Edit Report Details</p>
@@ -545,7 +574,7 @@ require_once('Config.php');
 
     <div class="col-md-3">
     <div id="shorcard" class="card shadow ">
-        <img src="../Images/news.svg" class="card-img-top" alt="Card Image">
+        <img src="../images/news.svg" class="card-img-top" alt="Card Image">
         <div class="card-body">
           <h5 class="card-title">News/Events</h5>
           <p class="card-text">Edit Announcement</p>
@@ -563,7 +592,7 @@ require_once('Config.php');
 
     <div class="col-md-3">
     <div id="shorcard" class="card shadow ">
-        <img src="../Images/lostandfound.svg" class="card-img-top" alt="Card Image">
+        <img src="../images/lostandfound.svg" class="card-img-top" alt="Card Image">
         <div class="card-body">
           <h5 class="card-title">Lost&Found</h5>
           <p class="card-text">Edit Lost&Found</p>
@@ -581,7 +610,7 @@ require_once('Config.php');
 
     <div class="col-md-3 mt-7">
     <div id="shorcard" class="card shadow ">
-        <img src="../Images/passenger.svg" class="card-img-top" alt="Card Image">
+        <img src="../images/passenger.svg" class="card-img-top" alt="Card Image">
         <div class="card-body">
           <h5 class="card-title">Passenger</h5>
           <p class="card-text">Edit Passenger Details</p>
@@ -599,7 +628,7 @@ require_once('Config.php');
 
     <div class="col-md-3 mt-7">
     <div id="shorcard" class="card shadow ">
-        <img src="../Images/drivershort.svg" class="card-img-top" alt="Card Image">
+        <img src="../images/drivershort.svg" class="card-img-top" alt="Card Image">
         <div class="card-body">
           <h5 class="card-title">Driver</h5>
           <p class="card-text">Edit Driver Details</p>
@@ -617,7 +646,7 @@ require_once('Config.php');
 
     <div class="col-md-3 mt-7">
     <div id="shorcard" class="card shadow ">
-        <img src="../Images/identity.svg" class="card-img-top" alt="Card Image">
+        <img src="../images/identity.svg" class="card-img-top" alt="Card Image">
         <div class="card-body">
           <h5 class="card-title">Track Driver Details</h5>
           <p class="card-text">View Driver Details</p>
@@ -635,7 +664,7 @@ require_once('Config.php');
 
     <div class="col-md-3 mt-7">
     <div id="shorcard" class="card shadow ">
-        <img src="../Images/Rate.svg" class="card-img-top" alt="Card Image">
+        <img src="../images/Rate.svg" class="card-img-top" alt="Card Image">
         <div class="card-body">
           <h5 class="card-title">Driver Ratings</h5>
           <p class="card-text">Driver's Performance</p>
@@ -675,7 +704,7 @@ require_once('Config.php');
 <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <img src="../Images/waste.svg" class="img-fluid mb-5">
+        <img src="../images/waste.svg" class="img-fluid mb-5">
         
         </div>
          <div class="col-md-6">
@@ -717,8 +746,17 @@ require_once('Config.php');
   </div>
                     </div>
                     <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
-                    <button id="btnhover" style="border-color: #603ce6; "  type="button" class="btn  btn-sm m-1">
-                   Gets Started <i class="bi bi-box-arrow-in-up-right"></i></i></button>
+
+<button target="_blank" id="btnhover" style="border-color: #603ce6;" type="button" class="btn btn-sm m-1">
+    Get Started <i class="bi bi-box-arrow-in-up-right"></i>
+</button>
+
+<script>
+    document.getElementById("btnhover").addEventListener("click", function() {
+        window.open("http://barangay409wastemanagement.infinityfreeapp.com/intropage.php", '_blank');
+    });
+</script>
+
 </div>
 </div>
     
@@ -771,12 +809,12 @@ require_once('Config.php');
                 <label for="isSeniorCitizen">Senior Citizen</label>
                 </div>
                 
-                <div style="text-align: center; margin-top: 30px;">
-                    <button class="btn btn-primary" id="Buttoncalculator" onclick="calculateFare()">
-                        <i class="fas fa-calculator"></i> Calculate Fare
+                <div class="card-footer border-0 py-3 d-grid gap-1 d-md-flex justify-content-md-center mt-4">
+                    <button class="btn btn-primary btn-sm w-100 mb-1" id="Buttoncalculator" onclick="calculateFare()">
+                        <i class="fas fa-calculator "></i> Calculate Fare
                     </button>
 
-                    <button id="calculatorbutton" class="btn btn-danger" onclick="resetInputs()">
+                    <button id="calculatorbutton" class="btn btn-danger btn-sm w-100 mb-1" onclick="resetInputs()">
                         <i class="fas fa-undo"></i> Reset Inputs
                     </button>
                 </div>
@@ -808,6 +846,155 @@ require_once('Config.php');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+<div   id="issuewarning" style="display:none;" class="card shadow border-0 mb-7">
+                    <div class="card-header">
+                        <h5 class="mb-0">Issued Warning For Drivers</h5>
+                    </div>
+    
+                    <div class="table-responsive">
+                        <table class="table table-hover table-nowrap" >
+               
+
+                
+<div class="container mt-5 mb-5">
+    <div class="row">
+    <?php
+// Replace these with your actual database connection details
+
+// Create a database connection
+$your_db_connection = mysqli_connect($servername, $username, $password, $dbname);
+
+// Check the connection
+if (!$your_db_connection) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Fetch data from the "driverstbl" table
+$query = "SELECT id, Username, Age, Password, PermittoOperate, PhoneNumber, HomeAddress, Profile FROM driverstbl";
+$result = mysqli_query($your_db_connection, $query);
+
+// Check if the query was successful
+if ($result) {
+    // Fetch data row by row
+    while ($row = mysqli_fetch_assoc($result)) {
+
+        $profile = $row['Profile'];
+        $drivername = $row['Username'];
+        $ViehicleNumber = $row['Age'];
+        $PlateNumber = $row['Password'];
+        $image = $row['PermittoOperate'];
+        $phone = $row['PhoneNumber'];
+        $home = $row['HomeAddress'];
+
+        echo '<div class="col-md-4 mb-5">';
+        echo '<div class="carddriver">';
+        echo '<div style="position: relative;">'; // Add a relative position for proper stacking context
+        echo '<img src="uploads/' . $image . '" class="card-img-top-driver" alt="Card Image">';
+
+        // Displaying the copy icon
+        echo '<i class="far fa-copy copy-icon" onclick="copyToClipboard(\'driverName' . $row['id'] . '\')"></i>';
+
+        echo '</div>'; // Close the relative position div
+        echo '<div class="card-body" id="card-bodydriver"; >';
+
+        // Displaying the driver information
+        echo '<div class="d-flex justify-content-center align-items-center" style="height: 80px;">';
+        echo '<img src="uploads/' . $profile . '" class="card-img-top-driver mb-3" alt="Card Image" style="max-width: 80px; max-height: 80px;">';
+        echo '</div>';
+
+        echo '<h6 class="card-title-driver">Drivers Name: <span style="font-weight:normal;" id="driverName' . $row['id'] . '">' . $drivername . '</span></h6>';
+        echo '<h6 class="card-title-driver">Vehicle Number: <span style="font-weight:normal;">' . $ViehicleNumber . '</span></h6>';
+        echo '<h6 class="card-title-driver">Plate Number: <span style="font-weight:normal;">' . $PlateNumber . '</span></h6>';
+        echo '<h6 class="card-title-driver">Phone Number: <span style="font-weight:normal;">' . $phone . '</span></h6>';
+        echo '<h6 class="card-title-driver">Home Address: <span style="font-weight:normal;">' . $home . '</span></h6>';
+
+        // Fetching and displaying the number of complaints for each driver
+        $complaintQuery = "SELECT COUNT(*) AS numComplaints FROM complainttbl WHERE NameofComplainee = '" . mysqli_real_escape_string($your_db_connection, $drivername) . "' AND (ComplainStatus = '' OR ComplainStatus = 'Processing')";
+
+        $complaintResult = mysqli_query($your_db_connection, $complaintQuery);
+
+        if ($complaintResult) {
+            
+            $complaintRow = mysqli_fetch_assoc($complaintResult);
+            $numComplaints = $complaintRow['numComplaints'];
+        
+            echo '<div class="text-center">'; // Center the content
+        
+            echo '<h6 class="card-title-driver">Number of Complaints: <span style="font-weight:normal;">' . $numComplaints . '</span>';
+        
+            // Check if the number of complaints is greater than or equal to 3
+            if ($numComplaints >= 3) {
+                // Display Bootstrap Warning Icon with increased size
+                echo '<div style="margin-top: 5px;">'; // Add margin for spacing
+                echo '<i class="bi bi-exclamation-triangle text-warning" title="Warning: 3 or more complaints" style="font-size: 24px;"></i>'; // Adjust the font-size as needed
+                echo '</div>';
+            }
+        
+            echo '</h6>';
+            echo '</div>';
+        } else {
+            echo '<h6 class="card-title-driver">Number of Complaints: <span style="font-weight:normal;">Error fetching data</span></h6>';
+        }
+        
+     
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        
+    }
+}
+
+// ... Your existing PHP code ...
+
+?>
+        </div>
+    </div>
+                        </table>
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--lost&found table ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
 
@@ -820,7 +1007,9 @@ require_once('Config.php');
 
                         <table class="table table-hover table-nowrap" >
                         <?php
-$conn = new mysqli($servername, $username, $password, $dbname);
+                   
+
+      $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
@@ -874,23 +1063,23 @@ $conn->close();
                     </div>
 
 
-                 <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
+                    <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
 
                   
-                 <button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#postitemmodal" >
+                 <button type="button" class="btn btn-success btn-sm w-100 mb-2" data-toggle="modal" data-target="#postitemmodal" >
     <i class="bi bi-plus-circle"></i> Post Item
 </button>
 
 
-<button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#edititem">
+<button type="button" class="btn btn-warning btn-sm w-100 mb-2" data-toggle="modal" data-target="#edititem">
     <i class="bi bi-pencil"></i> Update
 </button>
 
-<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#deletlostitem">
+<button type="button" class="btn btn-danger btn-sm w-100 mb-2" data-toggle="modal"  data-target="#deletlostitem">
     <i class="bi bi-trash"></i> Delete
 </button>   
 
-<button type="button" class="btn btn-info btn-sm m-1" id="refreshButton13">
+<button type="button" class="btn btn-info btn-sm w-100 mb-2" id="refreshButton13">
 <i class="bi bi-file-text"></i>  Refresh
 </button>
 
@@ -1183,7 +1372,8 @@ $(function() {
                         <select name="itemsID" id="itemsID" class="form-control" required>
                             <option value="" disabled selected>Select an Items ID</option>
                             <?php
-                            // Your PHP code for populating the select options
+
+
                             $conn = new mysqli($servername, $username, $password, $dbname);
 
                             if ($conn->connect_error) {
@@ -1259,7 +1449,9 @@ $(function() {
                     <div class="table-responsive">
                         <table class="table table-hover table-nowrap" >
                         <?php
-$conn = new mysqli($servername, $username, $password, $dbname);
+                  
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
@@ -1311,24 +1503,23 @@ $conn->close();
                         </table>
                     </div>
 
-
-                 <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
+                    <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
        
-                 <button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#posfoundtitemmodal" >
+                 <button type="button" class="btn btn-success btn-sm w-100 mb-2" data-toggle="modal" data-target="#posfoundtitemmodal" >
     <i class="bi bi-plus-circle"></i> Post Found Item
 </button>
 
 
-<button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#editfounditem">
+<button type="button" class="btn btn-warning btn-sm w-100 mb-2" data-toggle="modal" data-target="#editfounditem">
     <i class="bi bi-pencil"></i> Update
 </button>
 
-<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#deletfoundlostitem">
+<button type="button" class="btn btn-danger btn-sm w-100 mb-2" data-toggle="modal"  data-target="#deletfoundlostitem">
     <i class="bi bi-trash"></i> Delete
 </button>   
 
 
-<button type="button" class="btn btn-info btn-sm m-1" id="refreshButton14">
+<button type="button" class="btn btn-info btn-sm w-100 mb-2" id="refreshButton14">
 <i class="bi bi-file-text"></i>  Refresh
 </button>
 
@@ -1485,6 +1676,7 @@ $(function() {
                             <option value="" disabled selected>Select Found Item ID</option>
                             <?php
                       
+            
 
                             $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -1625,7 +1817,8 @@ $(function() {
                         <select name="foundItemsID" id="foundItemsID" class="form-control" required>
                             <option value="" disabled selected>Select an Items ID</option>
                             <?php
-                            // Your PHP code for populating the select options
+              
+
                             $conn = new mysqli($servername, $username, $password, $dbname);
 
                             if ($conn->connect_error) {
@@ -1712,8 +1905,6 @@ $(function() {
                         <?php
 // Replace with your actual database credentials
 
-
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
@@ -1765,24 +1956,24 @@ $conn->close();
                     </div>
 
 
-                 <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
-                 <button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#Driverupdate">
+                    <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
+                 <button type="button" class="btn btn-warning btn-sm w-100 mb-2" data-toggle="modal" data-target="#Driverupdate">
     <i class="bi bi-pencil"></i> Update
 </button>
 
-<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#Driverdelete">
+<button type="button" class="btn btn-danger btn-sm w-100 mb-2" data-toggle="modal"  data-target="#Driverdelete">
     <i class="bi bi-trash"></i> Delete
 </button>
-<button type="button" class="btn btn-primary btn-sm m-1" id="trackButton" data-toggle="modal" data-target="#Drivertrack">
+<button type="button" class="btn btn-primary btn-sm w-100 mb-2" id="trackButton" data-toggle="modal" data-target="#Drivertrack">
     <i class="bi bi-geo"></i> Track
 </button>
 
-<button id="open-modal-button"  class="btn btn-secondary btn-sm m-1">
+<button id="open-modal-button"  class="btn btn-secondary btn-sm w-100 mb-2">
     <i class="fas fa-chart-line"></i> Ratings
 </button>
 
 
-<button type="button" class="btn btn-info btn-sm m-1" id="refreshButton3">
+<button type="button" class="btn btn-info btn-sm w-100 mb-2" id="refreshButton3">
 <i class="bi bi-file-text"></i>  Refresh
 </button>
 
@@ -1814,9 +2005,9 @@ $conn->close();
                         <option value="" disabled selected>Select an option</option>
                         <?php
                                          
-                      
+                                   
 
-                                                  $conn = new mysqli($servername, $username, $password, $dbname);
+                                         $conn = new mysqli($servername, $username, $password, $dbname);
                       
                                                   if ($conn->connect_error) {
                                                       die("Connection failed: " . $conn->connect_error);
@@ -1952,8 +2143,9 @@ $conn->close();
                             <option value="" disabled selected>Select an option</option>
                             <!-- PHP code for populating the select options -->
                             <?php
-                            require_once('Config.php');
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+         
+
+                     $conn = new mysqli($servername, $username, $password, $dbname);
 
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
@@ -2035,7 +2227,7 @@ $conn->close();
                 </form>
                 <div id="searchResults"></div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer d-flex justify-content-center ">
 
             <button type="button" class="btn btn-primary btn-sm m-1" id="trackButton" data-dismiss="modal"  data-target="#mapModal" data-toggle="modal">
     <i class="bi bi-map"></i> View in Maps
@@ -2221,7 +2413,6 @@ document.getElementById('copyButton').addEventListener('click', function() {
 // Replace with your actual database credentials
 
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
@@ -2269,16 +2460,16 @@ $conn->close();
 
                     </table>
                     </div>
-                    <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
-<button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#Passengerupdate">
+                    <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
+<button type="button" class="btn btn-warning btn-sm w-100 mb-2" data-toggle="modal" data-target="#Passengerupdate">
     <i class="bi bi-pencil"></i> Update
 </button>
 
-<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#passengerdelete">
+<button type="button" class="btn btn-danger btn-sm w-100 mb-2" data-toggle="modal"  data-target="#passengerdelete">
     <i class="bi bi-trash"></i> Delete
 </button>
 
- <button type="button" class="btn btn-info btn-sm m-1" id="refreshButton2">
+ <button type="button" class="btn btn-info btn-sm w-100 mb-2" id="refreshButton2">
         <i class="bi bi-arrow-clockwise"></i> Refresh
     </button>
 <script>
@@ -2310,8 +2501,9 @@ $conn->close();
                             <option value="" disabled selected>Select an option</option>
                             <?php
                       
+      
 
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
@@ -2414,10 +2606,6 @@ $conn->close();
 
 
 
-
-
-
-
 <div class="modal fade" id="passengerdelete">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -2432,14 +2620,15 @@ $conn->close();
                         <select name="SelectPassenger" id="SelectPassenger" class="form-control" required>
                             <option value="" disabled selected>Select an option</option>
                             <?php
-                            // Your PHP code for populating the select options
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+                          
+
+                           $conn = new mysqli($servername, $username, $password, $dbname);
 
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
                             }
 
-                            $sql = "SELECT Name FROM Passengertbl";
+                            $sql = "SELECT Name FROM passengertbl";
                             $result = $conn->query($sql);
 
                             if ($result->num_rows > 0) {
@@ -2510,6 +2699,12 @@ $conn->close();
 
 
 
+
+
+
+
+
+
 <!--passenger table end------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
 
@@ -2538,7 +2733,6 @@ $conn->close();
 // Replace with your actual database credentials
 
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
@@ -2563,24 +2757,48 @@ if ($result->num_rows > 0) {
                 <th>Prof of Identity</th>
                 <th>Incident Description</th>
                 <th>Name of Complainee</th>
+                <th>Complain Status</th>
+                <th>View Report</th>
                 </thead>
                 </tr>';
-              
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo '<tr>
-               
-                <td>' . $row["ComplaintID"] . '</td>
-                <td>' . $row["TypeofComplaint"] . '</td>
-                <td>' . $row["DateofReport"] . '</td>
-                <td>' . $row["ComplainantName"] . '</td>
-                <td>' . $row["ContactNumber"] . '</td>
-                <td>' . $row["Address"] . '</td>
-                <td>' . $row["ProfofIdentity"] . '</td>
-                <td>' . $row["IncidentDescription"] . '</td>
-                <td>' . $row["NameofComplainee"] . '</td>
-            </tr>';
+  
+while($row = $result->fetch_assoc()) {
+    $viewReportButton = '';
+    if ($row["ComplainStatus"] === "" || $row["ComplainStatus"] === "Processing") {
+    // Check if ComplainantName exists in the driverstbl table
+    $driverCheckSql = "SELECT Username FROM driverstbl WHERE Username = '" . $row["ComplainantName"] . "'";
+    $driverCheckResult = $conn->query($driverCheckSql);
+
+    if ($driverCheckResult->num_rows > 0) {
+        // ComplainantName found in driverstbl
+        $viewReportButton = '<button type="button" class="btn btn-secondary btn-sm w-100 mb-2" data-toggle="modal" data-target="#drivercomplainreport">
+                                <i class="bi bi-file-text"></i> View Report
+                            </button>';
+    } else {
+        // ComplainantName not found in driverstbl
+        $viewReportButton = '<button type="button" class="btn btn-secondary btn-sm w-100 mb-2" data-toggle="modal" data-target="#ComplaintView">
+                                <i class="bi bi-file-text"></i> View Report
+                            </button>';
     }
+
+    // Display table row
+    echo '<tr>
+            <td>' . $row["ComplaintID"] . '</td>
+            <td>' . $row["TypeofComplaint"] . '</td>
+            <td>' . $row["DateofReport"] . '</td>
+            <td>' . $row["ComplainantName"] . '</td>
+            <td>' . $row["ContactNumber"] . '</td>
+            <td>' . $row["Address"] . '</td>
+            <td>' . $row["ProfofIdentity"] . '</td>
+            <td>' . $row["IncidentDescription"] . '</td>
+            <td>' . $row["NameofComplainee"] . '</td>
+            <td>' . $row["ComplainStatus"] . '</td>
+            <td>' . $viewReportButton . '</td>
+          </tr>';
+}
+}
+// ... (remaining code)
+
     echo '</table>';
 } else {
     echo "0 results";
@@ -2591,26 +2809,19 @@ $conn->close();
 
                     </table>
                     </div>
-                    <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
-
-
-                    <button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#ProcessComplain" >
+                    <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button type="button" class="btn btn-success  btn-sm w-100 mb-2" data-toggle="modal" data-target="#ProcessComplain" >
                     <i class="bi bi-file-earmark-plus"></i> Process Complain
 </button>
-                    <button type="button" class="btn btn-primary btn-sm m-1" data-toggle="modal" data-target="#ComplainUpdate">
+                    <button type="button" class="btn btn-primary  btn-sm w-100 mb-2" data-toggle="modal" data-target="#ComplainUpdate">
     <i class="bi bi-arrow-up"></i> Modify
 </button>
 
-<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#Complaindelete">
+<button type="button" class="btn btn-danger  btn-sm w-100 mb-2" data-toggle="modal"  data-target="#Complaindelete">
     <i class="bi bi-trash"></i> Remove
 </button>
 
-<button type="button" class="btn btn-secondary btn-sm m-1" data-toggle="modal" data-target="#ComplaintView">
-    <i class="bi bi-file-text"></i> View Report
-</button>
-
-
-<button type="button" class="btn btn-info btn-sm m-1" id="refreshButton4">
+<button type="button" class="btn btn-info  btn-sm w-100 mb-2" id="refreshButton4">
     <i class="bi bi-arrow-clockwise"></i> Refresh
 </button>
 
@@ -2636,12 +2847,13 @@ $conn->close();
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="updateForm" action="admin.php" method="post">
+                <form id="updateForm"  method="post">
                     <div class="form-group">
                         <label for="processreportID">Select Report</label>
                         <select name="processreportID" id="processreportID" class="form-control" required>
                             <option value="" disabled selected>Select an option</option>
                             <?php
+                      
                       
 
                       $conn = new mysqli($servername, $username, $password, $dbname);
@@ -2650,12 +2862,14 @@ $conn->close();
                           die("Connection failed: " . $conn->connect_error);
                       }
 
-                      $sql = "SELECT ComplaintID FROM complainttbl";
+                      $sql = "SELECT ComplaintID,ComplainStatus FROM complainttbl";
                       $result = $conn->query($sql);
 
                       if ($result->num_rows > 0) {
                           while($row = $result->fetch_assoc()) {
+                            if ($row["ComplainStatus"] === "" || $row["ComplainStatus"] === "Processing") {
                               echo '<option value="'.$row["ComplaintID"].'">'.$row["ComplaintID"].'</option>';
+                            }
                           }
                       } else {
                           echo "0 results";
@@ -2748,7 +2962,7 @@ $conn->close();
 
 
 
-<div style="width: 80%; margin: auto; display:block;  margin-bottom: 10px;">
+<div style="width: 80%; margin: auto; display:none;  margin-bottom: 10px;">
     <label for="processStatus"></label>
     <input class="form-control mx-auto" name="processStatus" id="processStatus" style="width: 100%;">
 </div>
@@ -2810,7 +3024,7 @@ $conn->close();
 
                     <div class="modal-footer mt-3  d-flex justify-content-center ">
                        
-                        <button id="markstatuscomplain" type="submit" class="btn btn-success mt-3">Mark Status</button>
+                        <button id="markstatuscomplain" type="button" class="btn btn-success mt-3">Mark Status</button>
                     </div>
                 </form>
             </div>
@@ -2875,29 +3089,6 @@ $conn->close();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <div class="modal fade" id="ComplainUpdate">
         <div id="Complain-modal-dialog" class="modal-dialog">
             <div  class="modal-content">
@@ -2914,21 +3105,23 @@ $conn->close();
                         <select name="ComplaintID" id="ComplaintID" class="form-control" required>
                             <option value="" disabled selected>Select Report ID</option>
                             <?php
-                      
+                 
 
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+                   $conn = new mysqli($servername, $username, $password, $dbname);
 
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
                             }
 
-                            $sql = "SELECT ComplaintID FROM complainttbl";
+                            $sql = "SELECT ComplaintID,ComplainStatus FROM complainttbl";
                             $result = $conn->query($sql);
 
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
+                                    if ($row["ComplainStatus"] === "" || $row["ComplainStatus"] === "Processing") {
                                     echo '<option value="'.$row["ComplaintID"].'">'.$row["ComplaintID"].'</option>';
                                 }
+                            }
                             } else {
                                 echo "0 results";
                             }
@@ -3105,26 +3298,29 @@ $conn->close();
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="PassengerDelete" action="delete.php" method="post">
+                <form id="admindeletecomplain" action="delete.php" method="post">
                     <div class="form-group">
                         <label for="Selectreport">Delete Selected Report </label>
                         <select name="Selectreport" id="Selectreport" class="form-control" required>
                             <option value="" disabled selected>Select an option</option>
                             <?php
-                            // Your PHP code for populating the select options
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+      
+
+             $conn = new mysqli($servername, $username, $password, $dbname);
 
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
                             }
 
-                            $sql = "SELECT ComplaintID  FROM complainttbl";
+                            $sql = "SELECT ComplaintID,ComplainStatus  FROM complainttbl";
                             $result = $conn->query($sql);
 
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
+                                    if ($row["ComplainStatus"] === "" || $row["ComplainStatus"] === "Processing") {
                                     echo '<option value="'.$row["ComplaintID"].'">'.$row["ComplaintID"].'</option>';
                                 }
+                            }
                             } else {
                                 echo "0 results";
                             }
@@ -3148,7 +3344,7 @@ $conn->close();
 
 <script>
         $(document).ready(function() {
-            $('#ReportDelete').submit(function(e) {
+            $('#admindeletecomplain').submit(function(e) {
                 e.preventDefault();
                 var formData = $(this).serialize();
                 $.ajax({
@@ -3185,7 +3381,7 @@ $conn->close();
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">View Complain Details</h4>
+                <h4 class="modal-title">View Passenger to Driver Report Details</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -3227,12 +3423,7 @@ $conn->close();
     });
 </script>
 
- 
-   
 
-
-                
-             
             </div>
     
         </div>
@@ -3268,6 +3459,469 @@ $conn->close();
 
 
 
+<div class="modal fade" id="drivercomplainreport">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">View Complain Details</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+            <form id="complaintformpassreport" action="generatedriver.php" method="post" enctype="multipart/form-data">
+
+
+            <label for="SearchReportpassenger">Search Complain-ID</label>
+    <input type="text" name="SearchReportpassenger" id="SearchReportpassenger" class="form-control" placeholder="Type Any of These Details to Know the Driver: Name/VehicleNumber/PlateNumber" required>
+
+
+    <div id="Complainresultpassreport"></div>
+    
+    <div class="buttonfooter" style="margin-top: 1rem;">  
+    <button type="button" class="btn btn-success btn-sm m-1" id="printButtonpassreport" data-toggle="modal">
+        <i class="fas fa-print"></i> Print Report
+    </button>
+
+</div>
+
+</form>
+
+<script>
+    document.getElementById('printButtonpassreport').addEventListener('click', function() {
+        // Open a new tab/window
+        var newTab = window.open('', '_blank');
+
+        // Check if the new tab has been successfully opened
+        if (newTab) {
+            // Clone the form to preserve the original form in the current tab
+            var clonedForm = document.getElementById('complaintformpassreport').cloneNode(true);
+
+            // Append the cloned form to the new tab's document body
+            newTab.document.body.appendChild(clonedForm);
+
+            // Submit the cloned form in the new tab
+            clonedForm.submit();
+        } else {
+            // Display an error message if the new tab couldn't be opened
+            alert('Unable to open a new tab. Please enable pop-ups for this site.');
+        }
+    });
+</script>
+            </div>
+    
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById("SearchReportpassenger");
+        const searchResults = document.getElementById("Complainresultpassreport");
+
+        searchInput.addEventListener("input", function() {
+            const searchText = searchInput.value.toLowerCase();
+            if (searchText.length > 0) {
+                fetch(`Complaindetails.php?search=${searchText}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        searchResults.innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            } else {
+                searchResults.innerHTML = "";
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+<div  id="Scheduled-Complain" style="display:none;" class="card shadow border-0 mb-7">
+                    <div class="card-header">
+                        <h5 class="mb-0">Scheduled Complain</h5>
+                    </div>
+                    <div class="table-responsive">
+                    <table class="table table-hover table-nowrap">
+                    <?php
+// Replace with your actual database credentials
+
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch data from the admin table
+$sql = "SELECT * FROM complainttbl";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo '<table class="table table-hover table-nowrap">
+            <tr>
+            <thead class="thead-light">
+            <th>Complain-ID</th>
+            <th>Type of Complain</th>
+            <th>Date of Report</th>
+            <th>Complainant Name</th>
+            <th>Contact Number</th>
+            <th>Address</th>
+            <th>Prof of Identity</th>
+            <th>Incident Description</th>
+            <th>Name of Complainee</th>
+            <th>Complain Status</th>
+            <th>Hearing Date</th>
+            <th>Hearing Time</th>
+            <th>Hearing Place</th>
+            <th>Driver Confirmation</th>
+            <th>Passenger Confirmation</th>
+         
+                <th>View Report</th>
+                </thead>
+                </tr>';
+  
+while($row = $result->fetch_assoc()) {
+    $viewReportButton = '';
+    if ($row["ComplainStatus"] === "Scheduled") {
+
+    // Check if ComplainantName exists in the driverstbl table
+    $driverCheckSql = "SELECT Username FROM driverstbl WHERE Username = '" . $row["ComplainantName"] . "'";
+    $driverCheckResult = $conn->query($driverCheckSql);
+
+    if ($driverCheckResult->num_rows > 0) {
+        // ComplainantName found in driverstbl
+        $viewReportButton = '<button type="button" class="btn btn-secondary btn-sm w-100 mb-2" data-toggle="modal" data-target="#drivercomplainreport">
+                                <i class="bi bi-file-text"></i> View Report
+                            </button>';
+    } else {
+        // ComplainantName not found in driverstbl
+        $viewReportButton = '<button type="button" class="btn btn-secondary btn-sm w-100 mb-2" data-toggle="modal" data-target="#ComplaintView">
+                                <i class="bi bi-file-text"></i> View Report
+                            </button>';
+    }
+
+
+    $borderColor = ''; // Default border color
+
+    // Check conditions for setting border color
+    if ($row["PassengerConfirmation"] === $row["DriverConfirmation"] && $row["PassengerConfirmation"] === "Confirmed") {
+        $borderColor = '#00B906'; // Set border color to green
+    } elseif ($row["PassengerConfirmation"] === $row["DriverConfirmation"] && $row["PassengerConfirmation"] === "Cancel Appointment") {
+        $borderColor = '#FE0000'; // Set border color to red
+    } elseif ($row["PassengerConfirmation"] === "Confirmed" && $row["DriverConfirmation"] === "Cancel Appointment" || $row["PassengerConfirmation"] === "Cancel Appointment" && $row["DriverConfirmation"] === "Confirmed") {
+        $borderColor = '#FE0000'; // Set border color to red
+    }
+
+
+    // Display table row
+    echo '<tr style="color: ' . $borderColor . ';">
+    <td>' . $row["ComplaintID"] . '</td>
+                <td>' . $row["TypeofComplaint"] . '</td>
+                <td>' . $row["DateofReport"] . '</td>
+                <td>' . $row["ComplainantName"] . '</td>
+                <td>' . $row["ContactNumber"] . '</td>
+                <td>' . $row["Address"] . '</td>
+                <td>' . $row["ProfofIdentity"] . '</td>
+                <td>' . $row["IncidentDescription"] . '</td>
+                <td>' . $row["NameofComplainee"] . '</td>
+                <td>' . $row["ComplainStatus"] . '</td>
+                <td>' . $row["hearingdate"] . '</td>
+                <td>' . $row["hearingtime"] . '</td>
+                <td>' . $row["hearingplace"] . '</td>
+                <td>' . $row["PassengerConfirmation"] . '</td>
+                <td>' . $row["DriverConfirmation"] . '</td>
+            <td>' . $viewReportButton . '</td>
+          </tr>';
+}
+}
+// ... (remaining code)
+
+    echo '</table>';
+} else {
+    echo "0 results";
+}
+$conn->close();
+?>            
+
+
+                    </table>
+                    </div>
+                    <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
+
+
+                    <button type="button" class="btn btn-success btn-sm w-100 mb-2" data-toggle="modal" data-target="#Reprocessyourcomplain" >
+                    <i class="bi bi-calendar-date"></i> Re Process Complain
+</button>
+                 
+
+
+
+
+<button type="button" class="btn btn-info  btn-sm w-100 mb-2" id="refreshButton7">
+    <i class="bi bi-arrow-clockwise"></i> Refresh
+</button>
+
+<script>
+        document.getElementById("refreshButton7").addEventListener("click", function() {
+            // Add your refresh functionality here
+            // For example, you can reload the current page with the following line
+            location.reload();
+        });
+    </script>
+                    </div>
+                </div>
+
+
+
+                <div class="modal fade" id="Reprocessyourcomplain">
+    <div id="processreport" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Re Process Report </h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="ReprocessupdateForm"  method="post">
+                    <div class="form-group">
+                        <label for="reprocessreportID">Select Report</label>
+                        <select name="reprocessreportID" id="reprocessreportID" class="form-control" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <?php
+      
+
+       $conn = new mysqli($servername, $username, $password, $dbname);
+
+                      if ($conn->connect_error) {
+                          die("Connection failed: " . $conn->connect_error);
+                      }
+
+                      $sql = "SELECT ComplaintID,ComplainStatus FROM complainttbl";
+                      $result = $conn->query($sql);
+
+                      if ($result->num_rows > 0) {
+                          while($row = $result->fetch_assoc()) {
+                            if ($row["ComplainStatus"] === "Scheduled") {
+                              echo '<option value="'.$row["ComplaintID"].'">'.$row["ComplaintID"].'</option>';
+                            }
+                          }
+                      } else {
+                          echo "0 results";
+                      }
+                      $conn->close();
+                      ?>
+                        </select>
+                    </div>
+
+
+
+
+                    <div class="row g-6 mb-8 mt-2 d-flex justify-content-center">
+
+<div class="col-xl-3 col-sm-6 col-12">
+    <div class="card shadow border-2">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Processing</span>
+                </div>
+                <div class="col-auto">
+                    <div class="icon icon-shape bg-transparent text-primary text-lg">
+                    <i class="bi bi-person-workspace"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-2 mb-0 text-sm text-center">
+            <button type="button" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1" title="Process Passenger's Complaint about the tricycle service, the local transportation authority " onclick="updatereprocessRating('Processing')">
+    <i class="bi bi-arrow-up me-1"></i>Select
+</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Repeat the same modification for other two sections -->
+
+<div class="col-xl-3 col-sm-6 col-12">
+    <div class="card shadow border-2">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Scheduled</span>
+                </div>
+                <div class="col-auto">
+                    <div class="icon icon-shape bg-transparent text-primary text-lg">
+                        <i class="bi bi-calendar-date"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-2 mb-0 text-sm text-center">
+                <button type="button" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1" title="The barangay officials diligently coordinated the schedules of the two parties involved, ensuring a mutually convenient time for them to meet and discuss the  issue." onclick="reprocessschedule('Scheduled')">
+                    <i class="bi bi-arrow-up me-1"></i>Select
+                </button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-3 col-sm-6 col-12">
+    <div class="card shadow border-2">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Case Close</span>
+                </div>
+                <div class="col-auto">
+                    <div class="icon icon-shape bg-transparent text-primary text-lg">
+                    <i class="bi bi-list-check"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-2 mb-0 text-sm text-center">
+            <button  type="button" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1" title="After thorough investigation and mediation, the barangay council officially declared the tricycle complaint case closed, having successfully resolved the concerns raised by the passenger. " onclick="reprocessschedule('Case Close')">
+    <i class="bi bi-arrow-up me-1"></i>Select
+</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+
+
+<div style="width: 80%; margin: auto; display:none;  margin-bottom: 10px;">
+    <label for="reprocessStatus"></label>
+    <input class="form-control mx-auto" name="reprocessStatus" id="reprocessStatus" style="width: 100%;">
+</div>
+
+<script>
+    function updatereprocessRating(rating) {
+        document.getElementById("reprocessStatus").value = rating + "";
+        // You can customize this value as per your requirement
+    }
+</script>
+
+
+<script>
+    // Add attribute to enable native HTML tooltip
+    $(function () {
+        $('[title]').tooltip({
+            trigger: 'hover',
+            placement: 'bottom'  // Change 'top' to 'bottom'
+        });
+    });
+</script>
+
+<script>
+    function reprocessschedule(rating) {
+        var reprocessiputfields = document.getElementById("reprocessiputfields");
+        reprocessiputfields.classList.toggle("hidden");
+        document.getElementById("reprocessStatus").value = rating + "";
+    }
+</script>
+
+<div class="row hidden" id="reprocessiputfields">
+                <div class="col-md-6">
+                    <div class="form-group g-col-6">
+                        <label for="reprocessdate">Select Date</label>
+                        <input id="reprocessdate" name="reprocessdate" type="date" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group g-col-6">
+                        <label for="reprocesstime">Select Time</label>
+                        <input id="reprocesstime" name="reprocesstime" type="time" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group g-col-6">
+                        <label for="reprocessplace">Select Place of hearing</label>
+                        <input id="reprocessplace" name="reprocessplace" type="text" class="form-control" required>
+                    </div>
+
+
+
+
+            </div>
+
+
+
+
+
+                    <div class="modal-footer mt-3  d-flex justify-content-center ">
+                       
+                        <button id="reprocess" type="button" class="btn btn-success mt-3">Mark Status</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+  $(document).ready(function() {
+    $("#reprocess").click(function() {
+      var reprocessreportID= $("#reprocessreportID").val();
+      var reprocessStatus = $("input[name='reprocessStatus']").val();
+      var reprocessdate = $("input[name='reprocessdate']").val();
+      var reprocesstime = $("input[name='reprocesstime']").val();
+      var reprocessplace = $("input[name='reprocessplace']").val();
+
+      $.post(
+        "passengerupdate.php", // Replace with the actual file name for update
+        {
+            reprocessreportID: reprocessreportID,
+            reprocessStatus:reprocessStatus,
+            reprocessdate:reprocessdate,
+            reprocesstime:reprocesstime,
+            reprocessplace: reprocessplace
+
+
+        },
+        function(data, status) {
+          if (status === 'success') {
+            Swal.fire({
+              title: 'Status Displayed Successfully!',
+              icon: 'success',
+              confirmButtonText: 'Okay'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                $(".swal2-popup").addClass('light-theme');
+              }
+            });
+          } else {
+            // Handle error here
+            Swal.fire({
+              title: 'Error!',
+              text: 'There was an error while updating the record.',
+              icon: 'error',
+              confirmButtonText: 'Okay'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                $(".swal2-popup").addClass('light-theme');
+              }
+            });
+          }
+        }
+      );
+    });
+  });
+</script>
 
 
 
@@ -3283,6 +3937,101 @@ $conn->close();
 
 
 
+
+                <div  id="Setteld-complain" style="display:none;" class="card shadow border-0 mb-7">
+                    <div class="card-header">
+                        <h5 class="mb-0">List of Setteld Complain</h5>
+                    </div>
+                    <div class="table-responsive">
+                    <table class="table table-hover table-nowrap">
+    
+                    <?php
+// Replace with your actual database credentials
+
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch data from the admin table
+$sql = "SELECT * FROM complainttbl";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo '<table class="table table-hover table-nowrap">
+            <tr>
+            <thead class="thead-light">
+            <th>Complain-ID</th>
+            <th>Type of Complain</th>
+            <th>Date of Report</th>
+            <th>Complainant Name</th>
+            <th>Contact Number</th>
+            <th>Address</th>
+            <th>Prof of Identity</th>
+            <th>Incident Description</th>
+            <th>Name of Complainee</th>
+            <th>Complain Status</th>
+            <th>Date Setteld</th>
+            <th>Time Setteld</th>
+            <th>Hearing Place</th>
+                <th>View Report</th>
+                </thead>
+                </tr>';
+  
+while($row = $result->fetch_assoc()) {
+    $viewReportButton = '';
+    if ($row["ComplainStatus"] === "Case Close") {
+    // Check if ComplainantName exists in the driverstbl table
+    $driverCheckSql = "SELECT Username FROM driverstbl WHERE Username = '" . $row["ComplainantName"] . "'";
+    $driverCheckResult = $conn->query($driverCheckSql);
+
+    if ($driverCheckResult->num_rows > 0) {
+        // ComplainantName found in driverstbl
+        $viewReportButton = '<button type="button" class="btn btn-secondary btn-sm w-100 mb-2" data-toggle="modal" data-target="#drivercomplainreport">
+                                <i class="bi bi-file-text"></i> View Report
+                            </button>';
+    } else {
+        // ComplainantName not found in driverstbl
+        $viewReportButton = '<button type="button" class="btn btn-secondary btn-sm w-100 mb-2" data-toggle="modal" data-target="#ComplaintView">
+                                <i class="bi bi-file-text"></i> View Report
+                            </button>';
+    }
+
+    // Display table row
+    echo '<tr>
+    <td>' . $row["ComplaintID"] . '</td>
+    <td>' . $row["TypeofComplaint"] . '</td>
+    <td>' . $row["DateofReport"] . '</td>
+    <td>' . $row["ComplainantName"] . '</td>
+    <td>' . $row["ContactNumber"] . '</td>
+    <td>' . $row["Address"] . '</td>
+    <td>' . $row["ProfofIdentity"] . '</td>
+    <td>' . $row["IncidentDescription"] . '</td>
+    <td>' . $row["NameofComplainee"] . '</td>
+    <td>' . $row["ComplainStatus"] . '</td>
+    <td>' . $row["hearingdate"] . '</td>
+    <td>' . $row["hearingtime"] . '</td>
+    <td>' . $row["hearingplace"] . '</td>
+            <td>' . $viewReportButton . '</td>
+          </tr>';
+}
+}
+// ... (remaining code)
+
+    echo '</table>';
+} else {
+    echo "0 results";
+}
+$conn->close();
+?>     
+
+                    </table>
+                    </div>
+                  
+                </div>
 
 
 
@@ -3304,6 +4053,7 @@ $conn->close();
                     </div>
                     <div class="table-responsive">
                     <?php
+
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -3353,20 +4103,20 @@ $conn->close();
 
 
                     </div>
-                    <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
-                    <button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#CreateNEws">
+                    <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button type="button" class="btn btn-success  btn-sm w-100 mb-2" data-toggle="modal" data-target="#CreateNEws">
     <i class="bi bi-plus"></i> Create
 </button>
 
-<button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal"  data-target="#editnews">
+<button type="button" class="btn btn-warning  btn-sm w-100 mb-2" data-toggle="modal"  data-target="#editnews">
     <i class="bi bi-pencil"></i> Edit
 </button>
 
-<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deletenews">
+<button type="button" class="btn btn-danger  btn-sm w-100 mb-2" data-toggle="modal" data-target="#deletenews">
     <i class="bi bi-trash"></i> Delete
 </button>
 
-<button type="button" class="btn btn-info btn-sm m-1" id="refreshButton8">
+<button type="button" class="btn btn-info  btn-sm w-100 mb-2" id="refreshButton8">
     <i class="bi bi-arrow-clockwise"></i> Refresh
 </button>
 
@@ -3452,9 +4202,9 @@ $conn->close();
                         <select name="NewsID" id="NewsID" class="form-control" required>
                             <option value="" disabled selected>Select News ID</option>
                             <?php
-                      
+                 
 
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+                  $conn = new mysqli($servername, $username, $password, $dbname);
 
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
@@ -3574,9 +4324,9 @@ $conn->close();
                         <select name="SelectNewsID" id="SelectNewsID" class="form-control" required>
                             <option value="" disabled selected>Select an option</option>
                             <?php
-                            // Your PHP code for populating the select options
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+     
 
+     $conn = new mysqli($servername, $username, $password, $dbname);
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
                             }
@@ -3671,13 +4421,11 @@ $conn->close();
 
     <?php
         // Replace these with your actual database connection details
-        $host = "localhost";
-        $username = "root";
-        $password = "";
-        $database = "plate-to-place-v-tracking";
+
 
         // Create a database connection
-        $your_db_connection = mysqli_connect($host, $username, $password, $database);
+      
+  $your_db_connection = mysqli_connect($servername, $username, $password, $dbname);
 
         // Check the connection
         if (!$your_db_connection) {
@@ -3717,24 +4465,29 @@ $conn->close();
                 
                 // Modal for full text
                 echo '<div class="modal fade newscard" id="readMoreModal' . $row['NewsID'] . '" tabindex="-1" role="dialog" aria-labelledby="readMoreModalLabel' . $row['NewsID'] . '" aria-hidden="true">';
-                echo '<div class="modal-dialog" role="document">';
+                echo '<div id="adminnews" class="modal-dialog" role="document">';
                 echo '<div class="modal-content">';
-                echo '<div class="modal-header">';
-                echo '<h5 class="modal-title">' . $header . '</h5>';
-                echo '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+                echo '<div style="background-color: #603ce3" class="modal-header">';
+                echo '<h5 style="color: #fff;" class="modal-title">' . $header . '</h5>';
+                echo '<button style="background-color: #603ce3; color: #fff; border:none;" type="button" class="close" data-dismiss="modal" aria-label="Close">';
                 echo '<span aria-hidden="true">&times;</span>';
                 echo '</button>';
                 echo '</div>';
-                echo '<div class="modal-body">';
-                echo '<img src="uploads/' . $image . '" class="card-img-top img-fluid" alt="Card Image">';
-                echo '<div>';
+                echo '<div class="modal-body d-flex">';
+                // Add styling to the modal image on the right
+                echo '<div class="modal-image-container" style="flex: 1;">';
+                echo '<img src="uploads/' . $image . '" class="card-img-top" alt="Card Image" style="width: 100%; height: 300px; object-fit: cover;">';
+                echo '</div>';
+                // Text content on the left
+                echo '<div style="flex: 2; padding-left: 20px;">';
                 echo '<p class="card-text mt-4"><small class="text-muted">' . date('F j, Y', strtotime($date)) . ' | ' . date('g:i A', strtotime($time)) . '</small></p>';
-                echo '</div>';
-                echo '<p class="lead">' . $body . '</p>';
-                echo '</div>';
+                echo '<p style="text-align: justify;">' . $body . '</p>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
+                echo '</div>';
+                echo '</div>';
+                
                 
                 
                 
@@ -3803,6 +4556,7 @@ $conn->close();
 // Replace with your actual database credentials
 
 
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -3846,22 +4600,22 @@ $conn->close();
 
                         </table>
                     </div>
-                    <div class="card-footer border-0 py-3 d-flex justify-content-center flex-wrap">
+                    <div class="card-footer border-0 py-3 d-grid gap-2 d-md-flex justify-content-md-center">
                   
-                    <button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="#myModal" >
+                    <button type="button" class="btn btn-success btn-sm w-100 mb-2" data-toggle="modal" data-target="#myModal" >
     <i class="bi bi-plus-circle"></i> Create
 </button>
 
 
-<button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#update">
+<button type="button" class="btn btn-warning btn-sm w-100 mb-2" data-toggle="modal" data-target="#update">
     <i class="bi bi-pencil"></i> Update
 </button>
 
-<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"  data-target="#delete">
+<button type="button" class="btn btn-danger btn-sm w-100 mb-2" data-toggle="modal"  data-target="#delete">
     <i class="bi bi-trash"></i> Delete
 </button>
 
- <button type="button" class="btn btn-info btn-sm m-1" id="refreshButton">
+ <button type="button" class="btn btn-info btn-sm w-100 mb-2" id="refreshButton">
         <i class="bi bi-arrow-clockwise"></i> Refresh
     </button>
 <script>
@@ -4139,7 +4893,7 @@ $conn->close();
                         <select name="input1" id="input1" class="form-control" required>
                             <option value="" disabled selected>Select an option</option>
                             <?php
-                            // Your PHP code for populating the select options
+                         
                             $conn = new mysqli($servername, $username, $password, $dbname);
 
                             if ($conn->connect_error) {
@@ -4272,10 +5026,7 @@ $conn->close();
     </script>
 <?php
 // Connect to your database
-$servername = "localhost"; // Replace with your server name
-$username = "root"; // Replace with your username
-$password = ""; // Replace with your password
-$dbname = "plate-to-place-v-tracking";
+
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -4412,13 +5163,10 @@ function updateChart() {
     <div class="row">
     <?php
         // Replace these with your actual database connection details
-        $host = "localhost";
-        $username = "root";
-        $password = "";
-        $database = "plate-to-place-v-tracking";
+
 
         // Create a database connection
-        $your_db_connection = mysqli_connect($host, $username, $password, $database);
+  $your_db_connection = mysqli_connect($servername, $username, $password, $dbname);
 
         // Check the connection
         if (!$your_db_connection) {
@@ -4599,6 +5347,7 @@ echo '<i class="fas fa-map-marker-alt location-icon" onclick="copyToClipboard(\'
       });
     });
   </script>
+   
    
    
 </body>
